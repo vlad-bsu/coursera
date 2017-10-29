@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<title>[1312.6114] Auto-Encoding Variational Bayes</title>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/arXiv.css?v=20170424" />
+<meta name="citation_title" content="Auto-Encoding Variational Bayes" />
+<meta name="citation_author" content="Kingma, Diederik P" />
+<meta name="citation_author" content="Welling, Max" />
+<meta name="citation_date" content="2013/12/20" />
+<meta name="citation_online_date" content="2014/05/01" />
+<meta name="citation_pdf_url" content="http://arxiv.org/pdf/1312.6114" />
+<meta name="citation_arxiv_id" content="1312.6114" />
+<script src="/js/mathjaxToggle.min.js" type="text/javascript"></script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+var _paq = _paq || [];
+_paq.push(["setDomains", ["*.arxiv.org"]]);
+_paq.push(['trackPageView']);
+_paq.push(['enableLinkTracking']);
+(function()
+{ var u="//webanalytics.library.cornell.edu/"; _paq.push(['setTrackerUrl', u+'piwik.php']); _paq.push(['setSiteId', 538]); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s); }
+)();
+</script>
+<!-- End Piwik Code -->
+
+
+</head>
+<body class="with-cu-identity">
+
+<noscript><img src="//webanalytics.library.cornell.edu/piwik.php?idsite=538&rec=1" style="border:0;" alt="" /></noscript>
+
+<div id="cu-identity">
+<div id="cu-logo">
+<a id="insignia-link" href="http://www.cornell.edu/"><img src="/icons/cu/cul_signature_unstyled.gif" alt="Cornell University" width="283" height="76" border="0" /></a>
+<div id="unit-signature-links">
+<a id="cornell-link" href="http://www.cornell.edu/">Cornell University</a>
+<a id="unit-link" href="http://www.library.cornell.edu/">Library</a>
+</div>
+</div>
+<div id="support-ack">
+<a href="https://confluence.cornell.edu/x/ALlRF">We gratefully acknowledge support from<br />the Simons Foundation<br /> and member institutions</a>
+</div>
+</div>
+<div id="header">
+<h1><a href="/">arXiv.org</a> &gt; <a href="/list/stat/recent">stat</a> &gt; arXiv:1312.6114</h1>
+<div id="search">
+<form id="search-arxiv" method="post" action="/search">
+                
+<div class="wrapper-search-arxiv">
+<input class="keyword-field" type="text" name="query" placeholder="Search or Article ID"/>
+
+<div class="filter-field">
+ <select name="searchtype">
+<option value="all" selected="selected">All papers</option>
+<option value="ti">Titles</option>
+<option value="au">Authors</option>
+<option value="abs">Abstracts</option>
+<option value="ft">Full text</option>
+<option value="help">Help pages</option>
+</select>
+</div>
+<input class="btn-search-arxiv" value="" type="submit">
+<div class="links">(<a href="/help">Help</a> | <a href="/find">Advanced search</a>)</div>
+</div>
+</form>
+</div>
+</div>
+<div id="content">
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <rdf:Description
+        rdf:about="http://arxiv.org/abs/1312.6114"
+        dc:identifier="http://arxiv.org/abs/1312.6114"
+        dc:title="Auto-Encoding Variational Bayes"
+        trackback:ping="http://arxiv.org/trackback/1312.6114" />
+    </rdf:RDF>
+-->
+
+<div id="abs">
+<div class="extra-services">
+
+<div class="full-text">
+<span class="descriptor">Full-text links:</span>
+<h2>Download:</h2>
+<ul>
+<li><a href="/pdf/1312.6114" accesskey="f">PDF</a></li>
+<li><a href="/format/1312.6114">Other formats</a></li>
+</ul>
+<div class="abs-license">(<a href="http://arxiv.org/licenses/nonexclusive-distrib/1.0/" title="Rights to this article">license</a>)</div>
+</div><!--end full-text-->
+
+<div class="browse">
+<h3>Current browse context:</h3>
+<div class="current">stat.ML</div>
+<div class="prevnext"><span class="arrow"><a href="http://arxiv.org/prevnext?site=arxiv.org&amp;id=1312.6114&amp;context=stat.ML&amp;function=prev" accesskey="p" title="previous in stat.ML (accesskey p)">&lt;&nbsp;prev</a></span>&nbsp;|&nbsp;<span class="arrow"><a href="http://arxiv.org/prevnext?site=arxiv.org&amp;id=1312.6114&amp;context=stat.ML&amp;function=next" accesskey="n" title="next in stat.ML (accesskey n)">next&nbsp;&gt;</a></span>
+<br /></div>
+<div class="list"><a href="/list/stat.ML/new">new</a>&nbsp;| <a href="/list/stat.ML/recent">recent</a>&nbsp;| <a href="/list/stat.ML/1312">1312</a></div><h3>Change to browse by:</h3><div class="switch">
+<a href="/abs/1312.6114?context=cs">cs</a><br />
+<span class="subclass"><a href="/abs/1312.6114?context=cs.LG">cs.LG</a></span><br />
+<a href="/abs/1312.6114?context=stat">stat</a>
+</div>
+
+</div>
+<div class="extra-ref-cite">
+<h3>References &amp; Citations</h3><ul><li><a href="http://adsabs.harvard.edu/cgi-bin/bib_query?arXiv:1312.6114">NASA ADS</a></li>
+</ul>
+
+</div>
+<div class="bookmarks">
+<div class="what-is-this">
+<h3>Bookmark</h3> (<a href="/help/social_bookmarking">what is this?</a>)
+</div>
+<a href="/ct?url=http%3A%2F%2Fwww.citeulike.org%2Fposturl%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1312.6114%26title%3DAuto-Encoding%2520Variational%2520Bayes%26authors%3D&amp;v=6f6aa2c2" title="Bookmark on CiteULike"><img src="//static.arxiv.org/icons/social/citeulike.png" alt="CiteULike logo" /></a>
+<a href="/ct?url=http%3A%2F%2Fwww.bibsonomy.org%2FBibtexHandler%3FrequTask%3Dupload%26url%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1312.6114%26description%3DAuto-Encoding%2520Variational%2520Bayes&amp;v=36d3f57f" title="Bookmark on BibSonomy"><img src="//static.arxiv.org/icons/social/bibsonomy.png" alt="BibSonomy logo" /></a>
+<a href="/ct?url=https%3A%2F%2Fwww.mendeley.com%2Fimport%2F%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1312.6114&amp;v=48e5854e" title="Bookmark on Mendeley"><img src="//static.arxiv.org/icons/social/mendeley.png" alt="Mendeley logo" /></a>
+<a href="/ct?url=https%3A%2F%2Fdel.icio.us%2Fpost%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1312.6114%26description%3DAuto-Encoding%2520Variational%2520Bayes&amp;v=b0d8074c" title="Bookmark on del.icio.us"><img src="//static.arxiv.org/icons/social/delicious.png" alt="del.icio.us logo" /></a>
+<a href="/ct?url=https%3A%2F%2Fdigg.com%2Fsubmit%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1312.6114%26title%3DAuto-Encoding%2520Variational%2520Bayes&amp;v=82f79dc9" title="Bookmark on Digg"><img src="//static.arxiv.org/icons/social/digg.png" alt="Digg logo" /></a>
+<a href="/ct?url=https%3A%2F%2Freddit.com%2Fsubmit%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1312.6114%26title%3DAuto-Encoding%2520Variational%2520Bayes&amp;v=af4ab67d" title="Bookmark on Reddit"><img src="//static.arxiv.org/icons/social/reddit.png" alt="Reddit logo" /></a>
+<a href="/ct?url=http%3A%2F%2Fsciencewise.info%2Fbookmarks%2Fadd%3Furl%3Dhttp%3A%2F%2Farxiv.org%2Fabs%2F1312.6114&amp;v=a3349ec8" title="Bookmark on ScienceWISE"><img src="//static.arxiv.org/icons/social/sciencewise.png" alt="ScienceWISE logo" /></a>
+
+</div>
+</div><!--end extra-services-->
+
+<div class="leftcolumn">
+<div class="subheader">
+<h1>Statistics > Machine Learning</h1>
+</div>
+<h1 class="title mathjax"><span class="descriptor">Title:</span>
+Auto-Encoding Variational Bayes</h1>
+<div class="authors"><span class="descriptor">Authors:</span>
+<a href="/find/stat/1/au:+Kingma_D/0/1/0/all/0/1">Diederik P Kingma</a>, 
+<a href="/find/stat/1/au:+Welling_M/0/1/0/all/0/1">Max Welling</a></div>
+<div class="dateline">(Submitted on 20 Dec 2013 (<a href="/abs/1312.6114v1">v1</a>), last revised 1 May 2014 (this version, v10))</div>
+<blockquote class="abstract mathjax">
+<span class="descriptor">Abstract:</span> How can we perform efficient inference and learning in directed probabilistic
+models, in the presence of continuous latent variables with intractable
+posterior distributions, and large datasets? We introduce a stochastic
+variational inference and learning algorithm that scales to large datasets and,
+under some mild differentiability conditions, even works in the intractable
+case. Our contributions is two-fold. First, we show that a reparameterization
+of the variational lower bound yields a lower bound estimator that can be
+straightforwardly optimized using standard stochastic gradient methods. Second,
+we show that for i.i.d. datasets with continuous latent variables per
+datapoint, posterior inference can be made especially efficient by fitting an
+approximate inference model (also called a recognition model) to the
+intractable posterior using the proposed lower bound estimator. Theoretical
+advantages are reflected in experimental results.
+</blockquote>
+<!--CONTEXT-->
+<div class="metatable">
+<table summary="Additional metadata">
+<tr>
+<td class="tablecell label">Subjects:
+</td>
+<td class="tablecell subjects"><span class="primary-subject">Machine Learning (stat.ML)</span>; Learning (cs.LG)</td>
+</tr>
+<tr>
+<td class="tablecell label">
+Cite&nbsp;as:
+</td>
+<td class="tablecell arxivid"><a href="/abs/1312.6114">arXiv:1312.6114</a> [stat.ML]</td>
+</tr>
+<tr>
+<td class="tablecell label">&nbsp;</td>
+<td class="tablecell arxividv">(or <span class="arxivid"><a href="/abs/1312.6114v10">arXiv:1312.6114v10</a> [stat.ML]</span> for this version)</td>
+</tr>
+</table>
+</div>
+<div class="submission-history">
+<h2>Submission history</h2>
+From: Diederik P Kingma M.Sc. [<a href="https://arxiv.org/show-email/680bd474/1312.6114">view email</a>]
+<br />
+<b><a href="/abs/1312.6114v1">[v1]</a></b> Fri, 20 Dec 2013 20:58:10 GMT  (3884kb,D)<br />
+<b><a href="/abs/1312.6114v2">[v2]</a></b> Mon, 23 Dec 2013 13:19:52 GMT  (7549kb,D)<br />
+<b><a href="/abs/1312.6114v3">[v3]</a></b> Tue, 24 Dec 2013 16:08:10 GMT  (7792kb,D)<br />
+<b><a href="/abs/1312.6114v4">[v4]</a></b> Fri, 27 Dec 2013 16:59:25 GMT  (7785kb,D)<br />
+<b><a href="/abs/1312.6114v5">[v5]</a></b> Thu, 9 Jan 2014 20:28:50 GMT  (8284kb,D)<br />
+<b><a href="/abs/1312.6114v6">[v6]</a></b> Tue, 21 Jan 2014 19:41:37 GMT  (16080kb,D)<br />
+<b><a href="/abs/1312.6114v7">[v7]</a></b> Tue, 4 Feb 2014 14:10:27 GMT  (8256kb,D)<br />
+<b><a href="/abs/1312.6114v8">[v8]</a></b> Mon, 3 Mar 2014 16:41:45 GMT  (8256kb,D)<br />
+<b><a href="/abs/1312.6114v9">[v9]</a></b> Thu, 10 Apr 2014 16:06:37 GMT  (8257kb,D)<br />
+<b>[v10]</b> Thu, 1 May 2014 15:43:28 GMT  (8260kb,D)<br />
+</div>
+<div class="endorsers"><a href="http://arxiv.org/auth/show-endorsers/1312.6114">Which authors of this paper are endorsers?</a> | <a id="mathjax_toggle" href="javascript:setMathjaxCookie()">Disable MathJax</a> (<a href="/help/mathjax/">What is MathJax?</a>)</div><script type="text/javascript" language="javascript">mathjaxToggle();</script>
+</div><!--end leftcolumn-->
+</div><!--end abs-->
+</div>
+<div id="footer">
+<div class="footer-text">
+<p>Link back to: <a href="http://arxiv.org/">arXiv</a>, <a href="/form">form interface</a>, <a href="/help/contact">contact</a>.</p>
+</div>
+<div class="social"><a href="https://twitter.com/arxiv"><img src="//static.arxiv.org/icons/twitter_logo_blue.png" alt="Twitter" title="Follow arXiv on Twitter"></a></div>
+</div>
+</body>
+</html>

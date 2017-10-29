@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=820, initial-scale=0.5">
+
+  <title>Gradient Boosting explained [demonstration]</title>
+  <meta name="description" content="Understanding gradient boosting with 3d-demonstrations">
+
+<meta name="twitter:card" value="summary_large_image">
+<meta name="twitter:title" content="Gradient Boosting explained by Alex Rogozhnikov">
+<meta name="twitter:description" content="Understanding gradient boosting with interactive 3d-demonstrations">
+<meta name="twitter:url" content="http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html">
+<meta name="twitter:image" content="http://arogozhnikov.github.io/images/ml_demonstrations/gradient_boosting_explained.png">
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Gradient Boosting explained by Alex Rogozhnikov" />
+<meta property="og:description" content="Understanding gradient boosting with interactive 3d-demonstrations" />
+<meta property="og:url" content="http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html" />
+<meta property="og:image" content="http://arogozhnikov.github.io/images/ml_demonstrations/gradient_boosting_explained.png" />
+
+
+  <link rel="stylesheet" href="/css/main.css">
+  <!--<link rel="stylesheet" href="/css/alex.css">-->
+
+  <link rel="canonical" href="http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html">
+  <link rel="alternate" type="application/rss+xml" title="Brilliantly wrong" href="http://arogozhnikov.github.io/feed.xml" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
+
+  <link rel="stylesheet" href="/scripts/external_scripts/katex/katex.min.css">
+  <script src="/scripts/external_scripts/katex/katex.min.js"></script>
+  <script src="/scripts/external_scripts/katex/contrib/auto-render.min.js"></script>
+  <script>
+    // can be filled along the way
+    var tex_macros = {};
+
+    var options = {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "\\(", right: "\\)", display: false},
+            {left: "`$", right: "$`", display: false},
+            {left: "$", right: "$", display: false}
+        ],
+        macros: tex_macros // I am not sure this is actually working
+    };
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, options);
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title"
+      style="line-height: 35px; font-weight: bold; padding: 12px 0px; color: white;"
+      href="/">Brilliantly wrong
+      <span style="margin: 0px; line-height: 0px; color: #AAA;"><br />thoughts on science and programming</span>
+    </a>
+
+
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About me</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/css/%D0%BF%D0%BE%D1%82%D0%BE%D0%BA_%D1%81%D0%BE%D0%B7%D0%BD%D0%B0%D0%BD%D0%B8%D1%8F.html"></a>
+          
+        
+          
+          <a class="page-link" href="/scripts/external_scripts/katex/"></a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Gradient Boosting explained [demonstration]</h1>
+    <p class="post-meta">Jun 24, 2016 • Alex Rogozhnikov • <meta name="twitter:card" value="summary_large_image">
+<meta name="twitter:title" content="Gradient Boosting explained by Alex Rogozhnikov">
+<meta name="twitter:description" content="Understanding gradient boosting with interactive 3d-demonstrations">
+<meta name="twitter:url" content="http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html">
+<meta name="twitter:image" content="http://arogozhnikov.github.io/images/ml_demonstrations/gradient_boosting_explained.png">
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Gradient Boosting explained by Alex Rogozhnikov" />
+<meta property="og:description" content="Understanding gradient boosting with interactive 3d-demonstrations" />
+<meta property="og:url" content="http://arogozhnikov.github.io/2016/06/24/gradient_boosting_explained.html" />
+<meta property="og:image" content="http://arogozhnikov.github.io/images/ml_demonstrations/gradient_boosting_explained.png" />
+</p>
+  </header>
+
+  <article class="post-content">
+    <style type="text/css">
+    div.demo-wrapper {
+        width: 800px;
+        margin: auto;
+    }
+
+    div.visualization-wrapper {
+        font-size: 14px;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    div.visualization {
+        margin: auto;
+        /*width: 800px;*/
+    }
+
+    div.controls {
+        margin: auto;
+        /*width: 770px;*/
+        padding: 15px;
+        background-color: #eee;
+    }
+
+    input[type=range] {
+        vertical-align: text-top;
+    }
+
+    div.control {
+        text-align: center;
+        display: inline-block;
+        margin: 0 15px;
+        vertical-align: middle;
+    }
+
+    span.semi-transparent {
+        color: rgba(61, 26, 77, 0.5);
+        font-weight: bold;
+    }
+
+    .explanation-preview {
+        color: #237;
+        cursor: pointer;
+        border-bottom: 1px dotted #237;
+    }
+
+    .explanation-content {
+        display: None;
+    }
+
+    .dataset-control {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .dataset-control canvas {
+        margin: 5px;
+    }
+
+    .dataset-control canvas:hover {
+        outline: 5px solid #bdb;
+    }
+</style>
+
+
+<div id="demo-wrapper" class="demo-wrapper">
+    <img src="/images/gbdt_attractive_picture.png" width="100%"
+         alt="visualizing gradient boosting over decision trees"/>
+    <p>
+        Gradient boosting (GB) is a machine learning algorithm developed in the late '90s that is still very
+        popular.
+        It produces state-of-the-art results for many commercial (and academic) applications.
+    </p>
+    <p>
+        This page explains how the gradient boosting algorithm works using several interactive visualizations.
+    </p>
+
+    <h2>Decision Tree Visualized</h2>
+    <div class="visualization-wrapper">
+        <div>
+            <div style="text-align: center;"><span class="semi-transparent">semi-transparent target function \( f(\mathbf{x}) \) </span>
+                and tree prediction \( d_\text{tree}(\mathbf{x}) \)
+            </div>
+            <div id="tree_visualization" class="visualization"></div>
+        </div>
+        <div class="controls">
+            <div class="control dataset-control" id="tree_dataset_select_control">
+            </div>
+            <div class="control">
+                <label for="tree_depth_control">Tree depth: </label><label id="tree_depth_display"></label> <br/>
+                <input type="range" min="0" max="6" value="1" id="tree_depth_control">
+            </div>
+            <div class="control">
+                <button id="tree_look_from_above_control">Look from above</button>
+            </div>
+        </div>
+    </div>
+    <p>
+        We take a 2-dimensional regression problem and investigate how a tree is able to reconstruct the function
+        \( y = f(\mathbf{x}) = f(x_1, x_2) \).
+        Play with the tree depth, then look at the tree-building process from above!
+    </p>
+
+
+    <div>
+        <h2>Explanation: <span data-explained="tree" class="explanation-preview">how the tree is built?</span></h2>
+        <div data-explained="tree" class="explanation-content">
+            <p>
+                First, let's revisit how a decision tree works.
+                A decision tree is a fairly simple classifier which splits the space of features into regions by
+                applying trivial splitting (e.g. \( x_2 < 2.4 \) ).
+                The resulting regions have a rectangular form. In each region the predictions are constant.
+            </p>
+            <p>
+                Gradient boosting relies on regression trees (even when solving a classification problem) which minimize
+                <i>mean squared error</i> (MSE).
+                Selecting a prediction for a leaf region is simple: to minimize MSE we should select an average target
+                value over samples in the leaf.
+                The tree is built greedily starting from the root: for each leaf a split is selected to minimize MSE for
+                this step.
+            </p>
+            <p>
+                The greediness of this process allows it to build trees quite fast, but it produces suboptimal results.
+                Building an optimal tree turns out to be a very hard (NP-complete, actually) problem.
+            </p>
+            <p>
+                At the same time these built trees do their job (better than people typically think)
+                and fit well for our next step.
+            </p>
+        </div>
+    </div>
+
+    <h2>Gradient Boosting Visualized</h2>
+    <p>
+        This demo shows the result of combining 100 decision trees.
+    </p>
+    <div class="visualization-wrapper">
+        <div>
+            <div style="text-align: center;"><span class="semi-transparent">target function \( f(\mathbf{x}) \) </span> and
+                prediction of GB \( D(\mathbf{x}) \)
+            </div>
+            <div id="gb_simple_visualization" class="visualization"></div>
+        </div>
+        <div class="controls">
+            <div class="control dataset-control" id="gb_simple_dataset_select_control">
+            </div>
+            <div class="control">
+                <label for="gb_simple_depth_control">Tree depth: </label><span id="gb_simple_depth_display"></span><br/>
+                <input type="range" min="0" max="6" value="3" id="gb_simple_depth_control"/>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        Not bad, right?
+        As we see, gradient boosting is able to provide smooth detailed predictions by combining many trees of very
+        limited depth (cf. with the single decision tree above!).
+    </p>
+    <div>
+        <h2>Explanation: <span data-explained="basic_gb" class="explanation-preview">what is gradient boosting?</span>
+        </h2>
+        <div data-explained="basic_gb" class="explanation-content">
+            <p>
+                To begin with, gradient boosting is an ensembling technique, which means that prediction is done by an
+                ensemble
+                of simpler estimators.
+                While this theoretical framework makes it possible to create an ensemble of various estimators, in practice
+                we almost
+                always use GBDT &mdash; gradient boosting over decision trees.
+                This is the case I cover in the demo, but in principle any other estimator could be used instead of a
+                decision tree.
+            </p>
+            <p>
+                The aim of gradient boosting is to create (or "train") an ensemble of trees, given that we know how to
+                train a single decision tree.
+                This technique is called <b>boosting</b> because we expect an ensemble to work much better than
+                a single estimator.
+            </p>
+        </div>
+    </div>
+
+
+    <h2>How an Ensemble Is Built</h2>
+    <p>
+        Here comes the most interesting part.
+        Gradient boosting builds an ensemble of trees <strong>one-by-one</strong>,
+        then the predictions of the individual trees <strong>are summed</strong>:
+        $$
+        D(\mathbf{x}) = d_\text{tree 1}(\mathbf{x}) + d_\text{tree 2}(\mathbf{x}) + ...
+        $$
+    </p>
+    <p>
+        The next decision tree tries to cover the discrepancy between the target function \( f(\mathbf{x}) \) and the current
+        ensemble prediction <strong>by reconstructing the residual</strong>.
+    </p>
+    <p>
+        For example, if an ensemble has 3 trees the prediction of that ensemble is:
+        $$
+        D(\mathbf{x}) = d_\text{tree 1}(\mathbf{x}) + d_\text{tree 2}(\mathbf{x}) + d_\text{tree 3}(\mathbf{x})
+        $$
+
+        The next tree ( \( \text{tree 4} \) ) in the ensemble should complement well the existing trees and minimize
+        the training error of the ensemble. <br/>
+        In the ideal case we'd be happy to have:
+        $$
+        D(\mathbf{x}) + d_\text{tree 4}(\mathbf{x}) = f(\mathbf{x}).
+        $$
+    </p>
+    <p>
+        To get a bit closer to the destination, we train a tree to reconstruct the difference between the
+        target function and the current predictions of an ensemble, which is called the <strong>residual</strong>:
+        $$
+        R(\mathbf{x}) = f(\mathbf{x}) - D(\mathbf{x}).
+        $$
+        Did you notice? If decision tree completely reconstructs \( R(\mathbf{x}) \),
+        the whole ensemble gives predictions without errors (after adding the
+        <nobr>newly-trained</nobr>
+        tree to the ensemble)!
+        That said, in practice this never happens, so we instead continue the iterative process of ensemble building.
+    </p>
+
+    <div class="visualization-wrapper">
+        <div style="width: 850px; margin: auto;">
+            <div style="width: 400px; display: inline-block;">
+                <div style="text-align: center;"><span class="semi-transparent">target function \( f(\mathbf{x}) \)</span>
+                    and prediction of previous trees \( D(\mathbf{x}) \)
+                </div>
+                <div id="gb_build_visualization_prediction"></div>
+            </div>
+            <div style="width: 400px; display: inline-block;">
+                <div style="text-align: center;"><span class="semi-transparent">residual \( R(\mathbf{x}) \)</span> and
+                    prediction
+                    of next tree \( d_n(\mathbf{x}) \)
+                </div>
+                <div id="gb_build_visualization_residual"></div>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="control dataset-control" id="gb_build_dataset_select_control">
+            </div>
+            <div class="control">
+                <label for="gb_build_depth_control">Tree depth: </label><span id="gb_build_depth_display"></span><br/>
+                <input type="range" min="1" max="6" value="3" id="gb_build_depth_control">
+            </div>
+            <div class="control">
+                <label for="gb_build_estimator_control">Number of built trees: </label>
+                <span id="gb_build_estimator_display"></span><br/>
+                <input type="range" min="0" max="10" value="0" id="gb_build_estimator_control">
+            </div>
+        </div>
+    </div>
+    <p>
+        Look at the plot on the right. pay attention to how the values on the vertical (y) axis decrease after many trees have been built (and the residual
+        becomes smaller and smaller). <br/>
+        After playing with this residuals demo you may notice some <span data-explained="comments" class="explanation-preview">interesting things:</span>
+    </p>
+    <ul data-explained="comments" class="explanation-content">
+        <li>before a tree is added to an ensemble, it's predictions are multiplied by some factor</li>
+        <li>this factor (called \( \eta \) or learning rate) is an important parameter of GB ( \( \eta = 0.3 \) in this
+            demo)
+        </li>
+        <li>if we set number of trees to 10 and vary the depth: we notice that as the depth gets higher, the residual gets smaller, but it's also more
+            noisy
+        </li>
+        <li>
+            discontinuities ('spikes') appear at those points where a decision tree split
+        </li>
+        <li>
+            the larger the learning rate &mdash; the larger the 'step' made by a single decision tree
+            &mdash; and the larger the discontinuity
+        </li>
+        <li>
+            in practice GBDT is used with small learning rate ( \( 0.01 < \eta < 0.1 \) ) and large number of trees
+            to get the best results
+        </li>
+    </ul>
+    <h2>Gradient Boosting for Classification Problem</h2>
+    <p>
+        Things become more interesting when we want to build an ensemble for classification.
+    </p>
+    <p>
+        A naive approach that covers the difference between 'where we are' and 'where we want to get' doesn't seem to work anymore,
+        and things become more interesting.
+    </p>
+    <p>
+        But that's a topic for another post.
+    </p>
+    <p>
+        Thanks to Micah Stubbs for proof-reading this post.
+    </p>
+
+</div>
+
+<script type="text/javascript" src="/scripts/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="/scripts/external_scripts/plotly-1.13.js"></script>
+<script type="text/javascript" src="/scripts/demonstration_scripts/utils-compiled.js"></script>
+<script type="text/javascript" src="/scripts/demonstration_scripts/gradient_boosting-compiled.js"></script>
+<script type="text/javascript" src="/scripts/demonstration_scripts/datasets-compiled.js"></script>
+<script type="text/javascript" src="/scripts/demonstration_scripts/gradient_boosting_explained-compiled.js"></script>
+  </article>
+
+  <!-- adding temp info -->
+  <div class='job-looking' style='background: #DEF; font-size: 1.2em; padding: 30px;'  >
+    Psst. Looking for a <strong>research scientist in machine learning</strong> to join your team? <br />
+    Drop me an email, I'm currently open for opportunities! <a href='http://arogozhnikov.github.io/cv/AlexRogozhnikov.html' >My CV</a>.
+  </div>
+
+  <!-- end of temp info -->
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="after-article">
+    <div>
+        <h2 style="text-align: center;">Top posts at "brilliantly wrong": <small>(<a href="https://arogozhnikov.github.io">all posts</a>)</small></h2>
+        <div class='visualizations-list'>
+            <div>
+                <a href="/2016/07/05/gradient_boosting_playground.html">
+                <img src="/images/mini/mini_gb_playground.png" alt="">
+                Gradient boosting <br />playground
+                </a>
+            </div>
+            <div>
+                <a href="/2016/12/19/markov_chain_monte_carlo.html">
+                <img src="/images/mini/mini_hmc_explained.png" alt="">
+                Hamiltonian MC <br/>explained
+                </a>
+            </div>
+            <div>
+                <a href="/2016/06/24/gradient_boosting_explained.html">
+                <img src="/images/mini/mini_gb_explained.png" alt="">
+                Gradient boosting <br />explained
+                </a>
+            </div>
+            <div>
+                <a href="/2016/02/09/DrawingPictureWithML.html">
+                <img src="/images/mini/mini_reconstructing.png" alt="">
+                Reconstructing pictures <br/> with ML
+                </a>
+            </div>
+            <div>
+                <a href="//arogozhnikov.github.io/3d_nn">
+                <img src="/images/mini/mini_3d_nn.png" alt="">
+                Neural Networks <br/> 
+                visualized in 3d
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="recommended-links">
+        <ul>
+            <li>
+                <a href="/2016/09/10/jupyter-features.html"> Jupyter (IPython) notebooks features </a>
+            </li>
+            <li>
+                Numpy tips and tricks:
+                <a href="/2015/09/29/NumpyTipsAndTricks1.html">
+                        part 1</a>,
+                <a href="/2015/09/30/NumpyTipsAndTricks2.html">
+                        part 2
+                    </a>
+            </li>
+            <li>
+                <a href="/2015/10/09/gradient-boosted-reweighter.html">
+                        Reweighting with Boosted Decision Trees
+                    </a>
+            </li>
+            <li>
+                <a href="/2017/04/20/machine-learning-in-science-and-industry.html">Machine Learning in Science and Industry</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="/2015/09/08/SpeedBenchmarks.html">
+                        Speed benchmarks: numpy vs all.
+                    </a>
+            </li>
+            <li>
+                Machine learning in COMET:
+                <a href="/2015/06/22/machine-learning-used-in-tracking-of.html">
+                        part 1</a>,
+                <a href="/2015/07/05/machine-learning-in-comet-experiment.html">
+                        part 2
+                    </a>
+            </li>
+            <li><a href="/2015/10/05/roc-curve.html">ROC curve explained</a>
+            </li>
+            <li>
+                <a href="/2015/12/19/optimal-control-of-oscillations.html">Optimal control of oscillations</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Brilliantly wrong 
+      <!--<span style="color: #888;">(subscribe <a href="/feed.xml">via RSS</a>)</span>-->
+    </h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Alex Rogozhnikov</li>
+          <li><a href="mailto:alex.rogozhnikov@yandex.ru">alex.rogozhnikov@yandex.ru</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/arogozhnikov">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"></path>
+                </svg>
+              </span>
+
+              <span class="username">arogozhnikov</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Brilliantly Wrong — Alex Rogozhnikov's blog about math, machine learning, programming and high energy physics.</p>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="counters">
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter32426790 = new Ya.Metrika({
+                        id:32426790,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/32426790" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+      <!-- /Yandex.Metrika counter -->
+
+      <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-12796577-4', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </div>
+</footer>
+
+
+  </body>
+
+</html>

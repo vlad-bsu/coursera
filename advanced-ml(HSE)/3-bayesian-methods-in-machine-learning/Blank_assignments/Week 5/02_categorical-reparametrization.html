@@ -1,0 +1,472 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  What can discrete latent variables in models correspond to?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Program execution time
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Image regions
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Semantic classes
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Air temperature outside
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  Why can't we use discrete random variables "as is" in neural networks?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    They are usually hard to sample from
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    They are hard to parametrise
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    Sampling from them is not differentiable
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    They exist only in low dimensions
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  Select Gumbel(0, 1) distribution
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\text{Gumbel(x; 0, 1)} \propto e^{-x}$$, $$x \in (0, \infty)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\text{Gumbel(x; 0, 1)} \propto e^{-(x e^{-x})}$$, $$x \in (-\infty, \infty)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\text{Gumbel(x; 0, 1)} \propto x(1-x)$$, $$x \in (0, 1)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\text{Gumbel(x; 0, 1)} \propto xe^{-x}$$, $$x \in (0, \infty)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p hasmath="true">
+  What is a simple way get sample $$g$$ from $$\text{Gumbel}(0, 1)$$
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$u \sim U(0, 1), g \sim -log(-log(u))$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$u \sim U(0, 1), g \sim -log(u)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$u \sim U(0, 1), g \sim e^{-u}$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$u \sim U(0, 1), g \sim e^u$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p hasmath="true">
+  In a Gumbel-Max trick to draw samples from $$\text{Cat}(\pi)$$, one can compute $$z = \text{one_hot}(arg\,\max\limits_i [g_i   \log \pi_i])$$, where $$g_i$$ are i.i.d. samples from Gumbel(0, 1) distrubtion. How can we approximate $$\text{one_hot}(arg\,\max[\dots])$$ operation in a differentiable manner?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    By sorting indices of $$[g_i   \log \pi_i]$$ and taking the index of a maximum value
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    By directly sampling from categorical distribution
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    By using Softmax operation over $$[g_i   \log \pi_i]$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    By sampling from Gumbel(0, 1) distribution
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 6
+</h3>
+<co-content>
+ <p hasmath="true">
+  For which values of $\tau$ is it possible to compute derivatives of Gumbel Softmax distribution $$\partial y / \partial \pi$$?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tau \le 0$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tau &gt; 0$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tau &lt; 0$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tau \ge 0$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 7
+</h3>
+<co-content>
+ <p hasmath="true">
+  How does parameter $$\tau$$ influence the behaviour of Gumbel-Softmax?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="6" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    As $$\tau$$ approaches to $$0$$, variance of the gradient becomes small
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    As $$\tau$$ approaches to $$0$$, variance of the gradient becomes large
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    As $$\tau$$ approaches to $$0$$, samples are close to one-hot
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    As $$\tau$$ approaches to $$0$$, samples are far from one-hot
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 8
+</h3>
+<co-content>
+ <p>
+  What is a Straight-through Gumbel-Softmax estimator?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    z is sampled from continuous distribution, gradient is computed from discrete estimation
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    z is sampled from Gumbel(0, 1), gradient is computed from discrete estimation
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    z is sampled from discrete distribution, gradient is computed from continuous estimation
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    z is sampled from discrete distribution, gradient is computed from discrete estimation
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 9
+</h3>
+<co-content>
+ <p>
+  How can one deal with unlabeled data for classification problem?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="8" type="checkbox"/>
+  <co-content>
+   <span>
+    Use reparametrization trick
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="checkbox"/>
+  <co-content>
+   <span>
+    Marginalize over all classes
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="checkbox"/>
+  <co-content>
+   <span>
+    Use Gumbel-Softmax to sample label
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="checkbox"/>
+  <co-content>
+   <span>
+    Use VAE with continuous latent variables
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

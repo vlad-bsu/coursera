@@ -1,0 +1,306 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Prior is said to be conjugate to a likelihood function if:
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    the prior is from the same family of distributions as the likelihood
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    the posterior would stay in the same family of distributions as prior
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    the prior, the likelihood function and the posterior would be in a same family of distributions
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    the prior lies in the same family of distributions as the likelihood
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  Finding a conjugate prior is useful because:
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    It leads to a better MAP estimate
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    It is the only prior for which it is possible to perform analytical inference
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    We can perform analytical inference and find posterior distribution instead of taking point MAP estimate
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    As long as posterior will stay in the same family with prior, the integral $$ p(x_{new}\,|\,x) = \int p(x_{new}\,|\,\theta) p(\theta\,|\,x) d\theta $$ which is used for prediction is also tractable
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  Out of the following pairs of priors and likelihood functions, choose those that are conjugate:
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\mathcal{N}(\sigma_1^2\,|\,m, s^2)$$ prior over parameter $$\sigma_1^2$$ of $$\mathcal{N}(X\,|\,\mu_1, \sigma_1^2)$$ likelihood
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\mathcal{\Gamma}(\lambda\,|\,\alpha, \beta$$) prior over parameter $$\lambda$$ of $$Exp(x\,|\,\lambda)$$ likelihood ($$\mathcal{\Gamma}(x,|\,\alpha, \beta) = \frac{\beta^{\alpha}}{\mathcal{\Gamma}(\alpha)} x^{\alpha-1} e^{-\beta x} $$ and $$Exp(x\,|\,\lambda$$) = $$ \lambda e^{-\lambda x} $$)
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\mathcal{N}(\mu_1\,|\,m, s^2)$$ prior over parameter $$\mu_1$$ for $$\mathcal{N}(X\,|\,\mu_1, \sigma_1^2)$$ likelihood
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\mathcal{\Gamma}(\sigma_1^2\,|\,\alpha, \beta)$$ prior over parameter $$\sigma_1^2$$ of $$\mathcal{N}(X\,|\,\mu_1, \sigma_1^2)$$ likelihood
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p hasmath="true">
+  Which of the following prior distributions over parameter $$\sigma^2$$ are conjugate to likelihood $$\mathcal{N}(x\,|\,\mu, \sigma^2)$$?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Inverse gamma with pdf $$p(\sigma^2\,|\,\alpha, \beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha) (\sigma^2)^{-\alpha-1} \exp\left(-\frac{\beta}{\sigma^2}\right) } $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Scaled inverse chi-squared with pdf $$f(\sigma^2\,|\,\nu, \tau) = \frac{\left( \tau^2 \nu / 2 \right)^{\nu / 2}}{\Gamma(\nu / 2)} \frac{\exp\left( -\frac{\nu \tau^2}{2\sigma^2} \right)}{(\sigma^2)^{1 \nu / 2}} $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\mathcal{N}(\sigma^2\,|\,\mu_1, \sigma_1^2)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$Exp(\sigma^2\,|\,\lambda) =  \lambda e^{-\lambda \sigma^2}$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  Choose the correct statements:
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    Although not for every pair of prior and likelihood there is an analytical expression for posterior, we can always find a conjugate prior in some simple family and compute posterior analytically
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    Putting initial knowledge into prior distribution is an advantage of Bayesian approach
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    For some problems conjugate prior may be inadequate
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    For arbitrary likelihood and prior pair, we can always perform inference and compute posterior analytically
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 6
+</h3>
+<co-content>
+ <p>
+  Imagine that you want to pat your friend’s cat Becky. Cats are really random creatures.
+ </p>
+ <p hasmath="true">
+  Becky might get grumpy and scratch you with probability $$p$$ or curl up and start purring (with prob. $$1-p$$). You don’t know Becky well yet, so you estimate prior on $$p$$ to be distributed as $$Beta(2, 2)$$. Within one evening, Becky has scratched you 6 times and only 2 times she purred. What will be the parameters for posterior distribution over $$p$$? What is the MAP-estimate for $$p$$?
+ </p>
+ <p hasmath="true">
+  Enter your answers separated by comma: e.g. if you think that correct answer is $$Beta(1, 0.2)$$ and MAP is 3, you should enter 1,0.2,3. Express real numbers as decimals with dot as delimiter.
+ </p>
+</co-content>
+<form>
+ <label>
+  Enter answer here:
+  <input name="" type="text"/>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

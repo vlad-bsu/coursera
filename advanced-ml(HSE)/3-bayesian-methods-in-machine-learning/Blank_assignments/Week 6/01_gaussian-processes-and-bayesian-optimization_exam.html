@@ -1,0 +1,425 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Select properties of nonparametric methods.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Usually learning process is just remembering the dataset.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Very fast prediction.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Have a lot of parameters depending of dataset size.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Prediction model is highly constrained to the specified form.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  Select stationary Gaussian Processes.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$m(x) = const$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$m(x) = x$$ and $$K(x, x') = min(x, x’)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$m(x) = 0$$ and $$K(x, x') = 1 / (1   (x - x’)^2))$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$m(x) = const$$ and $$K(x, x') = I[x = x']$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  Choose the time complexity of prediction with Gaussian Process (d — dimension of features, n — number of training objects).
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$O(n^2 d)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$O(n^3)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$O(n^3   dn^2)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$O(n d^2)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p hasmath="true">
+  Consider the regression problem, $$\{x_i, y_i\}_{i=1}^n$$ — the training set. Assume that $$y_i = f(x_i)$$ — realization of stationary Gaussian Process ($$m(x)$$ — mean function and $$m(x) = 0$$, $$K(x, x') = \tilde{K}(x - x’)$$ - continuous covariance function with the property $$\tilde{K}(t) \rightarrow 0$$ if $$t \rightarrow \infty $$), $$x$$ — new object. Select all correct statements about $$p(f(x)|f(x_1), f(x_2), ..., f(x_n))$$.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Variance of $$p(f(x)| f(x_1), ..., f(x_n))$$ is close to 0, if $$x$$ is close to training sample.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    If the object is far from the training sample then the variance of $$p(f(x)|f(x_1), ..., f(x_n))$$ is close to $$K(0)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Expected value of $$p(f(x)| f(x_1), ..., f(x_n))$$ is close to 0, if $$x$$ is close to training sample.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$p(f(x)|f(x_1), f(x_2), ..., f(x_n))$$ is normal distribution.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Expected value of $$p(f(x)|f(x_1), ..., f(x_n))$$ doesn't depend on $$c_{i,j} = K(x_i, x_j)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p hasmath="true">
+  Consider the following kernel: $$\tilde{K}(x_i - x_j) = \sigma^2 \exp \left( - \frac{(x_i - x_j)^2}{2l^2} \right)   s^2 \mathbb{I} [x_i = x_j]$$. Which statements about this kernel are true?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Higher values of $$s^2$$ give you the model that is more robust to the noise in the data.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    If the object is far from the training sample then the variance of $$p(f(x)|f(x_1), ..., f(x_n))$$ is close to $$K(0)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Parameters of the model $$s$$, $$l$$ and $$\sigma$$ can be optimized with gradient descent.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$Var(f(x)| f(x_1), ..., f(x_n)) = 0$$, if $$x = x_i$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 6
+</h3>
+<co-content>
+ <p>
+  Which of the following statements about hyperparameters tuning with Gaussian Processes (GP) and Random Search (RS) are true?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="5" type="checkbox"/>
+  <co-content>
+   <span>
+    You should use GP if you have a lot of computational servers and every evaluation of the function is cheap/free.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="checkbox"/>
+  <co-content>
+   <span>
+    RS can be faster than GP because RS is easier to parallelize.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="checkbox"/>
+  <co-content>
+   <span>
+    GP can be faster than RS because it suggests where to search for the next point using current information and uncertainty estimates.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 7
+</h3>
+<co-content>
+ <p hasmath="true">
+  Bayesian optimization with Gaussian Process uses the following information about the optimized function $$f(x)$$.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Only gradients of the function $$\nabla f(x)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Values of $$f(x)$$ and gradients $$\nabla f(x)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Only values of $$f(x)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Values of $$f(x)$$, gradients $$\nabla f(x)$$ and the Hessian $$\nabla^2 f(x)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 8
+</h3>
+<co-content>
+ <p>
+  Which of the following problems you would use Bayesian Optimization for?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="7" type="checkbox"/>
+  <co-content>
+   <span>
+    Find optimal weights in the Logistic Regression model.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="checkbox"/>
+  <co-content>
+   <span>
+    Optimize the configuration of the neural network: number of neurons in each layer, parameters the optimization algorithm.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="checkbox"/>
+  <co-content>
+   <span>
+    Find the best geographic coordinates for oil producing station
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="checkbox"/>
+  <co-content>
+   <span>
+    Find a molecule that possesses certain properties (drug discovery)
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

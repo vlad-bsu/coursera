@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>A Comprehensive guide to Fine-tuning Deep Learning Models in Keras (Part II) | Felix Yu</title>
+	<meta name="description" content="This is Part II of a 2 part series that cover fine-tuning deep learning models in Keras. Part I states the motivation and rationale behind fine-tuning and gi...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="http://example.com/2016/10/08/fine-tuning-in-keras-part2.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Felix Yu" href="http://example.com/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+	
+
+	<!-- Google Analytics -->
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="/img/avatar.png" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Felix Yu</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			<li>
+				<a class="page-link" href="/about/">
+					About Me
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/flyyufelix" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.linkedin.com/in/felix-yu-60392815" title="Follow on LinkedIn">
+		<i class="fa fa-fw fa-linkedin"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://twitter.com/flyyufelix" title="Follow on Twitter">
+		<i class="fa fa-fw fa-twitter"></i>
+	</a>
+</li>
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article >
+  <header style="background-image: url('/')">
+    <h1 class="title">A Comprehensive guide to Fine-tuning Deep Learning Models in Keras (Part II)</h1>
+    <p class="meta">
+    October 8, 2016
+    
+    </p>
+  </header>
+  <section class="post-content"><p>This is Part II of a 2 part series that cover fine-tuning deep learning models in Keras. <a href="/2016/10/03/fine-tuning-in-keras-part1.html" target="_blank">Part I</a> states the motivation and rationale behind fine-tuning and gives a brief introduction on the common practices and techniques. This post will give a detailed step-by-step guide on how to go about implementing fine-tuning on popular models <em>VGG</em>, <em>Inception</em>, and <em>ResNet</em> in Keras.</p>
+
+<h2 id="why-do-we-pick-keras">Why do we pick Keras?</h2>
+<p><a href="https://keras.io/" target="_blank">Keras</a> is a simple to use neural network library built on top of Theano or TensorFlow that allows developers to prototype ideas very quickly. Unless you are doing some cutting-edge research that involves customizing a completely novel neural architecture with different activation mechanism, Keras provides all the building blocks you need to build reasonably sophisticated neural networks.</p>
+
+<p>It also comes with a great documentation and tons of online resources.</p>
+
+<h2 id="note-on-hardware">Note on Hardware</h2>
+
+<p>I would strongly suggest getting a GPU to do the heavy computation involved in Covnet training. The speed difference is very substantial. We are talking about a matter of hours with a GPU versus a matter of days with a CPU.</p>
+
+<p>I would recommend GTX 980Ti or a slightly expensive GTX 1080 which cost around $600 bucks.</p>
+
+<h2 id="fine-tuning-in-keras">Fine-tuning in Keras</h2>
+<p>I have implemented starter scripts for fine-tuning convnets in Keras. The scripts are hosted in <a href="https://github.com/flyyufelix/cnn_finetune" target="_blank">this github page</a>. Implementations of VGG16, VGG19, GoogLeNet, Inception-V3, and ResNet50 are included. With that, you can customize the scripts for your own fine-tuning task.</p>
+
+<p>Below is a detailed walkthrough of how to fine-tune <strong>VGG16</strong> and <strong>Inception-V3</strong> models using the scripts.</p>
+
+<p><strong>Fine-tune VGG16.</strong> VGG16 is a 16-layer Covnet used by the <a href="http://www.robots.ox.ac.uk/~vgg/research/very_deep/" target="_blank">Visual Geometry Group</a> (VGG) at Oxford University in the 2014 ILSVRC (ImageNet) competition. The model achieves a 7.5% top 5 error rate on the validation set, which is a result that earned them a second place finish in the competition.</p>
+
+<p>Schematic Diagram of VGG16 Model:</p>
+
+<p><img src="/img/vgg16.png" alt="VGG16 Model" width="500px" /></p>
+
+<p>The script for fine-tuning VGG16 can be found in <a href="https://github.com/flyyufelix/cnn_finetune/blob/master/vgg16.py" target="_blank">vgg16.py</a>. The first part of the <code class="highlighter-rouge">vgg_std16_model</code> function is the model schema for VGG16. After defining the fully connected layer, we load the ImageNet pre-trained weight to the model by the following line:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s">'cache/vgg16_weights.h5'</span><span class="p">)</span></code></pre></figure>
+
+<p>For fine-tuning purpose, we truncate the original softmax layer and replace it with our own by the following snippet:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">outbound_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_class</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">))</span></code></pre></figure>
+
+<p>Where the <code class="highlighter-rouge">num_class</code> variable in the last line represents the number of class labels for our classification task.</p>
+
+<p>Sometimes, we want to freeze the weight for the first few layers so that they remain intact throughout the fine-tuning process. Say we want to freeze the weights for the first 10 layers. This can be done by the following lines:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>
+    <span class="n">layer</span><span class="o">.</span><span class="n">trainable</span> <span class="o">=</span> <span class="bp">False</span></code></pre></figure>
+
+<p>We then fine-tune the model by minimizing the cross entropy loss function using stochastic gradient descent (sgd) algorithm. Notice that we use an initial learning rate of 0.001, which is smaller than the learning rate for training scratch model (usually 0.01).</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">sgd</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">nesterov</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">sgd</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">vgg_std16_model</span><span class="p">(</span><span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">num_class</span><span class="p">)</span></code></pre></figure>
+
+<p>Where img_rows, img_cols, and channel define the dimension of the input. For colored image with resolution 224x224, img_rows = img_cols = 224, channel = 3.</p>
+
+<p>Next, we load our dataset, split it into training and testing sets, and start fine-tuning the model:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_valid</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span>
+          <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+          <span class="n">nb_epoch</span><span class="o">=</span><span class="n">nb_epoch</span><span class="p">,</span>
+          <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+          <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+          <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">Y_valid</span><span class="p">),</span>
+          <span class="p">)</span></code></pre></figure>
+
+<p>The fine-tuning process will take a while, depending on your hardware. After it is done, we use the model the make prediction on the validation set and return the score for the cross entropy loss:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">predictions_valid</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">log_loss</span><span class="p">(</span><span class="n">Y_valid</span><span class="p">,</span> <span class="n">predictions_valid</span><span class="p">)</span></code></pre></figure>
+
+<p><strong>Fine-tune Inception-V3.</strong> Inception-V3 achieved the second place in the 2015 ImageNet competition with a 5.6% top 5 error rate on the validation set. The model is characterized by the usage of the <a href="https://www.youtube.com/watch?v=VxhSouuSZDY" target="_blank">Inception Module</a>, which is a concatenation of features maps generated by kernels of varying dimensions.</p>
+
+<p>Schematic Diagram of the 27-layer Inception-V1 Model (Idea similar to that of V3):</p>
+
+<p><img src="/img/inception.png" alt="Inception-V1 Model" width="1000px" /></p>
+
+<p>The code for fine-tuning Inception-V3 can be found in <a href="https://github.com/flyyufelix/cnn_finetune/blob/master/inception_v3.py" target="_blank">inception_v3.py</a>. The process is mostly similar to that of VGG16, with one subtle difference. Inception-V3 does not use Keras’ <a href="https://keras.io/models/sequential/" target="_blank">Sequential Model</a> due to branch merging (for the inception module), hence we cannot simply use <code class="highlighter-rouge">model.pop()</code> to truncate the top layer.</p>
+
+<p>Instead, after we create the model and load it up with the ImageNet weight, we perform the equivalent of top layer truncation by defining another fully connected sofmax (<code class="highlighter-rouge">x_newfc</code>) on top of the last inception module (x). This is done using the following snippet:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># Last Inception Module </span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">merge</span><span class="p">([</span><span class="n">branch1x1</span><span class="p">,</span> <span class="n">branch3x3</span><span class="p">,</span> <span class="n">branch3x3dbl</span><span class="p">,</span> <span class="n">branch_pool</span><span class="p">],</span>
+                  <span class="n">mode</span><span class="o">=</span><span class="s">'concat'</span><span class="p">,</span> <span class="n">concat_axis</span><span class="o">=</span><span class="n">channel_axis</span><span class="p">,</span>
+                  <span class="n">name</span><span class="o">=</span><span class="s">'mixed'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">9</span> <span class="o">+</span> <span class="n">i</span><span class="p">))</span>
+
+<span class="c"># Fully Connected Softmax Layer</span>
+<span class="n">x_fc</span> <span class="o">=</span> <span class="n">AveragePooling2D</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'avg_pool'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x_fc</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'flatten'</span><span class="p">)(</span><span class="n">x_fc</span><span class="p">)</span>
+<span class="n">x_fc</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'predictions'</span><span class="p">)(</span><span class="n">x_fc</span><span class="p">)</span>
+
+<span class="c"># Create model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">img_input</span><span class="p">,</span> <span class="n">x_fc</span><span class="p">)</span>
+
+<span class="c"># Load ImageNet pre-trained data</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s">'cache/inception_v3_weights_th_dim_ordering_th_kernels.h5'</span><span class="p">)</span>
+
+<span class="c"># Truncate and replace softmax layer for transfer learning</span>
+<span class="c"># Cannot use model.layers.pop() since model is not of Sequential() type</span>
+<span class="c"># The method below works since pre-trained weights are stored in layers but not in the model</span>
+<span class="n">x_newfc</span> <span class="o">=</span> <span class="n">AveragePooling2D</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'avg_pool'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x_newfc</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'flatten'</span><span class="p">)(</span><span class="n">x_newfc</span><span class="p">)</span>
+
+<span class="c"># Create another model with our customized softmax</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">img_input</span><span class="p">,</span> <span class="n">x_newfc</span><span class="p">)</span>
+
+<span class="c"># Learning rate is changed to 0.001</span>
+<span class="n">sgd</span> <span class="o">=</span> <span class="n">SGD</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">decay</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">nesterov</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">sgd</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">inception_v3_model</span><span class="p">(</span><span class="n">img_rows</span><span class="p">,</span> <span class="n">img_cols</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">num_class</span><span class="p">)</span></code></pre></figure>
+
+<p>That’s it for Inception-V3. Starting script for other models such as <strong>VGG19</strong>, <strong>GoogleLeNet</strong>, and <strong>ResNet</strong> can be found <a href="https://github.com/flyyufelix/cnn_finetune" target="_blank">here</a>.</p>
+
+<h2 id="fine-tuned-networks-in-action">Fine-tuned Networks in Action</h2>
+<p>If you are a Deep Learning or Computer Vision practitioner, most likely you have already tried fine-tuning pre-trained network for your own classification problem before.</p>
+
+<p>To me, I came across this interesting <a href="https://www.kaggle.com/c/state-farm-distracted-driver-detection" target="_blank">Kaggle Competition</a> which requires candidates to identify distracted drivers through analyzing in-car camera images. This is a good opportunity for me to try out fine-tuning in Keras.</p>
+
+<p>Following the fine-tuning methods listed above, together with data preprocessing/augmentation and model ensembling our team managed to achieved top 4% in the competition. Detailed account of our method and lessons learned are captured in <a href="/2016/10/11/kaggle-statefarm.html" target="_blank">this post</a>.</p>
+
+<p>If you have any questions or thoughts feel free to leave a comment below.</p>
+
+<p>You can also follow me on Twitter at @flyyufelix. 
+<br /></p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://flyyufelix-github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</section>
+</article>
+
+<!-- Post navigation -->
+
+
+<!-- Disqus -->
+
+
+    </div>
+    
+<script src="/js/katex_init.js"></script>
+
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>

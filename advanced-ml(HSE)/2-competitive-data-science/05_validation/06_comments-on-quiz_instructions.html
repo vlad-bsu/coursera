@@ -1,0 +1,276 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Question 1
+ </h1>
+ <h2 level="2">
+  Select true statements
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     We use validation to estimate the quality of our model
+    </u>
+    . Correct! This is the main purpose of validation.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     The logic behind validation split should mimic the logic behind train-test split
+    </u>
+    . Correct! This is the main rule of making a reliable validation.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Underfitting refers to not capturing enough patterns in the data
+    </u>
+    . Correct! Because a model cant utilize all existing patterns, it has lower quality than it could have.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     The model, that performs best on the validation set is guaranteed to be the best on the test set
+    </u>
+    . Incorrect. Target in the test set can have different distribution and our score estimation can fail.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Performance increase on a fixed cross-validation split guaranties performance increase on any cross-validation split
+    </u>
+    . Incorrect. You can overfit to the specific CV-split. You should change your split from time to time to reduce the chance of overfitting.
+   </p>
+  </li>
+ </ul>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 2
+ </h1>
+ <h2 level="2">
+  Usually on Kaggle it is allowed to select two final submissions, which will be checked against the private LB and contribute to the competitor's final position. A common practice is to select one submission with a best validation score, and another submission which scored best on Public LB. What is the logic behind this choice?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Generally, this approach is based on the assumption that the test data may have a different target distribution compared to the train data. If that would be the true, the submission which was chosen based on Public LB, will perform better. If, otherwise, the above distributions will be similar, the submission which was chosen based on validation scores, will perform better.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Generally, this approach is based on the assumption that people rarely tend to overfit to the Public LB. Almost always you have a lot of data in the test set and it is quite hard to overfit. Indeed, this render validation useless.
+   </p>
+  </li>
+  <li>
+   <p>
+    Generally, this approach is based on the assumption that validation is rarely valid in competitions. Almost always it is hard to trust your validation and thus you should account for both cases if the validation will succeed and if the validation will fail.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 3
+ </h1>
+ <h2 level="2">
+  Suppose we have a competition where we are given a dataset of marketing campaigns. Each campaign runs for a few weeks and for each day in campaign we have a target - number of new customers involved. Thus the row in a dataset looks like:
+ </h2>
+ <h3 level="3">
+  Campaign_id, Date, {some features}, Number_of_new_customers
+ </h3>
+ <h2 level="2">
+  Test set consists of multiple campaigns. For each of them we are given several first days in train data. For example, if a campaign runs for two weeks, we could have three first days in train set, and all next days will be present in the test set.
+ </h2>
+ <h2 level="2">
+  Identify train/test split in a competition.
+ </h2>
+ <p>
+  <strong>
+   Correct answer:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Combined split
+    </u>
+    . For each campaign train and test are divided by a date, and this date can be different for different campaigns. Thus, split is made by id and by time.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Random split
+    </u>
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Time-based split
+    </u>
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Id-based split
+    </u>
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 4
+ </h1>
+ <h2 level="2">
+  Which of the following problems you usually can identify without the Leaderboard?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Different scores/optimal parameters between folds
+    </u>
+    . Correct. This can be identified during validation.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Public leaderboard score will be unreliable because of too little data
+    </u>
+    . Correct. Usually you can estimate variance of Public LB score using validation. You need to train a model and see how its score varies on different folds with the same size as Public LB.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Train and test data are from different distributions
+    </u>
+    . Correct! Often enough we can find out this during EDA. To refresh your memory about this problem, review the last video in the Validation module.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Train and test target distribution are from different distributions
+    </u>
+    . Incorrect! To do this, we would need to have test target values, which is not possible in a competition.
+   </p>
+  </li>
+ </ul>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

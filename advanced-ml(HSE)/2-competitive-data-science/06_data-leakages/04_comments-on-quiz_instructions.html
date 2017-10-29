@@ -1,0 +1,171 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Question 1
+ </h1>
+ <h2 level="2">
+  Suppose that you have a credit scoring task, where you have to create a ML model that approximates expert evaluation of an individual's creditworthiness. Which of the following can potentially be a data leakage? Select all that apply.
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     An ID of a data point (row) in the train set correlates with target variable.
+    </u>
+    Data was not shuffled, this information can not be used in real-world scenario.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     First half of the data points in the train set has a score of 0, while the second half has scores &gt; 0.
+    </u>
+    Same as above, data was not shuffled, this information can not be used in real-world scenario..
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Among the features you have a company_id, an identifier of a company where this person works. It turns out that this feature is very important and adding it to the model significantly improves your score.
+    </u>
+    This is a perfectly fine categorical feature, don't mix it up with and ID of a data point.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Question 2
+ </h1>
+ <h2 level="2">
+  What is the most foolproof way to set up a time series competition?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Split train, public and private parts of data by time. Remove all features except IDs (e.g. timestamp) from test set so that participants will generate all the features based on past and join them themselves
+    </u>
+    . Correct! Only complete removal of all features from test set can guarantee that there is no data leakage.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Make a time based split for train/test and a random split for public/private.
+    </u>
+    Vulnerable to leaderboard probing.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Split train, public and private parts of data by time. Remove time variable from test set, keep the features
+    </u>
+    . Participants can try to reverse engineer time order and exploit future peeking.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Question 3
+ </h1>
+ <h2 level="2">
+  Suppose that you have a binary classification task being evaluated by logloss metric. You know that there are 10000 rows in public chunk of test set and that constant 0.3 prediction gives the public score of 1.01. Mean of target variable in train is 0.44. What is the mean of target variable in public part of test data (up to 4 decimal places)?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     ~0.771
+    </u>
+    Use logloss formula.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Question 4
+ </h1>
+ <h2 level="2">
+  Suppose that you are solving image classification task. What is the label of this picture?
+ </h2>
+ <p>
+  Correct answer is 3. Check image name!
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

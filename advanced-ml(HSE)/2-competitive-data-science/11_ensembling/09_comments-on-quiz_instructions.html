@@ -1,0 +1,356 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Question 1
+ </h1>
+ <h2 level="2">
+  Suppose we are given a train set and test set, that came from the same distribution. We want to use stacking and choose between two validation schemes described in the reading material.
+ </h2>
+ <h2 level="2">
+  Select the true statements about validation schemes.
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Scheme e) gives the validation score with the least variance, if compared to schemes a) -- d).
+    </u>
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Scheme d) is less efficient from computational perspective than scheme a). That is, if a dataset is very large, scheme a) is usually preferred over scheme d).
+    </u>
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Scheme d) is more efficient from computational perspective than scheme a). That is, if a dataset is very large, scheme d) is usually preferred over scheme a).
+    </u>
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 2
+ </h1>
+ <h2 level="2">
+  Definition: we will call a validation scheme fair if the set, that we use to validate meta-models comes from the same distribution as the meta-test set. In other cases we will call validation scheme leaky. In other words in a fair validation scheme the set that we use to validate meta-models was not used in any way during training first level models.
+ </h2>
+ <h2 level="2">
+  Select fair validation schemes. The definition for the schemes can be found in the reading material.
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <p>
+  <u>
+   a) Simple holdout scheme
+  </u>
+ </p>
+ <p>
+  <u>
+   d) Holdout scheme with OOF meta-features
+  </u>
+ </p>
+ <p>
+  <u>
+   e) KFold scheme with OOF meta-features
+  </u>
+ </p>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <p>
+  <u>
+   b) Meta holdout scheme with OOF meta-features
+  </u>
+ </p>
+ <p>
+  <u>
+   c) Meta KFold scheme with OOF meta-features
+  </u>
+ </p>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 3
+ </h1>
+ <p>
+  Which of the following ensembling methods can potentially learn "conditional averaging" (video 1)?
+ </p>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Boosting on trees
+    </u>
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Stacking
+    </u>
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Weighted average
+    </u>
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Bagging
+    </u>
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 4
+ </h1>
+ <h2 level="2">
+  The benefits of the weighted average compared to more advanced ensembling techniques is that
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     It is less prone to overfitting.
+    </u>
+    Yes! A very small number of parameters rarely lead to overfitting.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     It is faster to implement and to run.
+    </u>
+    Yes! It is much easier to implement than stacking.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     It usually gives better quality.
+    </u>
+    Well, in usually stacking can do better.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 5
+ </h1>
+ <h2 level="2">
+  In general case, which set of base models is probably the best for stacking?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    [SVM, GBDT, Neural Network, kNN]. This set contains models from 4 different classes, so it is the most diverse set and it should be in general case be the best for stacking
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    [
+    <u>
+     Random Forest, Extra Trees Classifier, GBDT, RGF]
+    </u>
+    . All this are tree-based model, this set is not diverse enough
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     [kNN, SVM, Logistic Regression, Neural Net]
+    </u>
+    . SVM and Logistic Regression are linear models, so this set contains only 3 different classes of models (linear, kNN, NN)
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     [Logistic Regression, SVM, Random Forest, Extra Trees Classifier, GBDT]
+    </u>
+    . This set contain only models from 2 families (linear and tree-based) so it is not the best choice
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 6
+ </h1>
+ <h2 level="2">
+  Suppose we are given a classification task. In a simple two model linear mix we usually use weights α for the first model and β for the second one. The coefficients are usually chosen such that α+β=1, because convex combination of probability vectors is a probability vector.Still, sometimes it is beneficial to tune α and beta independently, e.g. mix with α=0.1 and β=0.8 works best.
+ </h2>
+ <h2 level="2">
+  However, for some metrics it never makes sense to tune α and β independently. That is, searching for independent α and β will never give you better results than searching for weights, constrained to be β=1−α. Select such metrics.
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    <u>
+     AUC.
+    </u>
+    AUC is only sensitive to the order of the objects, so AUC is the same for (1) predictions (2) same predictions multiplied by a positive constant. Then, for any $$\alpha$$, $$\beta$$, dividing the predictions by  $$\alpha + \beta$$ will not change AUC but make mixing coefficients sum up to one. So it does not make sense to explore $$\alpha$$, $$\beta$$ independently.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Accuracy (implemented with argmax)
+    </u>
+    It follows from the fact, that similarly to AUC, argmax position will not change if all the predictions multiplied by a constant.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Hinge loss
+    </u>
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     LogLoss
+    </u>
+   </p>
+  </li>
+ </ul>
+ <h2 level="2">
+ </h2>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

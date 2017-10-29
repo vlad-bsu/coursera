@@ -1,0 +1,441 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Suppose we are given a train set and test set, that came from the same distribution. We want to use stacking and choose between the validation schemes described in the
+  <a href="https://www.coursera.org/learn/competitive-data-science/supplement/JThpg/validation-schemes-for-2-nd-level-models">
+   reading material
+  </a>
+  .
+ </p>
+ <p>
+  Select the true statements about the validation schemes.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Scheme
+    <strong>
+     d
+    </strong>
+    <strong>
+     )
+    </strong>
+    is
+    <u>
+     more
+    </u>
+    efficient from computational perspective than scheme
+    <strong>
+     a).
+    </strong>
+    That is, if a dataset is very large, scheme
+    <strong>
+     d)
+    </strong>
+    is usually preferred over scheme
+    <strong>
+     a)
+    </strong>
+    .
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Scheme
+    <strong>
+     d
+    </strong>
+    <strong>
+     )
+    </strong>
+    is
+    <u>
+     less
+    </u>
+    efficient from computational perspective than scheme
+    <strong>
+     a).
+    </strong>
+    That is, if a dataset is very large, scheme
+    <strong>
+     a)
+    </strong>
+    is usually preferred over scheme
+    <strong>
+     d)
+    </strong>
+    .
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Scheme
+    <strong>
+     e
+    </strong>
+    <strong>
+     )
+    </strong>
+    gives the validation score with the least variance, if compared to schemes
+    <strong>
+     a)
+    </strong>
+    --
+    <strong>
+     d)
+    </strong>
+    .
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  <u>
+   Definition:
+  </u>
+  we will call a validation scheme
+  <em>
+   fair
+  </em>
+  if the set, that we use to validate meta-models comes from the same distribution as the meta-test set. In other cases we will call validation scheme
+  <em>
+   leaky
+  </em>
+  . In other words in a
+  <em>
+   fair
+  </em>
+  validation scheme the set that we use to validate meta-models was not used in any way during training first level models.
+ </p>
+ <p>
+  Select
+  <em>
+   fair
+  </em>
+  validation schemes. The definition for the schemes can be found in the
+  <a href="https://www.coursera.org/learn/competitive-data-science/supplement/JThpg/validation-schemes-for-2-nd-level-models">
+   reading material
+  </a>
+  .
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    <strong>
+     d)
+    </strong>
+    Holdout scheme with OOF meta-features
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    <strong>
+     a)
+    </strong>
+    Simple holdout scheme
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    <strong>
+     e)
+    </strong>
+    KFold scheme with OOF meta-features
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    <strong>
+     c)
+    </strong>
+    Meta KFold scheme with OOF meta-features
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    <strong>
+     b)
+    </strong>
+    Meta holdout scheme with OOF meta-features
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  Which of the following ensembling methods can potentially learn "conditional averaging" (video 1)?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    Bagging
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    Boosting on trees
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    Weighted average
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    Stacking
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p>
+  The benefits of the weighted average compared to more advanced ensembling techniques is that
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    It is less prone to overfitting
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    It is faster to implement and to run
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    It usually gives better quality
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  In general case, which set of base models is probably the best for stacking?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    [SVM, GBDT, Neural Network, kNN]
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    [kNN, SVM, Logistic Regression,  Neural Net]
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    [Logistic Regression, SVM, Random Forest, Extra Trees Classifier, GBDT]
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    [Random Forest, Extra Trees Classifier, GBDT, RGF]
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 6
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose we are given a classification task. In a simple two model linear mix we usually use weights $$\alpha$$ for the first model and $$\beta$$ for the second one. The coefficients are usually chosen such that $$\alpha   \beta = 1$$, because
+  <a href="https://en.wikipedia.org/wiki/Convex_combination">
+   convex combination
+  </a>
+  of probability vectors is a probability vector.
+ </p>
+ <p hasmath="true">
+  Still, sometimes it is beneficial to tune $$\alpha$$ and $$beta$$ independently, e.g. mix with $$\alpha=0.1$$ and $$\beta=0.8$$ works best.
+ </p>
+ <p hasmath="true">
+  However, for some metrics it never makes sense to tune $$\alpha$$ and $$\beta$$ independently. That is, searching for independent $$\alpha$$ and $$\beta$$ will never give you better results than searching for weights, constrained to be $$\beta = 1 - \alpha$$. Select such metrics.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="5" type="checkbox"/>
+  <co-content>
+   <span>
+    AUC
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="checkbox"/>
+  <co-content>
+   <span>
+    Accuracy (implemented with argmax)
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="checkbox"/>
+  <co-content>
+   <span>
+    LogLoss
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="checkbox"/>
+  <co-content>
+   <span>
+    Hinge loss
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

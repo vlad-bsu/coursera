@@ -1,0 +1,246 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p hasmath="true">
+  Recall the derivation of EM algorithm. In our notation, $$X$$ is observable data, $$Z$$ is latent variable and $$\theta$$ is a vector of model parameters. We introduced $$q(Z)$$ $$-$$ an arbitrary distribution over the latent variable. Choose right expression(s) for log likelihood:
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$ \int q(Z) \log \frac{p(X, Z | \theta)}{q(Z)} dZ   \int q(Z) \log \frac{q(Z)}{p(Z | X, \theta)} dZ $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$ \log \int p(X, Z | \theta) dZ $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$ \mathbb{E}_{q(Z)} \log p(X, Z | \theta) - \mathbb{E}_{q(Z)} \log p(Z | X, \theta)  $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$ \int q(Z) \log p(X|\theta) dZ $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p hasmath="true">
+  In EM algorithm, we maximize variational lower bound $$ \mathcal{L}(q, \theta) = \log p(X|\theta) - \text{KL}(q||p) $$ with respect to $$q$$ (E-step) and $$\theta$$ (M-step) iteratively. Why is the maximization of lower bound on E-step equivalent to minimization of KL divergence?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Because uncomplete likelihood does not depend on $$q(Z)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Because we cannot maximize lower bound w.r.t. $$q(Z)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    Because posterior becomes tractable
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    Because of Jensen’s inequality
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  Select correct statements about EM algorithm:
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    E-step can always be performed analytically
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    M-step can always be performed analytically
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    EM algorithm always converges
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    Complete likelihood is always a convex function as a function of parameters
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    EM algorithm always converges to a global optimum
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p hasmath="true">
+  Consider $$p(x)=\mathcal{N}(\mu, \sigma_1)$$ and $$q(x)=\mathcal{N}(\mu, \sigma_2)$$. Calculate KL divergence between these two gaussians KL$$(p||q)$$  (hint: note that KL divergence is an expectation):
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\log \frac{\sigma_2}{\sigma_1} - \frac{1}{2}   \frac{\sigma_1^2}{2\sigma_2^2}$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\log \frac{\sigma_1}{\sigma_2}   \frac{\sigma_1^2 - \sigma_2^2}{\sigma_1^2   \sigma_2^2}  $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$ \log \frac{\sigma_1}{\sigma_2}   \frac{\sigma_2^2}{\sigma_1^2} $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\log \frac{\sigma_2^2}{\sigma_1^2} -\frac{\sigma_1^2}{2\sigma_2^2}   $$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

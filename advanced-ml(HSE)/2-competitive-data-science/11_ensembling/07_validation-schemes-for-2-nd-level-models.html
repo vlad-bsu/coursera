@@ -1,0 +1,729 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  There are a number of ways to validate
+  <strong>
+   second level models
+  </strong>
+  (
+  <strong>
+   meta-models
+  </strong>
+  ). In this reading material you will find a description for the most popular ones. If not specified, we assume that the data does not have a time component. We also assume we already validated and fixed hyperparameters for the
+  <strong>
+   f
+  </strong>
+  <strong>
+   irst level models (models).
+  </strong>
+ </p>
+ <p>
+ </p>
+ <p>
+  <strong>
+   <em>
+    a)  Simple holdout scheme
+   </em>
+  </strong>
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Split
+    <u>
+     train data
+    </u>
+    into three parts:
+    <u>
+     partA
+    </u>
+    and
+    <u>
+     partB
+    </u>
+    and
+    <u>
+     partC
+    </u>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    Fit N diverse
+    <strong>
+     models
+    </strong>
+    on
+    <u>
+     partA
+    </u>
+    , predict for
+    <u>
+     partB
+    </u>
+    ,
+    <u>
+     partC
+    </u>
+    ,
+    <u>
+     test_data
+    </u>
+    getting
+    <em>
+     meta-features
+    </em>
+    <u>
+     partB_meta
+    </u>
+    ,
+    <u>
+     partC_meta
+    </u>
+    and
+    <u>
+     test_meta
+    </u>
+    respectively.
+   </p>
+  </li>
+  <li>
+   <p>
+    Fit a
+    <strong>
+     metamodel
+    </strong>
+    to a
+    <u>
+     partB_meta
+    </u>
+    while validating its hyperparameters on
+    <u>
+     partC_meta
+    </u>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    When the
+    <strong>
+     metamodel
+    </strong>
+    is validated, fit it to [
+    <u>
+     partB_meta
+    </u>
+    ,
+    <u>
+     partC_meta
+    </u>
+    ] and predict for
+    <u>
+     test_meta
+    </u>
+    .
+   </p>
+  </li>
+ </ol>
+ <p>
+  <strong>
+   <em>
+   </em>
+  </strong>
+ </p>
+ <p>
+  <strong>
+   <em>
+    b)  Meta
+   </em>
+  </strong>
+  <strong>
+   <em>
+    holdout
+   </em>
+  </strong>
+  <strong>
+   <em>
+    scheme with OOF meta-features
+   </em>
+  </strong>
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Split
+    <u>
+     train data
+    </u>
+    into K folds. Iterate though each fold: retrain N diverse
+    <strong>
+     models
+    </strong>
+    on all folds except current fold, predict for the current fold. After this step for each object in
+    <u>
+     train_data
+    </u>
+    we will have N
+    <em>
+     meta-features
+    </em>
+    (also known as
+    <em>
+     out-of-fold predictions, OOF
+    </em>
+    ). Let's call them
+    <u>
+     train_meta
+    </u>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    Fit
+    <strong>
+     models
+    </strong>
+    to
+    <strong>
+    </strong>
+    whole
+    <u>
+     train data
+    </u>
+    and predict for
+    <u>
+     test data
+    </u>
+    . Let's call these features
+    <strong>
+    </strong>
+    <u>
+     test_meta
+    </u>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    Split
+    <u>
+     train_meta
+    </u>
+    into two parts:
+    <u>
+     train_metaA
+    </u>
+    and
+    <u>
+     train_metaB
+    </u>
+    . Fit a
+    <strong>
+     meta-model
+    </strong>
+    to
+    <u>
+     train_metaA
+    </u>
+    while validating its hyperparameters on
+    <u>
+     train_metaB
+    </u>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    When the
+    <strong>
+     meta-model
+    </strong>
+    is validated, fit it to
+    <u>
+     train_meta
+    </u>
+    and predict for
+    <u>
+     test_meta
+    </u>
+    .
+   </p>
+  </li>
+ </ol>
+ <p>
+  <strong>
+   <em>
+   </em>
+  </strong>
+ </p>
+ <p>
+  <strong>
+   <em>
+    c) Meta KFold scheme with
+   </em>
+  </strong>
+  <strong>
+   <em>
+    OOF meta-features
+   </em>
+  </strong>
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Obtain
+    <em>
+     OOF predictions
+    </em>
+    <u>
+     train_meta
+    </u>
+    <em>
+    </em>
+    and test metafeatures
+    <u>
+     test_meta
+    </u>
+    using
+    <strong>
+     b.1
+    </strong>
+    and
+    <strong>
+     b.2.
+    </strong>
+   </p>
+  </li>
+  <li>
+   <p>
+    Use KFold scheme on
+    <u>
+     train_meta
+    </u>
+    to validate hyperparameters for
+    <strong>
+     meta-model
+    </strong>
+    . A common practice to fix seed for this KFold to be the same as seed for KFold used to get
+    <em>
+     OOF predictions
+    </em>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    When the
+    <strong>
+     meta-model
+    </strong>
+    is validated, fit it to
+    <u>
+     train_meta
+    </u>
+    and predict for
+    <u>
+     test_meta
+    </u>
+    .
+   </p>
+  </li>
+ </ol>
+ <p>
+ </p>
+ <p>
+  <strong>
+   <em>
+    d)  Holdout scheme with OOF meta-features
+   </em>
+  </strong>
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Split
+    <u>
+     train data
+    </u>
+    into two parts:
+    <u>
+     partA
+    </u>
+    and
+    <u>
+     partB
+    </u>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    Split
+    <u>
+     partA
+    </u>
+    into K folds. Iterate though each fold: retrain N diverse
+    <strong>
+     models
+    </strong>
+    on all folds except current fold, predict for the current fold. After this step for each object in
+    <u>
+     partA
+    </u>
+    we will have N
+    <em>
+     meta-features
+    </em>
+    (also known as
+    <em>
+     out-of-fold predictions, OOF
+    </em>
+    ). Let's call them
+    <u>
+     partA_meta
+    </u>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    Fit
+    <strong>
+     models
+    </strong>
+    to
+    <strong>
+    </strong>
+    whole
+    <u>
+     partA
+    </u>
+    and predict for
+    <u>
+     partB
+    </u>
+    and
+    <u>
+     test_data
+    </u>
+    ,
+    <u>
+     g
+    </u>
+    etting
+    <u>
+     partB_meta
+    </u>
+    and
+    <u>
+     test_meta
+    </u>
+    respectively.
+   </p>
+  </li>
+  <li>
+   <p>
+    Fit a
+    <strong>
+     meta-model
+    </strong>
+    to a
+    <u>
+     partA_meta,
+    </u>
+    using
+    <u>
+     partB_meta
+    </u>
+    to validate its hyperparameters.
+   </p>
+  </li>
+  <li>
+   <p>
+    When the
+    <strong>
+     meta-model
+    </strong>
+    is validated basically do 2. and 3. without dividing
+    <u>
+     train_data
+    </u>
+    into parts and then train a
+    <strong>
+     meta-model
+    </strong>
+    . That is, first get
+    <em>
+     out-of-fold predictions
+    </em>
+    <u>
+     train_meta
+    </u>
+    <em>
+    </em>
+    for the
+    <u>
+     train_data
+    </u>
+    using
+    <strong>
+     models.
+    </strong>
+    Then train
+    <strong>
+     models
+    </strong>
+    on
+    <u>
+     train_data
+    </u>
+    , predict for
+    <u>
+     test_data
+    </u>
+    , getting
+    <u>
+     test_meta
+    </u>
+    . Train
+    <strong>
+     meta-model
+    </strong>
+    on the
+    <u>
+     train_meta
+    </u>
+    and predict for
+    <u>
+     test_meta
+    </u>
+    .
+   </p>
+  </li>
+ </ol>
+ <p>
+  <strong>
+  </strong>
+ </p>
+ <p>
+  <strong>
+   e) KFold scheme with OOF meta-features
+  </strong>
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    To validate the model we basically do
+    <strong>
+     d.1 -- d.4
+    </strong>
+    but we divide
+    <strong>
+    </strong>
+    <u>
+     train data
+    </u>
+    into parts
+    <u>
+     partA
+    </u>
+    and
+    <u>
+     partB
+    </u>
+    M times using KFold strategy with M folds.
+   </p>
+  </li>
+  <li>
+   <p>
+    When the meta-model is validated do
+    <strong>
+     d.5.
+    </strong>
+   </p>
+  </li>
+ </ol>
+ <p>
+  <strong>
+  </strong>
+ </p>
+ <h2 level="2">
+  Validation in presence of time component
+ </h2>
+ <p>
+  <strong>
+   <em>
+   </em>
+  </strong>
+ </p>
+ <p>
+  <strong>
+   <em>
+    f) KFold scheme in time series
+   </em>
+  </strong>
+ </p>
+ <p>
+  In time-series task we usually have a fixed period of time we are asked to predict. Like day, week, month or arbitrary period with duration of
+  <strong>
+   T
+  </strong>
+  .
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Split the train data into chunks of duration
+    <strong>
+     T
+    </strong>
+    . Select first
+    <strong>
+     M
+    </strong>
+    chunks.
+   </p>
+  </li>
+  <li>
+   <p>
+    Fit N diverse models on those
+    <strong>
+     M
+    </strong>
+    chunks and predict for the chunk
+    <strong>
+     M+1
+    </strong>
+    . Then fit those models on first
+    <strong>
+     M+1
+    </strong>
+    chunks and predict for chunk
+    <strong>
+     M+2
+    </strong>
+    and so on, until you hit the end. After that use all train data to fit models and get predictions for test. Now we will have
+    <em>
+     meta-features
+    </em>
+    for the chunks starting from number
+    <strong>
+     M+1
+    </strong>
+    as well as
+    <em>
+     meta-features
+    </em>
+    for the test.
+   </p>
+  </li>
+  <li>
+   <p>
+    Now we can use
+    <em>
+     meta-features
+    </em>
+    from first
+    <strong>
+     K
+    </strong>
+    chunks [
+    <strong>
+     M+1
+    </strong>
+    ,
+    <strong>
+     M+2
+    </strong>
+    ,..,
+    <strong>
+     M+K
+    </strong>
+    ] to fit level 2 models and validate them on chunk
+    <strong>
+     M+K+1
+    </strong>
+    . Essentially we are back to step 1. with the lesser amount of chunks and
+    <em>
+     meta-features
+    </em>
+    instead of features.
+   </p>
+  </li>
+ </ol>
+ <p>
+  <strong>
+   <em>
+    g) KFold scheme in time series with limited amount of data
+   </em>
+  </strong>
+ </p>
+ <p>
+  We may often encounter a situation, where scheme
+  <strong>
+   f)
+  </strong>
+  is not applicable, especially with limited amount of data. For example, when we have only years 2014, 2015, 2016 in train and we need to predict for a whole year 2017 in test. In such cases scheme
+  <strong>
+   c)
+  </strong>
+  could be of help, but with one constraint: KFold split should be done with the respect to the time component. For example, in case of data with several years we would treat each year as a fold.
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

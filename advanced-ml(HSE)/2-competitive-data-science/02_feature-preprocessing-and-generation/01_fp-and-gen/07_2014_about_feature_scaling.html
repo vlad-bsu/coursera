@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>About Feature Scaling and Normalization</title>
+    <meta name="description" content="This is the personal website of a data scientist and machine learning enthusiast with a big passion for Python and open source. Born and raised in Germany, now living in East Lansing, Michigan.
+">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <meta property='og:title' content="About Feature Scaling and Normalization">
+<meta property="og:type" content="article">
+<meta property="og:url" content="sebastianraschka.com/Articles/2014_about_feature_scaling.html">
+
+
+  <meta property="og:image" content="">
+
+
+<meta property="og:description" content="Sections
+
+">
+<meta property="og:site_name" content="Sebastian Raschka's Website">
+<meta property="og:locale" content="en_US">
+
+    <meta property="article:published_time" content="2014-07-11T05:00:00-04:00">
+    <meta property="article:author" content="">
+    
+
+
+<meta property="fb:admins" content="">
+<meta property="fb:app_id" content="">
+
+    <link rel="canonical" href="sebastianraschka.com/Articles/2014_about_feature_scaling.html">
+
+</head>
+
+
+  <body>
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/" style="text-decoration: none;">sebastian<span style="color:#4099ff">raschka</span></a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/books.html">Books</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/deep-learning-resources.html">Deep Learning</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/elsewhere.html">Elsewhere</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/projects.html">Projects</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/resources.html">Resources</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a class="page-link" href="/blog/index.html">Blog</a>
+        <a class="page-link" href="/faq/index.html">Machine&nbsp;Learning&nbsp;FAQ</a>
+
+
+      </div>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+<div class="post">
+  <header class="post-header">
+
+
+
+    <div class="rss">
+
+     
+     &nbsp;&nbsp;<a href="/rss_feed.xml"><span><i class="fa fa-rss fa-2x"></i><br>[RSS]</a></span>
+
+     
+
+</div>
+
+
+    <h1 class="post-title">About Feature Scaling and Normalization</h1>
+    <h2 class="post-title">&ndash; and the effect of standardization for machine learning algorithms</h2>
+
+
+
+
+
+
+    <div style='height: 15px;'></div>
+    <p class="post-meta">Jul 11, 2014 <br>by Sebastian Raschka</p>
+  </header>
+
+  <article class="post-content">
+    <h4 id="sections">Sections</h4>
+
+<ul id="markdown-toc">
+  <li><a href="#sections" id="markdown-toc-sections">Sections</a></li>
+  <li><a href="#about-standardization" id="markdown-toc-about-standardization">About standardization</a></li>
+  <li><a href="#about-min-max-scaling" id="markdown-toc-about-min-max-scaling">About Min-Max scaling</a></li>
+  <li><a href="#z-score-standardization-or-min-max-scaling" id="markdown-toc-z-score-standardization-or-min-max-scaling">Z-score standardization or Min-Max scaling?</a></li>
+  <li><a href="#standardizing-and-normalizing---how-it-can-be-done-using-scikit-learn" id="markdown-toc-standardizing-and-normalizing---how-it-can-be-done-using-scikit-learn">Standardizing and normalizing - how it can be done using scikit-learn</a>    <ul>
+      <li><a href="#loading-the-wine-dataset" id="markdown-toc-loading-the-wine-dataset">Loading the wine dataset</a></li>
+      <li><a href="#standardization-and-min-max-scaling" id="markdown-toc-standardization-and-min-max-scaling">Standardization and Min-Max scaling</a></li>
+      <li><a href="#plotting" id="markdown-toc-plotting">Plotting</a></li>
+    </ul>
+  </li>
+  <li><a href="#bottom-up-approaches" id="markdown-toc-bottom-up-approaches">Bottom-up approaches</a>    <ul>
+      <li><a href="#vanilla-python" id="markdown-toc-vanilla-python">Vanilla Python</a></li>
+      <li><a href="#numpy" id="markdown-toc-numpy">NumPy</a></li>
+      <li><a href="#visualization" id="markdown-toc-visualization">Visualization</a></li>
+    </ul>
+  </li>
+  <li><a href="#the-effect-of-standardization-on-pca-in-a-pattern-classification-task" id="markdown-toc-the-effect-of-standardization-on-pca-in-a-pattern-classification-task">The effect of standardization on PCA in a pattern classification task</a>    <ul>
+      <li><a href="#reading-in-the-dataset" id="markdown-toc-reading-in-the-dataset">Reading in the dataset</a></li>
+      <li><a href="#dividing-the-dataset-into-a-separate-training-and-test-dataset" id="markdown-toc-dividing-the-dataset-into-a-separate-training-and-test-dataset">Dividing the dataset into a separate training and test dataset</a></li>
+      <li><a href="#feature-scaling---standardization" id="markdown-toc-feature-scaling---standardization">Feature Scaling - Standardization</a></li>
+      <li><a href="#dimensionality-reduction-via-principal-component-analysis-pca" id="markdown-toc-dimensionality-reduction-via-principal-component-analysis-pca">Dimensionality reduction via Principal Component Analysis (PCA)</a></li>
+      <li><a href="#training-a-naive-bayes-classifier" id="markdown-toc-training-a-naive-bayes-classifier">Training a naive Bayes classifier</a></li>
+      <li><a href="#evaluating-the-classification-accuracy-with-and-without-standardization" id="markdown-toc-evaluating-the-classification-accuracy-with-and-without-standardization">Evaluating the classification accuracy with and without standardization</a></li>
+    </ul>
+  </li>
+  <li><a href="#appendix-a--the-effect-of-scaling-and-mean-centering-of-variables-prior-to-pca" id="markdown-toc-appendix-a--the-effect-of-scaling-and-mean-centering-of-variables-prior-to-pca">Appendix A:  The effect of scaling and mean centering of variables prior to PCA</a>    <ul>
+      <li><a href="#1-mean-centering-does-not-affect-the-covariance-matrix" id="markdown-toc-1-mean-centering-does-not-affect-the-covariance-matrix">1. Mean centering does not affect the covariance matrix</a></li>
+      <li><a href="#2-scaling-of-variables-does-affect-the-covariance-matrix" id="markdown-toc-2-scaling-of-variables-does-affect-the-covariance-matrix">2. Scaling of variables does affect the covariance matrix</a></li>
+      <li><a href="#3-standardizing-affects-the-covariance" id="markdown-toc-3-standardizing-affects-the-covariance">3. Standardizing affects the covariance</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="about-standardization">About standardization</h2>
+
+<p>The result of <strong>standardization</strong> (or <strong>Z-score normalization</strong>) is that the features will be rescaled so that they’ll have the properties of a standard normal distribution with</p>
+
+<p><script type="math/tex">\mu = 0</script> and <script type="math/tex">\sigma = 1</script></p>
+
+<p>where <script type="math/tex">\mu</script> is the mean (average) and <script type="math/tex">\sigma</script> is the standard deviation from the mean; standard scores (also called <strong><em>z</em></strong> scores) of the samples are calculated as follows:</p>
+
+<script type="math/tex; mode=display">z = \frac{x - \mu}{\sigma}</script>
+
+<p>Standardizing the features so that they are centered around 0 with a standard deviation of 1 is not only important if we are comparing measurements that have different units, but it is also a general requirement for many machine learning algorithms. Intuitively, we can think of gradient descent as a prominent example
+(an optimization algorithm often used in logistic regression, SVMs, perceptrons, neural networks etc.); with features being on different scales, certain weights may update faster than others since the feature values <script type="math/tex">x_j</script> play a role in the weight updates</p>
+
+<script type="math/tex; mode=display">\Delta w_j = - \eta \frac{\partial J}{\partial w_j} = \eta \sum_i (t^{(i)} - o^{(i)})x^{(i)}_{j},</script>
+
+<p>so that</p>
+
+<p><script type="math/tex">w_j := w_j + \Delta w_j,</script>
+where <script type="math/tex">\eta</script> is the learning rate, <script type="math/tex">t</script> the target class label, and <script type="math/tex">o</script> the actual output.
+Other intuitive examples include K-Nearest Neighbor algorithms and clustering algorithms that use, for example, Euclidean distance measures – in fact, tree-based classifier are probably the only classifiers where feature scaling doesn’t make a difference.</p>
+
+<p>In fact, the only family of algorithms that I could think of being scale-invariant are tree-based methods. Let’s take the general CART decision tree algorithm. Without going into much depth regarding information gain and impurity measures, we can think of the decision as “is feature x_i &gt;= some_val?” Intuitively, we can see that it really doesn’t matter on which scale this feature is (centimeters, Fahrenheit, a standardized scale – it really doesn’t matter).</p>
+
+<p>Some examples of algorithms where feature scaling matters are:</p>
+
+<ul>
+  <li>k-nearest neighbors with an Euclidean distance measure if want all features to contribute equally</li>
+  <li>k-means (see k-nearest neighbors)</li>
+  <li>logistic regression, SVMs, perceptrons, neural networks etc. if you are using gradient descent/ascent-based optimization, otherwise some weights will update much faster than others</li>
+  <li>linear discriminant analysis, principal component analysis, kernel principal component analysis since you want to find directions of maximizing the variance (under the constraints that those directions/eigenvectors/principal components are orthogonal); you want to have features on the same scale since you’d emphasize variables on “larger measurement scales” more.
+There are many more cases than I can possibly list here … I always recommend you to think about the algorithm and what it’s doing, and then it typically becomes obvious whether we want to scale your features or not.</li>
+</ul>
+
+<p>In addition, we’d also want to think about whether we want to “standardize” or “normalize” (here: scaling to [0, 1] range) our data. Some algorithms assume that our data is centered at 0. For example, if we initialize the weights of a small multi-layer perceptron with tanh activation units to 0 or small random values centered around zero, we want to update the model weights “equally.” As a rule of thumb I’d say: When in doubt, just standardize the data, it shouldn’t hurt.</p>
+
+<h2 id="about-min-max-scaling">About Min-Max scaling</h2>
+
+<p>An alternative approach to Z-score normalization (or standardization) is the so-called <strong>Min-Max scaling</strong> (often also simply called “normalization” - a common cause for ambiguities).<br />
+In this approach, the data is scaled to a fixed range - usually 0 to 1.<br />
+The cost of having this bounded range - in contrast to standardization - is that we will end up with smaller standard deviations, which can suppress the effect of outliers.</p>
+
+<p>A Min-Max scaling is typically done via the following equation:</p>
+
+<script type="math/tex; mode=display">X_{norm} = \frac{X - X_{min}}{X_{max}-X_{min}}</script>
+
+<h2 id="z-score-standardization-or-min-max-scaling">Z-score standardization or Min-Max scaling?</h2>
+
+<p><em>“Standardization or Min-Max scaling?”</em> - There is no obvious answer to this question: it really depends on the application.</p>
+
+<p>For example, in clustering analyses, standardization may be especially crucial in order to compare similarities between features based on certain distance measures. Another prominent example is the Principal Component Analysis, where we usually prefer standardization over Min-Max scaling, since we are interested in the components that maximize the variance (depending on the question and if the PCA computes the components via the correlation matrix instead of the covariance matrix; <a href="http://sebastianraschka.com/Articles/2014_pca_step_by_step.html">but more about PCA in my previous article</a>).</p>
+
+<p>However, this doesn’t mean that Min-Max scaling is not useful at all! A popular application is image processing, where pixel intensities have to be normalized to fit within a certain range (i.e., 0 to 255 for the RGB color range). Also, typical neural network algorithm require data that on a 0-1 scale.</p>
+
+<h2 id="standardizing-and-normalizing---how-it-can-be-done-using-scikit-learn">Standardizing and normalizing - how it can be done using scikit-learn</h2>
+
+<p>Of course, we could make use of NumPy’s vectorization capabilities to calculate the z-scores for standardization and to normalize the data using the equations that were mentioned in the previous sections. However, there is an even more convenient approach using the preprocessing module from one of Python’s open-source machine learning library <a href="http://scikit-learn.org">scikit-learn</a>.</p>
+
+<p>For the following examples and discussion, we will have a look at the free “Wine” Dataset that is deposited on the UCI machine learning repository<br />
+(http://archive.ics.uci.edu/ml/datasets/Wine).</p>
+
+<blockquote>
+  <p>Forina, M. et al, PARVUS - An Extendible Package for Data
+Exploration, Classification and Correlation. Institute of Pharmaceutical
+and Food Analysis and Technologies, Via Brigata Salerno,
+16147 Genoa, Italy.</p>
+</blockquote>
+
+<blockquote>
+  <p>Bache, K. &amp; Lichman, M. (2013). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.</p>
+</blockquote>
+
+<p>The Wine dataset consists of 3 different classes where each row correspond to a particular wine sample.</p>
+
+<p>The class labels (1, 2, 3) are listed in the first column, and the columns 2-14 correspond to 13 different attributes (features):</p>
+
+<p>1) Alcohol<br />
+2) Malic acid<br />
+…</p>
+
+<h4 id="loading-the-wine-dataset">Loading the wine dataset</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parsers</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">'https://raw.githubusercontent.com/rasbt/pattern_classification/master/data/wine_data.csv'</span><span class="p">,</span>
+     <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+     <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'Class label'</span><span class="p">,</span> <span class="s">'Alcohol'</span><span class="p">,</span> <span class="s">'Malic acid'</span><span class="p">]</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Class label</th>
+      <th>Alcohol</th>
+      <th>Malic acid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 1</td>
+      <td> 14.23</td>
+      <td> 1.71</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td> 1</td>
+      <td> 13.20</td>
+      <td> 1.78</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 1</td>
+      <td> 13.16</td>
+      <td> 2.36</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> 1</td>
+      <td> 14.37</td>
+      <td> 1.95</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 1</td>
+      <td> 13.24</td>
+      <td> 2.59</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>As we can see in the table above, the features <strong>Alcohol</strong> (percent/volumne) and <strong>Malic acid</strong> (g/l) are measured on different scales, so that <strong><em>Feature Scaling</em></strong> is necessary important prior to any comparison or combination of these data.</p>
+
+<h4 id="standardization-and-min-max-scaling">Standardization and Min-Max scaling</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+
+<span class="n">std_scale</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s">'Alcohol'</span><span class="p">,</span> <span class="s">'Malic acid'</span><span class="p">]])</span>
+<span class="n">df_std</span> <span class="o">=</span> <span class="n">std_scale</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s">'Alcohol'</span><span class="p">,</span> <span class="s">'Malic acid'</span><span class="p">]])</span>
+
+<span class="n">minmax_scale</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">MinMaxScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s">'Alcohol'</span><span class="p">,</span> <span class="s">'Malic acid'</span><span class="p">]])</span>
+<span class="n">df_minmax</span> <span class="o">=</span> <span class="n">minmax_scale</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s">'Alcohol'</span><span class="p">,</span> <span class="s">'Malic acid'</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Mean after standardization:</span><span class="se">\n</span><span class="s">Alcohol={:.2f}, Malic acid={:.2f}'</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_std</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">df_std</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Standard deviation after standardization:</span><span class="se">\n</span><span class="s">Alcohol={:.2f}, Malic acid={:.2f}'</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_std</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">df_std</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mean after standardization:
+Alcohol=0.00, Malic acid=0.00
+
+Standard deviation after standardization:
+Alcohol=1.00, Malic acid=1.00
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Min-value after min-max scaling:</span><span class="se">\n</span><span class="s">Alcohol={:.2f}, Malic acid={:.2f}'</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_minmax</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">(),</span> <span class="n">df_minmax</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Max-value after min-max scaling:</span><span class="se">\n</span><span class="s">Alcohol={:.2f}, Malic acid={:.2f}'</span>
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_minmax</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">(),</span> <span class="n">df_minmax</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Min-value after min-max scaling:
+Alcohol=0.00, Malic acid=0.00
+
+Max-value after min-max scaling:
+Alcohol=1.00, Malic acid=1.00
+</code></pre></div></div>
+
+<h4 id="plotting">Plotting</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="k">def</span> <span class="nf">plot</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'Alcohol'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s">'Malic acid'</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">'green'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'input scale'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_std</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">df_std</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s">'Standardized [$$N  (</span><span class="err">\</span><span class="s">mu=0, </span><span class="err">\</span><span class="s">; </span><span class="err">\</span><span class="s">sigma=1)$$]'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_minmax</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">df_minmax</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="s">'blue'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'min-max scaled [min=0, max=1]'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Alcohol and Malic Acid content of the wine dataset'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Alcohol'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Malic Acid'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper left'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/images/blog/2014/about_standardization_normalization/about_standardization_normalization_44_0.png" alt="png" /></p>
+
+<p>The plot above includes the wine datapoints on all three different scales: the input scale where the alcohol content was measured in volume-percent (green), the standardized features (red), and the normalized features (blue).
+In the following plot, we will zoom in into the three different axis-scales.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">l</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)),</span>
+               <span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s">'Alcohol'</span><span class="p">,</span> <span class="s">'Malic acid'</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df_std</span><span class="p">,</span> <span class="n">df_minmax</span><span class="p">),</span>
+               <span class="p">(</span><span class="s">'Input scale'</span><span class="p">,</span>
+                <span class="s">'Standardized [$$N  (</span><span class="err">\</span><span class="s">mu=0, </span><span class="err">\</span><span class="s">; </span><span class="err">\</span><span class="s">sigma=1)$$]'</span><span class="p">,</span>
+                <span class="s">'min-max scaled [min=0, max=1]'</span><span class="p">)</span>
+                <span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'blue'</span><span class="p">,</span> <span class="s">'green'</span><span class="p">)):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">'Class label'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                  <span class="n">d</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">'Class label'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                  <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+                  <span class="n">label</span><span class="o">=</span><span class="s">'Class </span><span class="si">%</span><span class="s">s'</span> <span class="o">%</span><span class="n">i</span>
+                  <span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Alcohol'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Malic Acid'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper left'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/images/blog/2014/about_standardization_normalization/about_standardization_normalization_48_0.png" alt="png" /></p>
+
+<h2 id="bottom-up-approaches">Bottom-up approaches</h2>
+
+<p>Of course, we can also code the equations for standardization and 0-1 Min-Max scaling “manually”. However, the scikit-learn methods are still useful if you are working with test and training data sets and want to scale them equally.</p>
+
+<p>E.g.,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std_scale</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">std_scale</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">std_scale</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Below, we will perform the calculations using “pure” Python code, and an more convenient NumPy solution, which is especially useful if we attempt to transform a whole matrix.</p>
+
+<p>Just to recall the equations that we are using:</p>
+
+<p>Standardization:</p>
+
+<script type="math/tex; mode=display">z = \frac{x - \mu}{\sigma}</script>
+
+<p>with mean:</p>
+
+<script type="math/tex; mode=display">\mu = \frac{1}{N} \sum_{i=1}^N (x_i)</script>
+
+<p>and standard deviation:</p>
+
+<script type="math/tex; mode=display">\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^N (x_i - \mu)^2}</script>
+
+<p>Min-Max scaling:</p>
+
+<script type="math/tex; mode=display">X_{norm} = \frac{X - X_{min}}{X_{max}-X_{min}}</script>
+
+<h3 id="vanilla-python">Vanilla Python</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Standardization</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">std_dev</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">([</span> <span class="p">(</span><span class="n">x_i</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]))</span><span class="o">**</span><span class="mf">0.5</span>
+
+<span class="n">z_scores</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x_i</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span><span class="o">/</span><span class="n">std_dev</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="c"># Min-Max scaling</span>
+
+<span class="n">minmax</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x_i</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="numpy">NumPy</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="c"># Standardization</span>
+
+<span class="n">x_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">z_scores_np</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_np</span> <span class="o">-</span> <span class="n">x_np</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">x_np</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="c"># Min-Max scaling</span>
+
+<span class="n">np_minmax</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_np</span> <span class="o">-</span> <span class="n">x_np</span><span class="o">.</span><span class="nb">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_np</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">x_np</span><span class="o">.</span><span class="nb">min</span><span class="p">())</span>
+</code></pre></div></div>
+
+<h3 id="visualization">Visualization</h3>
+
+<p>Just to make sure that our code works correctly, let us plot the results via matplotlib.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">((</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">),</span> <span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">))</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">y_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))]</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">z_scores</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'g'</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Python standardization'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'g'</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">minmax</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'g'</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Python Min-Max scaling'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'g'</span><span class="p">)</span>
+
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">z_scores_np</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'b'</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Python NumPy standardization'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'b'</span><span class="p">)</span>
+
+<span class="n">ax4</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np_minmax</span><span class="p">,</span> <span class="n">y_pos</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'b'</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Python NumPy Min-Max scaling'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'b'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/images/blog/2014/about_standardization_normalization/about_standardization_normalization_64_0.png" alt="png" /></p>
+
+<h2 id="the-effect-of-standardization-on-pca-in-a-pattern-classification-task">The effect of standardization on PCA in a pattern classification task</h2>
+
+<p>Earlier, I mentioned the Principal Component Analysis (PCA) as an example where standardization is crucial, since it is “analyzing” the variances of the different features.<br />
+Now, let us see how the standardization affects PCA and a following supervised classification on the whole wine dataset.</p>
+
+<p>In the following section, we will go through the following steps:</p>
+
+<ul>
+  <li>Reading in the dataset</li>
+  <li>Dividing the dataset into a separate training and test dataset</li>
+  <li>Standardization of the features</li>
+  <li>Principal Component Analysis (PCA) to reduce the dimensionality</li>
+  <li>Training a naive Bayes classifier</li>
+  <li>Evaluating the classification accuracy with and without standardization</li>
+</ul>
+
+<h3 id="reading-in-the-dataset">Reading in the dataset</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parsers</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">'https://raw.githubusercontent.com/rasbt/pattern_classification/master/data/wine_data.csv'</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="dividing-the-dataset-into-a-separate-training-and-test-dataset">Dividing the dataset into a separate training and test dataset</h3>
+
+<p>In this step, we will randomly divide the wine dataset into a training dataset and a test dataset where the training dataset will contain 70% of the samples and the test dataset will contain 30%, respectively.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_wine</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">y_wine</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_wine</span><span class="p">,</span> <span class="n">y_wine</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="feature-scaling---standardization">Feature Scaling - Standardization</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+
+<span class="n">std_scale</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_train_std</span> <span class="o">=</span> <span class="n">std_scale</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_std</span> <span class="o">=</span> <span class="n">std_scale</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="dimensionality-reduction-via-principal-component-analysis-pca">Dimensionality reduction via Principal Component Analysis (PCA)</h3>
+
+<p>Now, we perform a PCA on the standardized and the non-standardized datasets to transform the dataset onto a 2-dimensional feature subspace.<br />
+In a real application, a procedure like cross-validation would be done in order to find out what choice of features would yield a optimal balance between “preserving information” and “overfitting” for different classifiers. However, we will omit this step since we don’t want to train a perfect classifier here, but merely compare the effects of standardization.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c"># on non-standardized data</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+
+<span class="c"># om standardized data</span>
+<span class="n">pca_std</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">)</span>
+<span class="n">X_train_std</span> <span class="o">=</span> <span class="n">pca_std</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">)</span>
+<span class="n">X_test_std</span> <span class="o">=</span> <span class="n">pca_std</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Let us quickly visualize how our new feature subspace looks like (note that class labels are not considered in a PCA - in contrast to a Linear Discriminant Analysis - but I will add them in the plot for clarity).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+
+<span class="k">for</span> <span class="n">l</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">m</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s">'blue'</span><span class="p">,</span> <span class="s">'red'</span><span class="p">,</span> <span class="s">'green'</span><span class="p">),</span> <span class="p">(</span><span class="s">'^'</span><span class="p">,</span> <span class="s">'s'</span><span class="p">,</span> <span class="s">'o'</span><span class="p">)):</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">y_train</span><span class="o">==</span><span class="n">l</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[</span><span class="n">y_train</span><span class="o">==</span><span class="n">l</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">'class </span><span class="si">%</span><span class="s">s'</span> <span class="o">%</span><span class="n">l</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="n">m</span>
+        <span class="p">)</span>
+
+<span class="k">for</span> <span class="n">l</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">m</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s">'blue'</span><span class="p">,</span> <span class="s">'red'</span><span class="p">,</span> <span class="s">'green'</span><span class="p">),</span> <span class="p">(</span><span class="s">'^'</span><span class="p">,</span> <span class="s">'s'</span><span class="p">,</span> <span class="s">'o'</span><span class="p">)):</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">[</span><span class="n">y_train</span><span class="o">==</span><span class="n">l</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train_std</span><span class="p">[</span><span class="n">y_train</span><span class="o">==</span><span class="n">l</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s">'class </span><span class="si">%</span><span class="s">s'</span> <span class="o">%</span><span class="n">l</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="n">m</span>
+        <span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Transformed NON-standardized training dataset after PCA'</span><span class="p">)</span>    
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Transformed standardized training dataset after PCA'</span><span class="p">)</span>    
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">):</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'1st principal component'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'2nd principal component'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper right'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</code></pre></div></div>
+
+<p><img src="/images/blog/2014/about_standardization_normalization/about_standardization_normalization_89_0.png" alt="png" /></p>
+
+<h3 id="training-a-naive-bayes-classifier">Training a naive Bayes classifier</h3>
+
+<p>We will use a naive Bayes classifier for the classification task. If you are not familiar with it, the term “naive” comes from the assumption that all features are “independent”.<br />
+All in all, it is a simple but robust classifier based on Bayes’ rule</p>
+
+<p>Bayes’ Rule:</p>
+
+<script type="math/tex; mode=display">P(\omega_j|x) = \frac{p(x|\omega_j) * P(\omega_j)}{p(x)}</script>
+
+<p>where</p>
+
+<ul>
+  <li>
+    <p>ω:  class label</p>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">P(\omega | x): \text{posterior probability}</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">p(x | \omega ): \text{prior probability (or likelihood)}</script>
+  </li>
+</ul>
+
+<p>and the <strong>decsion rule:</strong></p>
+
+<script type="math/tex; mode=display">\text{Decide } \omega_1 \text{ if } P(\omega_1|x) > P(\omega_2|x) \text{ else decide } \omega_2.</script>
+
+<script type="math/tex; mode=display">\Rightarrow \frac{p(x|\omega_1) * P(\omega_1)}{p(x)} > \frac{p(x|\omega_2) * P(\omega_2)}{p(x)}</script>
+
+<p>I don’t want to get into more detail about Bayes’ rule in this article, but if you are interested in a more detailed collection of examples, please have a look at the <a href="https://github.com/rasbt/pattern_classification#statistical-pattern-recognition-examples">Statistical Patter Classification</a> in my pattern classification repository.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+
+<span class="c"># on non-standardized data</span>
+<span class="n">gnb</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c"># on standardized data</span>
+<span class="n">gnb_std</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">fit_std</span> <span class="o">=</span> <span class="n">gnb_std</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="evaluating-the-classification-accuracy-with-and-without-standardization">Evaluating the classification accuracy with and without standardization</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+
+<span class="n">pred_train</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Prediction accuracy for the training dataset'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:.2</span><span class="si">%</span><span class="s">}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">pred_train</span><span class="p">)))</span>
+
+<span class="n">pred_test</span> <span class="o">=</span> <span class="n">gnb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Prediction accuracy for the test dataset'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:.2</span><span class="si">%</span><span class="s">}</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_test</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Prediction accuracy for the training dataset
+81.45%
+
+Prediction accuracy for the test dataset
+64.81%
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pred_train_std</span> <span class="o">=</span> <span class="n">gnb_std</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Prediction accuracy for the training dataset'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:.2</span><span class="si">%</span><span class="s">}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">pred_train_std</span><span class="p">)))</span>
+
+<span class="n">pred_test_std</span> <span class="o">=</span> <span class="n">gnb_std</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Prediction accuracy for the test dataset'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:.2</span><span class="si">%</span><span class="s">}</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_test_std</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Prediction accuracy for the training dataset
+96.77%
+
+Prediction accuracy for the test dataset
+98.15%
+</code></pre></div></div>
+
+<p>As we can see, the standardization prior to the PCA definitely led to an decrease in the empirical error rate on classifying samples from test dataset.</p>
+
+<h2 id="appendix-a--the-effect-of-scaling-and-mean-centering-of-variables-prior-to-pca">Appendix A:  The effect of scaling and mean centering of variables prior to PCA</h2>
+
+<p>Let us think about whether it matters or not if the variables are centered for applications such as Principal Component Analysis (PCA) if the PCA is calculated from the covariance matrix (i.e., the <script type="math/tex">k</script> principal components are the eigenvectors of the covariance matrix that correspond to the <script type="math/tex">k</script> largest eigenvalues.</p>
+
+<p><br /></p>
+
+<h3 id="1-mean-centering-does-not-affect-the-covariance-matrix">1. Mean centering does not affect the covariance matrix</h3>
+
+<p>Here, the rational is: If the covariance is the same whether the variables are centered or not, the result of the PCA will be the same.</p>
+
+<p>Let’s assume we have the 2 variables <script type="math/tex">\bf{x}</script> and <script type="math/tex">\bf{y}</script> Then the covariance between the attributes is calculated as</p>
+
+<script type="math/tex; mode=display">\sigma_{xy} = \frac{1}{n-1} \sum_{i}^{n} (x_i - \bar{x})(y_i - \bar{y})</script>
+
+<p>Let us write the centered variables as</p>
+
+<script type="math/tex; mode=display">x' = x - \bar{x} \text{ and } y' = y - \bar{y}</script>
+
+<p>The centered covariance would then be calculated as follows:</p>
+
+<script type="math/tex; mode=display">\sigma_{xy}' = \frac{1}{n-1} \sum_{i}^{n} (x_i' - \bar{x}')(y_i' - \bar{y}')</script>
+
+<p>But since after centering, <script type="math/tex">\bar{x}' = 0</script> and <script type="math/tex">\bar{y}' = 0</script> we have</p>
+
+<p><script type="math/tex">\sigma_{xy}' = \frac{1}{n-1} \sum_{i}^{n} x_i' y_i'</script> which is our original covariance matrix if we resubstitute back the terms
+<script type="math/tex">x' = x - \bar{x} \text{ and } y' = y - \bar{y}</script>.</p>
+
+<p>Even centering only one variable, e.g., <script type="math/tex">\bf{x}</script> wouldn’t affect the covariance:</p>
+
+<p><script type="math/tex">\sigma_{\text{xy}} = \frac{1}{n-1} \sum_{i}^{n} (x_i' - \bar{x}')(y_i - \bar{y})</script>
+<script type="math/tex">=  \frac{1}{n-1} \sum_{i}^{n} (x_i' - 0)(y_i - \bar{y})</script>
+<script type="math/tex">=  \frac{1}{n-1} \sum_{i}^{n} (x_i - \bar{x})(y_i - \bar{y})</script></p>
+
+<p><br /></p>
+
+<h3 id="2-scaling-of-variables-does-affect-the-covariance-matrix">2. Scaling of variables does affect the covariance matrix</h3>
+
+<p>If one variable is scaled, e.g, from pounds into kilogram (1 pound = 0.453592 kg), it does affect the covariance and therefore influences the results of a PCA.</p>
+
+<p>Let <script type="math/tex">c</script> be the scaling factor for <script type="math/tex">\bf{x}</script></p>
+
+<p>Given that the “original” covariance is calculated as</p>
+
+<script type="math/tex; mode=display">\sigma_{xy} = \frac{1}{n-1} \sum_{i}^{n} (x_i - \bar{x})(y_i - \bar{y})</script>
+
+<p>the covariance after scaling would be calculated as:</p>
+
+<p><script type="math/tex">\sigma_{xy}' = \frac{1}{n-1} \sum_{i}^{n} (c \cdot x_i - c \cdot  \bar{x})(y_i - \bar{y})</script>
+<script type="math/tex">=  \frac{c}{n-1} \sum_{i}^{n} (x_i -   \bar{x})(y_i - \bar{y})</script></p>
+
+<p><script type="math/tex">\Rightarrow \sigma_{xy} = \frac{\sigma_{xy}'}{c}</script>
+<script type="math/tex">\Rightarrow \sigma_{xy}' = c \cdot \sigma_{xy}</script></p>
+
+<p>Therefore, the covariance after scaling one attribute by the constant <script type="math/tex">c</script> will result in a rescaled covariance <script type="math/tex">c \sigma_{xy}</script> So if we’d scaled <script type="math/tex">\bf{x}</script> from pounds to kilograms, the covariance between <script type="math/tex">\bf{x}</script> and <script type="math/tex">\bf{y}</script> will be 0.453592 times smaller.</p>
+
+<p><br /></p>
+
+<h3 id="3-standardizing-affects-the-covariance">3. Standardizing affects the covariance</h3>
+
+<p>Standardization of features will have an effect on the outcome of a PCA (assuming that the variables are originally not standardized). This is because we are scaling the covariance between every pair of variables by the product of the standard deviations of each pair of variables.</p>
+
+<p>The equation for standardization of a variable is written as</p>
+
+<script type="math/tex; mode=display">z = \frac{x_i - \bar{x}}{\sigma}</script>
+
+<p>The “original” covariance matrix:</p>
+
+<script type="math/tex; mode=display">\sigma_{xy} = \frac{1}{n-1} \sum_{i}^{n} (x_i - \bar{x})(y_i - \bar{y})</script>
+
+<p>And after standardizing both variables:</p>
+
+<script type="math/tex; mode=display">x' = \frac{x - \bar{x}}{\sigma_x} \text{ and } y' =\frac{y - \bar{y}}{\sigma_y}</script>
+
+<script type="math/tex; mode=display">\sigma_{xy}' =  \frac{1}{n-1} \sum_{i}^{n} (x_i' - 0)(y_i' - 0)</script>
+
+<script type="math/tex; mode=display">=  \frac{1}{n-1} \sum_{i}^{n} \bigg(\frac{x - \bar{x}}{\sigma_x}\bigg)\bigg(\frac{y - \bar{y}}{\sigma_y}\bigg)</script>
+
+<script type="math/tex; mode=display">= \frac{1}{(n-1) \cdot \sigma_x \sigma_y} \sum_{i}^{n} (x_i - \bar{x})(y_i - \bar{y})</script>
+
+<script type="math/tex; mode=display">\Rightarrow \sigma_{xy}' = \frac{\sigma_{xy}}{\sigma_x \sigma_y}</script>
+
+  </article>
+
+
+<strong>Have feedback on this post? I would love to hear it. Let me know and send me a <a href="https://twitter.com/intent/tweet?text=. @rasbt http://sebastianraschka.com/Articles/2014_about_feature_scaling.html">tweet</a> or <a href="http://sebastianraschka.com/email.html">email</a>.</strong>
+
+</div>
+
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> google.load('search', '1',
+{language : 'en'}); google.setOnLoadCallback(function() {
+ var customSearchControl = new
+ google.search.CustomSearchControl('014864919068820376681:zdkgmsqueag');
+ customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+ var options = new google.search.DrawOptions();
+ options.setAutoComplete(true);
+ customSearchControl.draw('cse', options); }, true);
+</script>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+
+
+    <div class="footer-col-wrapper">
+
+
+    <div class="footer-col  social-col">
+
+
+
+      
+          <a href="/email.html"><span><i class="fa fa-envelope fa-2x"></i> </a></span>
+      
+
+      
+        <a href="https://twitter.com/rasbt"> <span><i class="fa fa-twitter fa-2x"></i> </a></span>
+      
+
+      
+            <a href="https://github.com/rasbt"><span><i class="fa fa-github fa-2x"></i> </a></span>
+      
+
+      
+          <a href="https://linkedin.com/in/sebastianraschka"><span><i class="fa fa-linkedin fa-2x"></i> </a></span>
+      
+
+      
+          <a href="https://plus.google.com/u/0/+SebastianRaschka"><span><i class="fa fa-google-plus fa-2x"></i> </a></span>
+      
+
+      
+        <a href="https://www.quora.com/profile/Sebastian-Raschka-1"><span class="fa fa-2x" style="font-family: Georgia, serif; margin-left:5px;"><strong>Q</strong></a></span>
+      
+
+  </div>
+
+    <div class="footer-col  copyright-col">
+      <p>&copy; 2013-2017 Sebastian Raschka</p>
+    </div>
+
+
+  </div>
+
+
+
+</footer>
+
+    <script type="text/javascript">
+         var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-38457794-1']);
+         _gaq.push(['_trackPageview']);
+         (function() {
+           var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+ </script>
+
+
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+ try {
+   var pageTracker=_gat._getTracker("UA-38457794-1");
+   pageTracker._trackEvent(category, action);
+   setTimeout('document.location = "' + link.href + '"', 100)
+ }catch(err){}
+}
+</script>
+
+  </body>
+
+  <script src="/js/anchor.min.js" type="text/javascript"></script>
+  <script>
+    var selector = 'h2, h3, h4, h5, h6';
+    /*
+    anchors.options = {
+      icon: '#',
+      visible: 'always',
+      placement: 'left',
+      class: 'bb-anchor'
+    }
+    */
+    anchors.add(selector);
+  </script>
+
+
+</html>

@@ -1,0 +1,87 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  In this assignment you will practice in implementing mean encodings using final project dataset.  You are asked to encode `item_id` in 4 different ways:
+ </p>
+ <p>
+  1) Via KFold scheme with number of folds = 5. Use KFold(5) from sklearn.model_selection;
+ </p>
+ <p>
+  2) Via Leave-one-out scheme;
+ </p>
+ <p>
+  3) Via smoothing with alpha = 100. Use the formula from the first slide in the Regularization video and 0.3343 as globalmean;
+ </p>
+ <p>
+  4) Via expanding mean scheme.
+ </p>
+ <p>
+  Fill NANs in the encoding with 0.3343.
+ </p>
+ <p>
+  The answer will be the correlation coefficient between resulting encoding and target variable up to 4 decimal places.
+ </p>
+ <p>
+  Some encoding schemes depend on sorting order, so in order to avoid confusion, please use the
+  <a href="https://www.coursera.org/learn/competitive-data-science/notebook/3u0OE/mean-encoding-implementations-notebook">
+   provided notebook
+  </a>
+  .
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

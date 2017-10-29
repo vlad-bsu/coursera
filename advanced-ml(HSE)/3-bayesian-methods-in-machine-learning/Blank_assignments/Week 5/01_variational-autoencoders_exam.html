@@ -1,0 +1,439 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Which of the following estimates are unbiased?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\frac{1}{N} \sum_{i=1}^{N} (X_i - \bar X)^2, \enspace X_i \overset{i.i.d.}{\sim} p$$ for $$\operatorname{var} X$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\frac{1}{N - 1} \sum_{i=1}^{N} (X_i - \bar X)^2, \enspace X_i \overset{i.i.d.}{\sim} p$$ for $$\operatorname{var} X$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\bar{X} = \frac{1}{N} \sum_{i=1}^N X_i, \enspace X_i \overset{i.i.d.}{\sim p} $$ for $$\mathbb E X$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$f\left(\frac{1}{N} \sum_{i=1}{N} X_i \right), \enspace X_i \overset{i.i.d.}{\sum} p$$ for $$\mathbb E f(X)$$, where $$f$$ is a linear function.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p hasmath="true">
+  According to the law of large numbers, which of the following expressions converge to $$\log p(X)$$ as $$M \rightarrow \infty$$ for a latent variable model $$p(X, Z) = p(X | Z) p(Z)$$ and a distribution $$q(Z), \ \forall Z\ q(Z) &gt; 0$$?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\log \frac{1}{M} \sum_{i=1}^M p(X | Z_i)$$, $$Z_i \sim p(Z)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\log \frac{1}{M} \sum_{i=1}^M \frac{p(X, Z_i)}{q(Z_i)}$$, $$Z_i \sim q(Z)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\log \frac{1}{M} \sum_{i=1}^M p(X, Z_i)$$, $$Z_i \sim p(Z)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\frac{1}{M} \sum_{i=1}^M \log \frac{p(X, Z_i)}{q(Z_i)}$$, $$Z_i \sim q(Z)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\frac{1}{M} \sum_{i=1}^M \log p(X, Z_i)$$, $$Z_i \sim p(Z)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p hasmath="true">
+  In which of the following scenarios probabilistic model has a tractable density function $$p(X)$$?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$X$$ is defined by a smooth transformation $$f : \mathbb R^d \rightarrow \mathbb R^D, d &lt; D$$ of a random vector $$Z \sim \mathcal N(0, I)$$: $$X = f(Z)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$X$$ is defined by a smooth one-to-one transformation $$f : \mathbb R^D \rightarrow \mathbb R^D$$ of a random vector $$Z \sim \mathcal N(0, I)$$: $$X = f(Z)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Distribution is defined according to the chain rule $$p(X) = \prod_{i=1}^{D} p_i(X_i | X_{1}, \dots, X_{i-1})$$, $$X = (X_1, \dots, X_D)$$ with tractable conditional distributions.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$X$$ is an observable variable in an arbitrary latent variable model $$p(X, Z) = p(X | Z) p(Z)$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p>
+  In which case one will get higher evidence lower bound on a train set?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    For each $$X_i$$ the approximate posterior distribution over latent variable $$Z_i$$ is defined as $$q(Z_i | X_i) = \mathcal N(Z_i | \mu(X_i), \operatorname{diag}(\sigma^2(X_i)))$$, where $$\mu(\dot)$$ and $$\sigma(\dot)$$ are parametrized with a deep neural network.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    For each $$X_i$$ the approximate posterior distribution over latent variable $$Z_i$$ is defined individually as a Gaussian distribution $$q_i(Z | X_i) = \mathcal N(Z_i | \mu_i, \operatorname{diag}(\sigma^2_i))$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose the class of the approximate posterior distributions is flexible enough to capture any distribution. The evidence lower bound is known to achieve the optimal value with respect to the variational distribution when the variational distribution coincides with the true posterior distribution $$q(Z | X) = p(Z | X)$$.
+ </p>
+ <p hasmath="true">
+  What will be the optimal variational distribution for the evidence lower bound without the entropy term $$\mathbb E_{q(Z | X)} \log (p(X | Z) p(Z))$$.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    A mixture of point mass distributions concentrated in the modes of $$p(X, Z)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    True posterior distribution $$p(Z | X)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    None of the above.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 6
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose that a random variable $$Z_j$$ does not contribute to the value of decoder. That is, no matter what the value $$Z_j$$ takes, the output of decoder is the same. What will be the distribution $$q(Z_j | X)$$ after training?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    None of the above.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    The component will be distributed according to the prior distribution $$N(Z_j | 0, 1)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Distribution $$q(Z_j | X)$$ will not change during the training.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 7
+</h3>
+<co-content>
+ <p>
+  Which conditions are necessary for REINFORCE algorithm?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="6" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    One has to represent the variational approximation $$q(Z | X)$$  with a function $$f$$ and a random variable $$\varepsilon$$ such that $$z = f(\varepsilon)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Density function $$q(Z | X, w)$$ must be differentiable with respect to the random variable value $$Z$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Density function $$q(Z | X, w)$$ must be differentiable with respect to the distribution parameters $$w$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Density function $$q(Z | X, w)$$ must be differentiable with respect to the observed variable $$X$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 8
+</h3>
+<co-content>
+ <p>
+  Which conditions are necessary for the reparametrization trick implementation?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="7" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    One has to represent the variational distribution $$q(Z | X)$$  with a function $$f$$ and a random variable $$\varepsilon$$ such that $$z = f(\varepsilon)$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Density function $$q(Z | X, w)$$ must be differentiable with respect to the random variable value $$Z$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Density function $$q(Z | X, w)$$ must be differentiable with respect to the distribution parameters $$w$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Density function $$q(Z | X, w)$$ must be differentiable with respect to the observed variable $$X$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 9
+</h3>
+<co-content>
+ <p>
+  Which of the following distribution families can be used in the reparametrization trick?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="8" type="checkbox"/>
+  <co-content>
+   <span>
+    Multivariate normal distribution with diagonal covariance matrix.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="checkbox"/>
+  <co-content>
+   <span>
+    Bernoulli distribution.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="checkbox"/>
+  <co-content>
+   <span>
+    Multivariate normal distribution with full convariance matrix.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

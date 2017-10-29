@@ -1,0 +1,9 @@
+*-checkpoint.ipynb
+
+*.Rdata
+
+*.Rhistory
+
+*.m~
+
+*.mp4

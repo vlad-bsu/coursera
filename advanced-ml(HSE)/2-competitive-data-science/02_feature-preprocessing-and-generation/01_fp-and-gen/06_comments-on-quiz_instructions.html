@@ -1,0 +1,258 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Question 1
+ </h1>
+ <h2 level="2">
+  Suppose we have a feature with all the values between 0 and 1 except few outliers larger than 1. What can help us to decrease outliers' influence on non-tree models?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Apply rank transform to the features
+    </u>
+    . Yes, because after applying rank distance between all adjacent objects in a sorted array is 1, outliers now will be very close to other samples.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Apply np.log1p(x) transform to the data
+    </u>
+    . This transformation is non-linear and will move outliers relatively closer to other samples.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Apply np.sqrt(x) transform to the data
+    </u>
+    . This transformation is non-linear and will move outliers relatively closer to other samples.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Winsorization
+    </u>
+    . The main purpose of winsorization is to remove outliers by clipping feature's values.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     StandardScaler
+    </u>
+    . No, despite feature will be scaled, relative distances between outliers and other values still will be huge.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     MinMaxScaler
+    </u>
+    . No, despite feature will be scaled, relative distances between outliers and other values still will be huge.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 2
+ </h1>
+ <h2 level="2">
+  Suppose we fit a tree-based model. In which cases label encoding can be better to use than one-hot encoding?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     When categorical feature is ordinal
+    </u>
+    . Correct! Label encoding can lead to better quality if it preserves correct order of values. In this case a split made by a tree will divide the feature to values 'lower' and 'higher' that the value chosen for this split.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     When we can come up with label encoder, that assigns close labels to similar (in terms of target) categories
+    </u>
+    . Correct! First, in this case tree will achieve the same quality with less amount of splits, and second, this encoding will help to treat rare categories.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     When the number of categorical features in the dataset is huge.
+    </u>
+    One-hot encoding a categorical feature with huge number of values can lead to (1) high memory consumption and (2) the case when dense features is rarely used. You can deal with the 1st case if you employ sparse matrices. The 2nd case can occur if you use only a subset of features for each tree. In this case, you can increase the parameter controlling this ratio.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+  None
+ </p>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 3
+ </h1>
+ <h2 level="2">
+  Suppose we fit a tree-based model on several categorical features. In which cases applying one-hot encoding can be better to use than label-encoding?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     If target dependence on the label encoded feature is very non-linear, i.e. values that are close to each other in the label encode feature correspond to target values that aren't close
+    </u>
+    . Correct! If this feature is important, a tree would try to make a lot of splits and select each feature' value in a category on its own. But because tree is build in a greedy way, it can be hard to select one important value in label encoded vector. This won't be the problem if you use OHE.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     When the feature have only two unique values
+    </u>
+    . Incorrect. In this case both one-hot encoding and label encoding will produce similar columns.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 4
+ </h1>
+ <h2 level="2">
+  Suppose we have a categorical feature and a linear model. We need to somehow encode this feature. Which of the following statements are true?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Depending on the dataset either of label encoder or one-hot encoder could be better
+    </u>
+    . Correct! Although one-hot-encoding is usually gives better results in this case, we can come up with examples when one-hot-encoded feature will not lead to a better performance of a linear model.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Label encoding is always better than one-hot encoding
+    </u>
+    . Incorrect. Usually the dependence between the feature and the target is non-linear. In this case a linear model will not be able to utilize Label Encoded feature efficiently.
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     One-hot encoding is always better than label encoding
+    </u>
+    . Incorrect. Consider the toy example when the label encoded feature and the target are equal. In this case a linear model on this feature will have the perfect quality.
+   </p>
+  </li>
+ </ul>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,393 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Question 1
+ </h1>
+ <h2 level="2">
+  Imagine that we apply X = PCA(n_components=5).fit_transform(data) and data has shape (5000, 53). What is the shape of X?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     (5000, 5)
+    </u>
+    . Yes, it should be (n_samples, n_components).
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     (5, 53)
+    </u>
+    . No, we cannot transform 5000 samples into 5.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     (5, 5000)
+    </u>
+    . No, we cannot transform 5000 samples into 5.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     (53, 5)
+    </u>
+    . No, we cannot transform 5000 samples into 53.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 2
+ </h1>
+ <h2 level="2">
+  To which data NMF is NOT applicable?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Standartized matrix.
+    </u>
+    "Standartized" means that every feature column has zero mean and unit variance. This implies that we have negative values and cannot apply NMF.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Bag-of-words matrix.
+    </u>
+    Since BoW matrix is non-negative matrix, we *can* apply NMF to it.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     One-Hot encoded feature.
+    </u>
+    Since this matrix contains only 0's and 1's -- it is non-negative and we can apply NMF.
+   </p>
+  </li>
+ </ul>
+ <p>
+ </p>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 3
+ </h1>
+ <h2 level="2">
+  Suppose we have 2 categorical features:
+  <strong>
+   f1
+  </strong>
+  with
+  <u>
+   A
+  </u>
+  possible values and
+  <strong>
+   f2
+  </strong>
+  with
+  <u>
+   B
+  </u>
+  possible values. How many values will their interaction have?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Less or equal to A * B.
+    </u>
+    True. Sometimes some value (e.g. *a*) from A cannot be used with some value (eg *b*) from B. In this case, we have no change to see *ab* combination. If all value from A can be used with all values from B -- we will get A*B new possible values.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Exactly A + B.
+    </u>
+    No, it's too small.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Exactly A * B.
+    </u>
+    Not exactly, sometimes some value (e.g. *a*) from A cannot be used with some value (eg *b*) from B. In this case, we have no change to see *ab* combination.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     max(A, B).
+    </u>
+    No, it's way too small.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 4
+ </h1>
+ <h2 level="2">
+  Imagine we have 2 categorical features represented as integers:
+  <strong>
+   f1
+  </strong>
+  with all values in range [0, 1000] and
+  <strong>
+   f2
+  </strong>
+  with values in range [0, 100]. What is the correct way to build their interaction?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     f1.astype(str) + "_" + f2.astype(str).
+    </u>
+    Yes, this is the right answer
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     f1 + f2
+    </u>
+    . There are some problems. For example, if f1+f2=100: it is an interaction of 0 and 100, 100 and 0, or 90 and 10?
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     f1.astype(str) + f2.astype(str).
+    </u>
+    There is some problems. For example, "123": it is an d interaction of "1" and "23" or "12" and "3"?
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     (f1 + f2).astype(str).
+    </u>
+    It is essentially the same way as just f1+f2.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 5
+ </h1>
+ <h2 level="2">
+  What is a correct way to get t-SNE projection of train and test data?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Apply t-SNE to concatenation of train and test and split projection back.
+    </u>
+    This this the rigth way since train and test will projected in the same way.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Apply t-SNE to the train and after that to the test.
+    </u>
+    This this case we will have 2 different projections.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Apply t-SNE to the test first and after to train.
+    </u>
+    This this case we will have 2 different projections.
+   </p>
+  </li>
+  <li>
+   <p>
+    <u>
+     Doesn't matter, all variants will produce the same result.
+    </u>
+    No, since tSNE results in randomized projection
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+ </h1>
+ <p>
+ </p>
+ <h1 level="1">
+  Question 6
+ </h1>
+ <h2 level="2">
+  Is it possible to do t-SNE projection into 20-dimensional space?
+ </h2>
+ <p>
+  <strong>
+   Correct answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     Yes, why not.
+    </u>
+    You can do tSNE projection into arbitrary space.
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   Incorrect answers:
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <u>
+     No, only 2-dim or 3-dim projections are possible.
+    </u>
+    Wrong! Despite tSNE is quite often used for visualization purposes, you don't limit to use only 2- or 3-dimentional projections.
+   </p>
+  </li>
+ </ul>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>
