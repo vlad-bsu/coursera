@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33108845-1']);
+  _gaq.push(['_setDomainName', 'opencv.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Histogram Equalization &mdash; OpenCV 2.4.13.4 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '2.4.13.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="top" title="OpenCV 2.4.13.4 documentation" href="../../../../../index.html" />
+    <link rel="up" title="imgproc module. Image Processing" href="../../table_of_content_imgproc/table_of_content_imgproc.html" />
+    <link rel="next" title="Histogram Calculation" href="../histogram_calculation/histogram_calculation.html" />
+    <link rel="prev" title="Affine Transformations" href="../../imgtrans/warp_affine/warp_affine.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../histogram_calculation/histogram_calculation.html" title="Histogram Calculation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../imgtrans/warp_affine/warp_affine.html" title="Affine Transformations"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../../../index.html">OpenCV 2.4.13.4 documentation</a> &raquo;</li>
+          <li><a href="../../../tutorials.html" >OpenCV Tutorials</a> &raquo;</li>
+          <li><a href="../../table_of_content_imgproc/table_of_content_imgproc.html" accesskey="U"><em>imgproc</em> module. Image Processing</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+  
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="histogram-equalization">
+<span id="id1"></span><h1>Histogram Equalization<a class="headerlink" href="#histogram-equalization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial you will learn:</p>
+<div class="enumeratevisibleitemswithsquare container">
+<ul class="simple">
+<li>What an image histogram is and why it is useful</li>
+<li>To equalize histograms of images by using the OpenCV function:equalize_hist:<cite>equalizeHist &lt;&gt;</cite></li>
+</ul>
+</div>
+</div>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-an-image-histogram">
+<h3>What is an Image Histogram?<a class="headerlink" href="#what-is-an-image-histogram" title="Permalink to this headline">¶</a></h3>
+<div class="enumeratevisibleitemswithsquare container">
+<ul class="simple">
+<li>It is a graphical representation of the intensity distribution of an image.</li>
+<li>It quantifies the number of pixels for each intensity value considered.</li>
+</ul>
+</div>
+<img alt="../../../../../_images/Histogram_Equalization_Theory_0.jpg" class="align-center" src="../../../../../_images/Histogram_Equalization_Theory_0.jpg" />
+</div>
+<div class="section" id="what-is-histogram-equalization">
+<h3>What is Histogram Equalization?<a class="headerlink" href="#what-is-histogram-equalization" title="Permalink to this headline">¶</a></h3>
+<div class="enumeratevisibleitemswithsquare container">
+<ul class="simple">
+<li>It is a method that improves the contrast in an image, in order to stretch out the intensity range.</li>
+<li>To make it clearer, from the image above, you can see that the pixels seem clustered around the middle of the available range of intensities. What Histogram Equalization does is to <em>stretch out</em> this range. Take a look at the figure below: The green circles indicate the <em>underpopulated</em> intensities. After applying the equalization, we get an histogram like the figure in the center. The resulting image is shown in the picture at right.</li>
+</ul>
+</div>
+<img alt="../../../../../_images/Histogram_Equalization_Theory_1.jpg" class="align-center" src="../../../../../_images/Histogram_Equalization_Theory_1.jpg" />
+</div>
+<div class="section" id="how-does-it-work">
+<h3>How does it work?<a class="headerlink" href="#how-does-it-work" title="Permalink to this headline">¶</a></h3>
+<div class="enumeratevisibleitemswithsquare container">
+<ul>
+<li><p class="first">Equalization implies <em>mapping</em> one distribution (the given histogram) to another distribution (a wider and more uniform distribution of intensity values) so the intensity values are spreaded over the whole range.</p>
+</li>
+<li><p class="first">To accomplish the equalization effect, the remapping should be the <em>cumulative distribution function (cdf)</em> (more details, refer to <em>Learning OpenCV</em>). For the histogram <img class="math" src="../../../../../_images/math/74a69f88929919d1977f0752d7881959663f584d.png" alt="H(i)"/>, its <em>cumulative distribution</em> <img class="math" src="../../../../../_images/math/98df600e84cd68773f00f8d723dd8b0f7c5872ec.png" alt="H^{'}(i)"/> is:</p>
+<div class="math">
+<p><img src="../../../../../_images/math/f5962fa138e32b77d811182fed36184a4d8a5b5e.png" alt="H^{'}(i) = \sum_{0 \le j &lt; i} H(j)"/></p>
+</div><p>To use this as a remapping function, we have to normalize <img class="math" src="../../../../../_images/math/98df600e84cd68773f00f8d723dd8b0f7c5872ec.png" alt="H^{'}(i)"/> such that the maximum value is 255 ( or the maximum value for the intensity of the image ). From the example above, the cumulative function is:</p>
+<img alt="../../../../../_images/Histogram_Equalization_Theory_2.jpg" class="align-center" src="../../../../../_images/Histogram_Equalization_Theory_2.jpg" />
+</li>
+<li><p class="first">Finally, we use a simple remapping procedure to obtain the intensity values of the equalized image:</p>
+<div class="math">
+<p><img src="../../../../../_images/math/44bf3df1d4de4c4799dd713f75c67eaaf978c85f.png" alt="equalized( x, y ) = H^{'}( src(x,y) )"/></p>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<div class="enumeratevisibleitemswithsquare container">
+<ul>
+<li><p class="first"><strong>What does this program do?</strong></p>
+<div class="enumeratevisibleitemswithsquare container">
+<ul class="simple">
+<li>Loads an image</li>
+<li>Convert the original image to grayscale</li>
+<li>Equalize the Histogram by using the OpenCV function <a class="reference external" href="http://docs.opencv.org/modules/imgproc/doc/histograms.html?highlight=equalizehist#equalizehist">EqualizeHist</a></li>
+<li>Display the source and equalized images in a window.</li>
+</ul>
+</div>
+</li>
+<li><p class="first"><strong>Downloadable code</strong>:
+Click <a class="reference external" href="https://github.com/opencv/opencv/tree/master/samples/cpp/tutorial_code/Histograms_Matching/EqualizeHist_Demo.cpp">here</a></p>
+</li>
+<li><p class="first"><strong>Code at glance:</strong></p>
+</li>
+</ul>
+</div>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">&quot;opencv2/highgui/highgui.hpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;opencv2/imgproc/imgproc.hpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="cm">/**  @function main */</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Mat</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">;</span>
+
+  <span class="kt">char</span><span class="o">*</span> <span class="n">source_window</span> <span class="o">=</span> <span class="s">&quot;Source image&quot;</span><span class="p">;</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">equalized_window</span> <span class="o">=</span> <span class="s">&quot;Equalized Image&quot;</span><span class="p">;</span>
+
+  <span class="c1">/// Load image</span>
+  <span class="n">src</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span> <span class="p">);</span>
+
+  <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">src</span><span class="p">.</span><span class="n">data</span> <span class="p">)</span>
+    <span class="p">{</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Usage: ./Histogram_Demo &lt;path_to_image&gt;&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;}</span>
+
+  <span class="c1">/// Convert to grayscale</span>
+  <span class="n">cvtColor</span><span class="p">(</span> <span class="n">src</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">CV_BGR2GRAY</span> <span class="p">);</span>
+
+  <span class="c1">/// Apply Histogram Equalization</span>
+  <span class="n">equalizeHist</span><span class="p">(</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span> <span class="p">);</span>
+
+  <span class="c1">/// Display results</span>
+  <span class="n">namedWindow</span><span class="p">(</span> <span class="n">source_window</span><span class="p">,</span> <span class="n">CV_WINDOW_AUTOSIZE</span> <span class="p">);</span>
+  <span class="n">namedWindow</span><span class="p">(</span> <span class="n">equalized_window</span><span class="p">,</span> <span class="n">CV_WINDOW_AUTOSIZE</span> <span class="p">);</span>
+
+  <span class="n">imshow</span><span class="p">(</span> <span class="n">source_window</span><span class="p">,</span> <span class="n">src</span> <span class="p">);</span>
+  <span class="n">imshow</span><span class="p">(</span> <span class="n">equalized_window</span><span class="p">,</span> <span class="n">dst</span> <span class="p">);</span>
+
+  <span class="c1">/// Wait until user exits the program</span>
+  <span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="explanation">
+<h2>Explanation<a class="headerlink" href="#explanation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Declare the source and destination images as well as the windows names:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">Mat</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">;</span>
+
+<span class="kt">char</span><span class="o">*</span> <span class="n">source_window</span> <span class="o">=</span> <span class="s">&quot;Source image&quot;</span><span class="p">;</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">equalized_window</span> <span class="o">=</span> <span class="s">&quot;Equalized Image&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Load the source image:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">src</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span> <span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">src</span><span class="p">.</span><span class="n">data</span> <span class="p">)</span>
+  <span class="p">{</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Usage: ./Histogram_Demo &lt;path_to_image&gt;&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Convert it to grayscale:</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">cvtColor</span><span class="p">(</span> <span class="n">src</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">CV_BGR2GRAY</span> <span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Apply histogram equalization with the function <a class="reference external" href="http://docs.opencv.org/modules/imgproc/doc/histograms.html?highlight=equalizehist#equalizehist">equalizeHist</a> :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">equalizeHist</span><span class="p">(</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p>As it can  be easily seen, the only arguments are the original image and the output (equalized) image.</p>
+</li>
+<li><p class="first">Display both images (original and equalized) :</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">namedWindow</span><span class="p">(</span> <span class="n">source_window</span><span class="p">,</span> <span class="n">CV_WINDOW_AUTOSIZE</span> <span class="p">);</span>
+<span class="n">namedWindow</span><span class="p">(</span> <span class="n">equalized_window</span><span class="p">,</span> <span class="n">CV_WINDOW_AUTOSIZE</span> <span class="p">);</span>
+
+<span class="n">imshow</span><span class="p">(</span> <span class="n">source_window</span><span class="p">,</span> <span class="n">src</span> <span class="p">);</span>
+<span class="n">imshow</span><span class="p">(</span> <span class="n">equalized_window</span><span class="p">,</span> <span class="n">dst</span> <span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Wait until user exists the program</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">To appreciate better the results of equalization, let&#8217;s introduce an image with not much contrast, such as:</p>
+<img alt="../../../../../_images/Histogram_Equalization_Original_Image.jpg" class="align-center" src="../../../../../_images/Histogram_Equalization_Original_Image.jpg" />
+<p>which, by the way, has this histogram:</p>
+<img alt="../../../../../_images/Histogram_Equalization_Original_Histogram.jpg" class="align-center" src="../../../../../_images/Histogram_Equalization_Original_Histogram.jpg" />
+<p>notice that the pixels are clustered around the center of the histogram.</p>
+</li>
+<li><p class="first">After applying the equalization with our program, we get this result:</p>
+<img alt="../../../../../_images/Histogram_Equalization_Equalized_Image.jpg" class="align-center" src="../../../../../_images/Histogram_Equalization_Equalized_Image.jpg" />
+<p>this image has certainly more contrast. Check out its new histogram like this:</p>
+<img alt="../../../../../_images/Histogram_Equalization_Equalized_Histogram.jpg" class="align-center" src="../../../../../_images/Histogram_Equalization_Equalized_Histogram.jpg" />
+<p>Notice how the number of pixels is more distributed through the intensity range.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Are you wondering how did we draw the Histogram figures shown above? Check out the following tutorial!</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <div class="feedback">
+              <h2>Help and Feedback</h2>
+              You did not find what you were looking for?
+              <ul>
+                  
+                  
+                  
+                  <li>Ask a question on the <a href="http://answers.opencv.org">Q&A forum</a>.</li>
+                  <li>If you think something is missing or wrong in the documentation,
+                  please file a <a href="http://code.opencv.org">bug report</a>.</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../../index.html">
+              <img class="logo" src="../../../../../_static/opencv-logo-white.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none">
+      <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      </p>
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+  <h3><a href="../../../../../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Histogram Equalization</a><ul>
+<li><a class="reference internal" href="#goal">Goal</a></li>
+<li><a class="reference internal" href="#theory">Theory</a><ul>
+<li><a class="reference internal" href="#what-is-an-image-histogram">What is an Image Histogram?</a></li>
+<li><a class="reference internal" href="#what-is-histogram-equalization">What is Histogram Equalization?</a></li>
+<li><a class="reference internal" href="#how-does-it-work">How does it work?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#code">Code</a></li>
+<li><a class="reference internal" href="#explanation">Explanation</a></li>
+<li><a class="reference internal" href="#results">Results</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../../imgtrans/warp_affine/warp_affine.html"
+                        title="previous chapter">Affine Transformations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../histogram_calculation/histogram_calculation.html"
+                        title="next chapter">Histogram Calculation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/doc/tutorials/imgproc/histograms/histogram_equalization/histogram_equalization.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../histogram_calculation/histogram_calculation.html" title="Histogram Calculation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../../imgtrans/warp_affine/warp_affine.html" title="Affine Transformations"
+             >previous</a> |</li>
+        <li><a href="../../../../../index.html">OpenCV 2.4.13.4 documentation</a> &raquo;</li>
+          <li><a href="../../../tutorials.html" >OpenCV Tutorials</a> &raquo;</li>
+          <li><a href="../../table_of_content_imgproc/table_of_content_imgproc.html" ><em>imgproc</em> module. Image Processing</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011-2014, opencv dev team.
+      Last updated on Oct 26, 2017.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

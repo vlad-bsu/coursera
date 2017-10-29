@@ -1,0 +1,264 @@
+<meta charset="utf-8"/>
+<co-content>
+ <asset assettype="pdf" extension="pdf" id="gCsNrWyZEeaxmg47KsiIZw" name="statement-metrics">
+ </asset>
+ <p>
+  Данное задание основано на материалах лекций по метрикам качества классификации.
+ </p>
+ <h2 level="2">
+  Вы научитесь:
+ </h2>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    вычислять различные меры качества классификации: долю правильных ответов, точность, полноту, AUC-ROC и т.д.
+   </p>
+  </li>
+  <li>
+   <p>
+    сравнивать алгоритмы классификации при наличии ограничений на точность или полноту
+   </p>
+  </li>
+ </ul>
+ <h2 level="2">
+  Введение
+ </h2>
+ <p>
+  В задачах классификации может быть много особенностей, влияющих на подсчет качества: различные цены ошибок, несбалансированность классов и т.д. Из-за этого существует большое количество метрик качества — каждая из них рассчитана на определенное сочетание свойств задачи и требований к ее решению.
+ </p>
+ <p>
+  Меры качества классификации можно разбить на две большие группы: предназначенные для алгоритмов, выдающих номера классов, и для алгоритмов, выдающих оценки принадлежности к классам. К первой группе относятся доля правильных ответов, точность, полнота, F-мера. Ко второй — площади под ROC- или PR-кривой.
+ </p>
+ <h2 level="2">
+  Реализация в sklearn
+ </h2>
+ <p>
+  Различные метрики качества реализованы в пакете sklearn.metrics. Конкретные функции указаны в инструкции по выполнению задания.
+ </p>
+ <h2 level="2">
+  Материалы
+ </h2>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <a href="https://github.com/esokolov/ml-course-hse/blob/master/2016-fall/lecture-notes/lecture04-linclass.pdf">
+     Подробнее о метриках качества
+    </a>
+   </p>
+  </li>
+  <li>
+   <p>
+    <a href="https://github.com/esokolov/ml-course-hse/blob/master/2016-fall/seminars/sem05-linclass.pdf">
+     Задачи по AUC-ROC
+    </a>
+   </p>
+  </li>
+ </ul>
+ <h2 level="2">
+  Инструкция по выполнению
+ </h2>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Загрузите файл classification.csv. В нем записаны истинные классы объектов выборки (колонка true) и ответы некоторого классификатора (колонка pred).
+   </p>
+  </li>
+  <li>
+   <p>
+    Заполните таблицу ошибок классификации:
+   </p>
+  </li>
+ </ol>
+ <table columns="3" rows="3">
+  <tr>
+   <td>
+    <p>
+    </p>
+   </td>
+   <td>
+    <p>
+     Actual Positive
+    </p>
+   </td>
+   <td>
+    <p>
+     Actual Negative
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     Predicted Positive
+    </p>
+   </td>
+   <td>
+    <p>
+     TP
+    </p>
+   </td>
+   <td>
+    <p>
+     FP
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     Predicted Negative
+    </p>
+   </td>
+   <td>
+    <p>
+     FN
+    </p>
+   </td>
+   <td>
+    <p>
+     TN
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  Для этого подсчитайте величины TP, FP, FN и TN согласно их определениям. Например, FP — это количество объектов, имеющих класс 0, но отнесенных алгоритмом к классу 1. Ответ в данном вопросе — четыре числа через пробел.
+ </p>
+ <p>
+  3. Посчитайте основные метрики качества классификатора:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Accuracy (доля верно угаданных) — sklearn.metrics.accuracy_score
+   </p>
+  </li>
+  <li>
+   <p>
+    Precision (точность) — sklearn.metrics.precision_score
+   </p>
+  </li>
+  <li>
+   <p>
+    Recall (полнота) — sklearn.metrics.recall_score
+   </p>
+  </li>
+  <li>
+   <p>
+    F-мера — sklearn.metrics.f1_score
+   </p>
+  </li>
+ </ul>
+ <p>
+  В качестве ответа укажите эти четыре числа через пробел.
+ </p>
+ <p>
+  4. Имеется четыре обученных классификатора. В файле scores.csv записаны истинные классы и значения степени принадлежности положительному классу для каждого классификатора на некоторой выборке:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    для логистической регрессии — вероятность положительного класса (колонка score_logreg),
+   </p>
+  </li>
+  <li>
+   <p>
+    для SVM — отступ от разделяющей поверхности (колонка score_svm),
+   </p>
+  </li>
+  <li>
+   <p>
+    для метрического алгоритма — взвешенная сумма классов соседей (колонка score_knn),
+   </p>
+  </li>
+  <li>
+   <p>
+    для решающего дерева — доля положительных объектов в листе (колонка score_tree).
+   </p>
+  </li>
+ </ul>
+ <p>
+  Загрузите этот файл.
+ </p>
+ <p>
+  5. Посчитайте площадь под ROC-кривой для каждого классификатора. Какой классификатор имеет наибольшее значение метрики AUC-ROC (укажите название столбца)? Воспользуйтесь функцией sklearn.metrics.roc_auc_score.
+ </p>
+ <p>
+  6. Какой классификатор достигает наибольшей точности (Precision) при полноте (Recall) не менее 70% ?
+ </p>
+ <p>
+  Чтобы получить ответ на этот вопрос, найдите все точки precision-recall-кривой с помощью функции sklearn.metrics.precision_recall_curve. Она возвращает три массива: precision, recall, thresholds. В них записаны точность и полнота при определенных порогах, указанных в массиве thresholds. Найдите максимальной значение точности среди тех записей, для которых полнота не меньше, чем 0.7.
+ </p>
+ <p>
+  Если ответом является нецелое число, то целую и дробную часть необходимо разграничивать точкой, например, 0.42. При необходимости округляйте дробную часть до двух знаков.
+ </p>
+ <p>
+  Ответ на каждое задание — текстовый файл, содержащий ответ в первой строчке. Обратите внимание, что отправляемые файлы не должны содержать перевод строки в конце. Данный нюанс является ограничением платформы Coursera. Мы работаем над тем, чтобы убрать это ограничение.
+ </p>
+ <asset assettype="generic" extension="csv" id="E9KkI7u-EeWHhw4MvaB3nw" name="classification">
+ </asset>
+ <p>
+ </p>
+ <asset assettype="generic" extension="csv" id="2G2ZQsUeEeWicwr5JH8fgw" name="scores">
+ </asset>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,532 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  What is produced at the end of this snippet of R code?
+ </p>
+ <pre language="r">set.seed(1)
+rpois(5, 2)</pre>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    A vector with the numbers 1, 1, 2, 4, 1
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    It is impossible to tell because the result is random
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    A vector with the numbers 3.3, 2.5, 0.5, 1.1, 1.7
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    A vector with the numbers 1, 4, 1, 1, 5
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  What R function can be used to generate standard Normal random variables?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    pnorm
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    rnorm
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    qnorm
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    dnorm
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  When simulating data, why is using the set.seed() function important? Select all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    It ensures that the sequence of random numbers is truly random.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    It can be used to generate non-uniform random numbers.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    It ensures that the sequence of random numbers starts in a specific place and is therefore reproducible.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    It ensures that the random numbers generated are within specified boundaries.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p>
+  Which function can be used to evaluate the inverse cumulative distribution function for the Poisson distribution?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    qpois
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    dpois
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    rpois
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    ppois
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  What does the following code do?
+ </p>
+ <pre language="r">set.seed(10)
+x &lt;- rep(0:1, each = 5)
+e &lt;- rnorm(10, 0, 20)
+y &lt;- 0.5   2 * x   e</pre>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    Generate random exponentially distributed data
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    Generate data from a Normal linear model
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    Generate data from a Poisson generalized linear model
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    Generate uniformly distributed random data
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 6
+</h3>
+<co-content>
+ <p>
+  What R function can be used to generate Binomial random variables?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    pbinom
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    rbinom
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    dbinom
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    qbinom
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 7
+</h3>
+<co-content>
+ <p>
+  What aspect of the R runtime does the profiler keep track of when an R expression is evaluated?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span>
+    the working directory
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span>
+    the package search list
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span>
+    the global environment
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span>
+    the function call stack
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 8
+</h3>
+<co-content>
+ <p>
+  Consider the following R code
+ </p>
+ <pre language="r">library(datasets)
+Rprof()
+fit &lt;- lm(y ~ x1   x2)
+Rprof(NULL)</pre>
+ <p>
+  (Assume that y, x1, and x2 are present in the workspace.) Without running the code, what percentage of the run time is spent in the 'lm' function, based on the 'by.total' method of normalization shown in 'summaryRprof()'?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    50%
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    23%
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    100%
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    It is not possible to tell
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 9
+</h3>
+<co-content>
+ <p>
+  When using 'system.time()', what is the user time?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="8" type="radio"/>
+  <co-content>
+   <span>
+    It is a measure of network latency
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="radio"/>
+  <co-content>
+   <span>
+    It is the time spent by the CPU waiting  for other tasks to finish
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="radio"/>
+  <co-content>
+   <span>
+    It is the time spent by the CPU evaluating an expression
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="radio"/>
+  <co-content>
+   <span>
+    It is the "wall-clock" time it takes to evaluate an expression
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 10
+</h3>
+<co-content>
+ <p>
+  If a computer has more than one available processor and R is able to take advantage of that, then which of the following is true when using 'system.time()'?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="9" type="radio"/>
+  <co-content>
+   <span>
+    elapsed time is 0
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="9" type="radio"/>
+  <co-content>
+   <span>
+    user time is always smaller than elapsed time
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="9" type="radio"/>
+  <co-content>
+   <span>
+    user time is 0
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="9" type="radio"/>
+  <co-content>
+   <span>
+    elapsed time may be smaller than user time
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

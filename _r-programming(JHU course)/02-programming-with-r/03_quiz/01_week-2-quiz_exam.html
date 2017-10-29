@@ -1,0 +1,593 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Suppose I define the following function in R
+ </p>
+ <pre language="r">cube &lt;- function(x, n) {
+        x^3
+}</pre>
+ <p>
+  What is the result of running
+ </p>
+ <pre language="r">cube(3)</pre>
+ <p>
+  in R after defining this function?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    The users is prompted to specify the value of 'n'.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    The number 27 is returned
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    A warning is given with no value returned.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span>
+    An error is returned because 'n' is not specified in the call to 'cube'
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  The following code will produce a warning in R.
+ </p>
+ <pre language="r">x &lt;- 1:10
+if(x &gt; 5) {
+        x &lt;- 0
+}</pre>
+ <p>
+  Why?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    There are no elements in 'x' that are greater than 5
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    'x' is a vector of length 10 and 'if' can only test a single logical statement.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    The syntax of this R expression is incorrect.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    The expression uses curly braces.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span>
+    You cannot set 'x' to be 0 because 'x' is a vector and 0 is a scalar.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  Consider the following function
+ </p>
+ <pre language="r">f &lt;- function(x) {
+        g &lt;- function(y) {
+                y   z
+        }
+        z &lt;- 4
+        x   g(x)
+}</pre>
+ <p>
+  If I then run in R
+ </p>
+ <pre language="r">z &lt;- 10
+f(3)</pre>
+ <p>
+  What value is returned?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    7
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    16
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    10
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    4
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p>
+  Consider the following expression:
+ </p>
+ <pre language="r">x &lt;- 5
+y &lt;- if(x &lt; 3) {
+        NA
+} else {
+        10
+}</pre>
+ <p>
+  What is the value of 'y' after evaluating this expression?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    NA
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    5
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    3
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    10
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  Consider the following R function
+ </p>
+ <pre language="r">h &lt;- function(x, y = NULL, d = 3L) {
+        z &lt;- cbind(x, d)
+        if(!is.null(y))
+                z &lt;- z   y
+        else
+                z &lt;- z   f
+        g &lt;- x   y / z
+        if(d == 3L)
+                return(g)
+        g &lt;- g   10
+        g
+}</pre>
+ <p>
+  Which symbol in the above function is a free variable?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    f
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    z
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    d
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    L
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="radio"/>
+  <co-content>
+   <span>
+    g
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 6
+</h3>
+<co-content>
+ <p>
+  What is an environment in R?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    an R package that only contains data
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    a special type of function
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    a list whose elements are all functions
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="5" type="radio"/>
+  <co-content>
+   <span>
+    a collection of symbol/value pairs
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 7
+</h3>
+<co-content>
+ <p>
+  The R language uses what type of scoping rule for resolving free variables?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span>
+    dynamic scoping
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span>
+    global scoping
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span>
+    lexical scoping
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="6" type="radio"/>
+  <co-content>
+   <span>
+    compilation scoping
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 8
+</h3>
+<co-content>
+ <p>
+  How are free variables in R functions resolved?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    The values of free variables are searched for in the environment in which the function was called
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    The values of free variables are searched for in the working directory
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    The values of free variables are searched for in the global environment
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="7" type="radio"/>
+  <co-content>
+   <span>
+    The values of free variables are searched for in the environment in which the function was defined
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 9
+</h3>
+<co-content>
+ <p>
+  What is one of the consequences of the scoping rules used in R?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="8" type="radio"/>
+  <co-content>
+   <span>
+    All objects must be stored in memory
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="radio"/>
+  <co-content>
+   <span>
+    All objects can be stored on the disk
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="radio"/>
+  <co-content>
+   <span>
+    Functions cannot be nested
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="8" type="radio"/>
+  <co-content>
+   <span>
+    R objects cannot be larger than 100 MB
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 10
+</h3>
+<co-content>
+ <p>
+  In R, what is the parent frame?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="9" type="radio"/>
+  <co-content>
+   <span>
+    It is the environment in which a function was defined
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="9" type="radio"/>
+  <co-content>
+   <span>
+    It is always the global environment
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="9" type="radio"/>
+  <co-content>
+   <span>
+    It is the environment in which a function was called
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="9" type="radio"/>
+  <co-content>
+   <span>
+    It is the package search list
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,364 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Suppose you have trained an SVM classifier with a Gaussian kernel, and it learned the following decision boundary on the training set:
+ </p>
+ <img alt="" src="http://spark-public.s3.amazonaws.com/ml/images/12.1-a.jpg"/>
+ <p hasmath="true">
+  You suspect that the SVM is underfitting your dataset.  Should you try increasing or decreasing $$C$$?  Increasing or decreasing $$\sigma^2$$?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    It would be reasonable to try
+    <strong>
+     increasing
+    </strong>
+    $$C$$. It would also be reasonable to try
+    <strong>
+     decreasing
+    </strong>
+    $$\sigma^2$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    It would be reasonable to try
+    <strong>
+     decreasing
+    </strong>
+    $$C$$. It would also be reasonable to try
+    <strong>
+     decreasing
+    </strong>
+    $$\sigma^2$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    It would be reasonable to try
+    <strong>
+     decreasing
+    </strong>
+    $$C$$. It would also be reasonable to try
+    <strong>
+     increasing
+    </strong>
+    $$\sigma^2$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    It would be reasonable to try
+    <strong>
+     increasing
+    </strong>
+    $$C$$. It would also be reasonable to try
+    <strong>
+     increasing
+    </strong>
+    $$\sigma^2$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p hasmath="true">
+  The formula for the Gaussian kernel is given by $$\text{similarity}(x,l^{(1)}) = \exp{(-\frac{||x-l^{(1)}||^2}{2\sigma^2})}$$ .
+ </p>
+ <p hasmath="true">
+  The figure below shows a plot of $$f_1 = \text{similarity}(x,l^{(1)})$$ when $$\sigma^2 = 1$$.
+ </p>
+ <img alt="" src="http://spark-public.s3.amazonaws.com/ml/images/12.2-question.jpg"/>
+ <p hasmath="true">
+  Which of the following is a plot of $$f_1$$ when $$\sigma^2 = 0.25$$?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <img alt="" src="http://spark-public.s3.amazonaws.com/ml/images/12.2-d.jpg"/>
+   <span>
+    Figure 4.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <img alt="" src="http://spark-public.s3.amazonaws.com/ml/images/12.2-a.jpg"/>
+   <span>
+    Figure 2.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <img alt="" src="http://spark-public.s3.amazonaws.com/ml/images/12.2-b.jpg"/>
+   <span>
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <img alt="" src="http://spark-public.s3.amazonaws.com/ml/images/12.2-c.jpg"/>
+   <span>
+    Figure 3.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  The SVM solves
+ </p>
+ <p hasmath="true">
+  $$\min_\theta \space C \sum_{i=1}^m y^{(i)} \text{cost}_1(\theta^Tx^{(i)})   (1-y^{(i)}) \text{cost}_0(\theta^Tx^{(i)})    \sum_{j=1}^n \theta_j^2$$
+ </p>
+ <p hasmath="true">
+  where the functions $$\text{cost}_0(z)$$ and $$\text{cost}_1(z)$$ look like this:
+ </p>
+ <img alt="" src="http://spark-public.s3.amazonaws.com/ml/images/12.3.jpg"/>
+ <p>
+  The first term in the objective is:
+ </p>
+ <p hasmath="true">
+  $$C \sum_{i=1}^m y^{(i)} \text{cost}_1(\theta^Tx^{(i)})    (1-y^{(i)}) \text{cost}_0(\theta^Tx^{(i)}).$$
+ </p>
+ <p>
+  This first term will be zero if two of the following four conditions hold true.  Which are the two conditions that would guarantee that this term equals zero?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    For every example with $$y^{(i)} = 0$$, we have that $$\theta^Tx^{(i)} \leq -1$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    For every example with $$y^{(i)} = 0$$, we have that $$\theta^Tx^{(i)} \leq 0$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    For every example with $$y^{(i)} = 1$$, we have that $$\theta^Tx^{(i)} \geq 1$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    For every example with $$y^{(i)} = 1$$, we have that $$\theta^Tx^{(i)} \geq 0$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p>
+  Suppose you have a dataset with n = 10 features and m = 5000 examples.
+ </p>
+ <p>
+  After training your logistic regression classifier with gradient descent, you find that it has underfit the training set and does not achieve the desired performance on the training or cross validation sets.
+ </p>
+ <p>
+  Which of the following might be promising steps to take? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    Use an SVM with a Gaussian Kernel.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    Create / add new polynomial features.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Increase the regularization parameter $$\lambda$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    Use an SVM with a linear kernel, without introducing new features.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  Which of the following statements are true? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    Suppose you are using SVMs to do multi-class classification and
+   </span>
+   <span hasmath="true">
+    would like to use the one-vs-all approach. If you have $$K$$ different
+   </span>
+   <span hasmath="true">
+    classes, you will train $$K$$ - 1 different SVMs.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    It is important to perform feature normalization before using the Gaussian kernel.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    If the data are linearly separable, an SVM using a linear kernel will
+   </span>
+   <span hasmath="true">
+    return the same parameters $$\theta$$ regardless of the chosen value of
+   </span>
+   <span hasmath="true">
+    $$C$$ (i.e., the resulting value of $$\theta$$ does not depend on $$C$$).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    The maximum value of the Gaussian kernel (i.e., $$sim(x, l^{(1)})$$) is 1.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

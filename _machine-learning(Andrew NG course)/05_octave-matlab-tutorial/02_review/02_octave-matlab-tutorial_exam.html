@@ -1,0 +1,337 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Suppose I first execute the following Octave/Matlab commands:
+ </p>
+ <pre language="matlab">A = [1 2; 3 4; 5 6];
+B = [1 2 3; 4 5 6];</pre>
+ <p>
+  Which of the following are then valid commands? Check all that apply. (Hint: A' denotes the transpose of A.)
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    C = A * B;
+   </span>
+   <span>
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    C = B'   A;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    C = A' * B;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    C = B   A;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p hasmath="true">
+  Let $$A = \begin{bmatrix} 16 &amp; 2 &amp; 3 &amp; 13 \\ 5 &amp; 11 &amp; 10 &amp; 8 \\ 9 &amp; 7 &amp; 6 &amp; 12 \\ 4 &amp; 14 &amp; 15 &amp; 1 \end{bmatrix} $$.
+ </p>
+ <p>
+ </p>
+ <p hasmath="true">
+  Which of the following indexing expressions gives $$B = \begin{bmatrix} 16 &amp; 2 \\ 5 &amp; 11 \\ 9 &amp; 7 \\ 4 &amp; 14 \end{bmatrix} $$? Check all that apply.
+ </p>
+ <p>
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    B = A(:, 1:2);
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    B = A(1:4, 1:2);
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    B = A(0:2, 0:4)
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    B = A(1:2, 1:4);
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p hasmath="true">
+  Let $$A$$ be a 10x10 matrix and$$x$$ be a 10-element vector. Your friend wants to compute the product $$Ax$$ and writes the following code:
+ </p>
+ <pre language="matlab">v = zeros(10, 1);
+for i = 1:10
+  for j = 1:10
+    v(i) = v(i)   A(i, j) * x(j);
+  end
+end</pre>
+ <p>
+  How would you vectorize this code to run without any for loops? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    v = A * x;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    v = Ax;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    v = x' * A;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    v = sum (A * x);
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p hasmath="true">
+  Say you have two column vectors $$v$$ and $$w$$, each with 7 elements (i.e., they have dimensions 7x1). Consider the following code:
+ </p>
+ <pre language="matlab">z = 0;
+for i = 1:7
+  z = z   v(i) * w(i)
+end</pre>
+ <p>
+  Which of the following vectorizations correctly compute z? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    z = sum (v .* w);
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    z = w' * v;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    z = v * w';
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    z = w * v';
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p hasmath="true">
+  In Octave/Matlab, many functions work on single numbers, vectors, and matrices. For example, the sin function when applied to a matrix will return a new matrix with the sin of each element. But you have to be careful, as certain functions have different behavior. Suppose you have an 7x7 matrix $$X$$. You want to compute the log of every element, the square of every element, add 1 to every element, and divide every element by 4. You will store the results in four matrices, $$A, B, C, D$$. One way to do so is the following code:
+ </p>
+ <pre language="matlab">for i = 1:7
+  for j = 1:7
+    A(i, j) = log(X(i, j));
+    B(i, j) = X(i, j) ^ 2;
+    C(i, j) = X(i, j)   1;
+    D(i, j) = X(i, j) / 4;
+  end
+end</pre>
+ <p hasmath="true">
+  Which of the following correctly compute $$A, B, C,$$ or $$D$$? Check all that apply.
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    C = X   1;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    D = X / 4;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    A = log (X);
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    B = X ^ 2;
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

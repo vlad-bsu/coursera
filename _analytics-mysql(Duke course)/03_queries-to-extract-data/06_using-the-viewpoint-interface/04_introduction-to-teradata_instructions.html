@@ -1,0 +1,187 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  The reason you are learning SQL is to be able to retrieve data you need
+to analyze from a database without having to ask somebody else in your company
+to do it for you.  Sometimes you will be
+making the judgment about what data are important to retrieve, while other
+times your team members or bosses will tell you what data they want you to
+retrieve.
+ </p>
+ <p>
+  In either case, you will need
+to be able to sit in front of a blank query screen and somehow get the data you
+intend.  That experience, emotionally,
+feels very different from writing queries through the Jupyter interface,
+because you will not have any text or guidance to draw upon to help you understand
+how to interpret the database and generate a query.
+ </p>
+ <p>
+  The Teradata exercises you will complete in
+this course are designed to serve as a stepping stone between these real-life
+situations and the Jupyter exercises.  It's important for you to experience writing your own queries to answer real business
+questions with real business data just as you would in a company, and take the
+time you need to figure out how to arrive at the correct answer, and then check
+your answers after you have finalized your query.  For this reason, you will be given less guidance
+in the Teradata exercises than in the Jupyter exercises.  The goal is to for you to overcome challenges
+now, before you take on your first analyst job!
+ </p>
+ <p>
+  Another
+important opportunity these Teradata exercises provide is the ability to see
+for yourself what working with “Big Data” feels like. Some questions have been designed so that the queries won’t
+take too long to run, but as the course progresses and queries become more
+complicated, you will find it may take minutes for queries to output a result.  Teradata is a very fast platform, so these
+query times represent some of the fastest query times you are likely to see in
+a business setting.  Take advantage of the
+opportunity to get a feeling for how long different types of queries take to
+implement.
+ </p>
+ <p>
+  The best way to become truly proficient with SQL is to practice.  To motivate you to practice, the quizzes in
+this course are primarily based on the answers you retrieve from queries you
+write to analyze the Dillard’s dataset.
+  <strong>
+   <u>
+    For this reason, you will not be given the
+answers to the Teradata exercises.
+   </u>
+  </strong>
+  Instead, you should use the quizzes to determine whether your queries
+are correct.  Don’t worry, though!  The Teradata exercises will take you through
+the steps needed to write queries that will help you answer the quiz questions.
+ </p>
+ <p>
+  <strong>
+   <u>
+    Save your
+written queries while completing the Teradata exercises so you can use or adapt
+them to answer quiz questions
+   </u>
+  </strong>
+  (you can save the queries in your Teradata account or
+copy them to a document you save on your computer).  Saving the queries gives you a portfolio to show
+employers, or one you can refer to after completing this course.
+ </p>
+ <p>
+  Plan to allot a significant amount of time to finish the quizzes each
+week.  Since the quizzes are based on
+writing actual queries, they take time to complete.  More complex queries also take longer to run,
+so the exercises and quizzes will take longer to complete. We strongly
+encourage you to use the course discussions and Stack Overflow (
+  <a href="http://www.stackoverflow.com">
+   www.stackoverflow.com
+  </a>
+  ) to ask questions and help other people when they
+have questions as well.
+ </p>
+ <p>
+  This course is primarily designed to help you gain the technical
+skill set that will allow you to write SQL queries.  However, writing SQL queries is only one part
+of your job as a data analyst.  The other
+part of your job will be to know your dataset deeply enough to write queries
+that give correct and meaningful answers so you and your company can make good
+decisions about what actions to take. 
+Real data are messy, and if you don’t pay attention to the details of
+the mess, you might execute SQL queries that lead you and your company to
+incorrect conclusions.  We won’t go into
+depth about how to analytically or physically clean data in this course, but I
+will ask you to write queries that take some of the abnormalities of the data
+into account.  Doing so will make your
+queries more complicated, but it is important that you learn to write queries
+that address imperfections in the data. 
+I encourage you to think about these exercises as an opportunity to learn
+how to arrive at correct answers, more so than an opportunity to run queries
+that don’t crash.
+ </p>
+ <p>
+  <strong>
+   <u>
+    Overall Objectives for the Teradata Exercises
+   </u>
+  </strong>
+ </p>
+ <p>
+  <strong>
+   Week 2:
+  </strong>
+  In Week 2 your
+aims should be to become comfortable with the Teradata front end interface, and
+the small differences in MySQL and Teradata SQL syntax.  You should also aim to get a good sense of
+what information the Dillard’s data set contains, and what kind of analysis
+questions the data set could help you answer.  
+Finish the week knowing how to retrieve, and change the format of data
+from single tables that meet specified criteria.
+ </p>
+ <p>
+  <strong>
+   Week 3:
+  </strong>
+  In Week 3 your
+aims should be to become very confident in your ability to use the main
+keywords in a SQL query, and to begin appreciating how long queries take when
+you are combining data from multiple tables with millions of rows.  Finish the week knowing how to summarize
+data, how to segment summaries of your data, and how to combine data across
+multiple tables.
+ </p>
+ <p>
+  <strong>
+   Weeks 4/5:
+  </strong>
+  In Weeks 4 and
+5, your aims should be to become comfortable translating analysis questions
+into SQL queries, and confident that you can generate creative approaches to
+retrieving data in formats that are different from the way they are stored in a
+database.  You should also aim to gain a
+deeper appreciation of how long real queries take to write and to execute.  Overall, you want to finish these weeks
+feeling like a completely independent SQL analyst!
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

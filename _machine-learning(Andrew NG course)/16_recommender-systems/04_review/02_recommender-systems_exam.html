@@ -1,0 +1,315 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Suppose you run a bookstore, and have ratings (1 to 5 stars)
+ </p>
+ <p>
+  of books.  Your collaborative filtering algorithm has learned
+ </p>
+ <p hasmath="true">
+  a parameter vector $$\theta^{(j)}$$ for user $$j$$, and a feature
+ </p>
+ <p hasmath="true">
+  vector $$x^{(i)}$$ for each book.  You would like to compute the
+ </p>
+ <p>
+  "training error", meaning the average squared error of your
+ </p>
+ <p>
+  system's predictions on all the ratings that you have gotten
+ </p>
+ <p>
+  from your users.  Which of these are correct ways of doing so (check all that apply)?
+ </p>
+ <p hasmath="true">
+  For this problem, let $$m$$ be the total number of ratings you
+ </p>
+ <p>
+  have gotten from your users.  (Another way of saying this is
+ </p>
+ <p hasmath="true">
+  that $$m = \sum_{i=1}^{n_m} \sum_{j=1}^{n_u} r(i,j)$$).  [Hint: Two of the four options below are correct.]
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\frac{1}{m} \sum_{(i,j):r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}  )^2$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\frac{1}{m} \sum_{(i,j):r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - r(i,j) )^2$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\frac{1}{m} \sum_{i=1}^{n_m} \sum_{j:r(i,j)=1} ( \sum_{k=1}^n (\theta^{(j)})_k x^{(i)}_k - y^{(i,j)}  )^2$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    $$\frac{1}{m} \sum_{j=1}^{n_u} \sum_{i:r(i,j)=1} (\sum_{k=1}^n (\theta^{(k)})_j x^{(k)}_i - y^{(i,j)}  )^2$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  In which of the following situations will a collaborative filtering system be the most appropriate learning algorithm (compared to linear or logistic regression)?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    You manage an online bookstore and you have the book ratings from many users. For each user, you want to recommend other books she will enjoy, based on her own ratings and the ratings of other users.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    You manage an online bookstore and you have the book ratings from many users. You want to learn to predict the expected sales volume (number of books sold) as a function of the average rating of a book.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    You've written a piece of software that has downloaded news articles from many news websites.  In your system, you also keep track of which articles you personally like vs. dislike, and the system also stores away features of these articles (e.g., word counts, name of author). Using this information, you want to build a system to try to find additional new articles that you personally will like.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    You run an online news aggregator, and for every user, you know some subset of articles that the user likes and some different subset that the user dislikes.  You'd want to use this to find other articles that the user likes.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  You run a movie empire, and want to build a movie recommendation system based on collaborative filtering.  There were three popular review websites (which we'll call A, B and C) which users to go to rate movies, and you have just acquired all three companies that run these websites.  You'd like to merge the three companies' datasets together to build a single/unified system.  On website A, users rank a movie as having 1 through 5 stars. On website B, users rank on a scale of 1 - 10, and decimal values (e.g., 7.5) are allowed. On website C, the ratings are from 1 to 100.  You also have enough information to identify users/movies on one website with users/movies on a different website.  Which of the following statements is true?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    You can combine all three training sets into one without any modification and expect high performance from a recommendation system.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    Assuming that there is at least one movie/user in one database that doesn't also appear in a second database, there is no sound way to merge the datasets, because of the missing data.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    You can merge the three datasets into one, but you should first normalize each dataset's ratings (say rescale each dataset's ratings to a 1-100 range).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    It is not possible to combine these websites' data. You must build three separate recommendation systems.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p>
+  Which of the following are true of collaborative filtering systems? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    To use collaborative filtering, you need to manually design a feature vector for every item (e.g., movie) in your dataset, that describes that item's most important properties.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Recall that the cost function for the content-based recommendation system is $$J(\theta) = \frac{1}{2} \sum_{j=1}^{n_u} \sum_{i:r(i,j) =1} \left( (\theta^{(j)})^Tx^{(i)} - y^{(i,j)} \right)^2    \frac{\lambda}{2} \sum_{j=1}^{n_u} \sum_{k=1}^n (\theta_k^{(j)})^2$$. Suppose there is only one user and he has rated every movie in the training set. This implies that $$n_u = 1$$ and $$r(i,j) = 1$$ for every $$i,j$$. In this case, the cost function $$J(\theta)$$ is equivalent to the one used for regularized linear regression.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    When using gradient descent to train a collaborative filtering system, it is okay to initialize all the parameters ($$x^{(i)}$$ and $$\theta^{(j)}$$) to zero.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    If you have a dataset of users ratings' on some products, you can use these to predict one user's preferences on products he has not rated.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose you have two matrices $$A$$ and $$B$$, where $$A$$ is 5x3 and $$B$$ is 3x5. Their product is $$C = AB$$, a 5x5 matrix. Furthermore, you have a 5x5 matrix $$R$$ where every entry is 0 or 1. You want to find the sum of all elements $$C(i,j)$$ for which the corresponding $$R(i,j)$$ is 1, and ignore all elements $$C(i,j)$$ where $$R(i,j) = 0$$. One way to do so is the following code:
+ </p>
+ <img alt="" assetid="22QhMb55EeShsSIACwKbzw" src="data:image/png;base64,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"/>
+ <p>
+  Which of the following pieces of Octave code will also correctly compute this total? Check all that apply. Assume all options are in code.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    total = sum(sum((A * B) .* R))
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    C = A * B; total = sum(sum(C(R == 1)));
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    C = (A * B) * R; total = sum(C(:));
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    total = sum(sum(A(R == 1) * B(R == 1));
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

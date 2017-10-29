@@ -1,0 +1,492 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  You are working on a spam classification system using regularized logistic regression. "Spam" is a positive class (y = 1) and "not spam" is the negative class (y = 0). You have trained your classifier and there are m = 1000 examples in the cross-validation set. The chart of predicted class vs. actual class is:
+ </p>
+ <table columns="3" rows="3">
+  <tr>
+   <td>
+    <p>
+    </p>
+   </td>
+   <td>
+    <p>
+     Actual Class: 1
+    </p>
+   </td>
+   <td>
+    <p>
+     Actual Class: 0
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     Predicted Class: 1
+    </p>
+   </td>
+   <td>
+    <p>
+     85
+    </p>
+   </td>
+   <td>
+    <p>
+     890
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     Predicted Class: 0
+    </p>
+   </td>
+   <td>
+    <p>
+     15
+    </p>
+   </td>
+   <td>
+    <p>
+     10
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  For reference:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Accuracy = (true positives   true negatives) / (total examples)
+   </p>
+  </li>
+  <li>
+   <p>
+    Precision = (true positives) / (true positives   false positives)
+   </p>
+  </li>
+  <li>
+   <p>
+    Recall = (true positives) / (true positives   false negatives)
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$F_1$$ score = (2 * precision * recall) / (precision   recall)
+   </p>
+  </li>
+ </ul>
+ <p>
+ </p>
+ <p hasmath="true">
+  What is the classifier's $$F_1$$ score (as a value from 0 to 1)?
+ </p>
+ <p>
+  Enter your answer in the box below. If necessary, provide at least two values after the decimal point.
+ </p>
+</co-content>
+<form>
+ <label>
+  Enter answer here:
+  <input name="" type="text"/>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  Suppose a massive dataset is available for training a learning algorithm. Training on a lot of data is likely to give good performance when two of the following conditions hold true.
+ </p>
+ <p>
+  Which are the two?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    Our learning algorithm is able to
+   </span>
+   <span>
+    represent fairly complex functions (for example, if we
+   </span>
+   <span>
+    train a neural network or other model with a large
+   </span>
+   <span>
+    number of parameters).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    The classes are not too skewed.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    A human expert on the application domain
+   </span>
+   <span hasmath="true">
+    can confidently predict $$y$$ when given only the features $$x$$
+   </span>
+   <span>
+    (or more generally, if we have some way to be confident
+   </span>
+   <span hasmath="true">
+    that $$x$$ contains sufficient information to predict $$y$$
+   </span>
+   <span>
+    accurately).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="checkbox"/>
+  <co-content>
+   <span>
+    When we are willing to include high
+   </span>
+   <span hasmath="true">
+    order polynomial features of $$x$$ (such as $$x_1^2$$, $$x_2^2$$,
+   </span>
+   <span hasmath="true">
+    $$x_1x_2$$, etc.).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose you have trained a logistic regression classifier which is outputing $$h_\theta(x)$$.
+ </p>
+ <p hasmath="true">
+  Currently, you predict 1 if $$h_\theta(x) \geq \text{threshold}$$, and predict 0 if $$h_\theta(x) \lt \text{threshold}$$, where currently the threshold is set to 0.5.
+ </p>
+ <p>
+  Suppose you
+  <strong>
+   increase
+  </strong>
+  the threshold to 0.9. Which of the following are true? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    The classifier is likely to have unchanged precision and recall, but
+   </span>
+   <span>
+    lower accuracy.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    The classifier is likely to have unchanged precision and recall, but
+   </span>
+   <span>
+    higher accuracy.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    The classifier is likely to now have lower precision.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    The classifier is likely to now have lower recall.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p>
+  Suppose you are working on a spam classifier, where spam
+ </p>
+ <p hasmath="true">
+  emails are positive examples ($$y=1$$) and non-spam emails are
+ </p>
+ <p hasmath="true">
+  negative examples ($$y=0$$). You have a training set of emails
+ </p>
+ <p>
+  in which 99% of the emails are non-spam and the other 1% is
+ </p>
+ <p>
+  spam. Which of the following statements are true? Check all
+ </p>
+ <p>
+  that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    If you always predict non-spam (output
+   </span>
+   <span hasmath="true">
+    $$y=0$$), your classifier will have an accuracy of
+   </span>
+   <span>
+    99%.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    A good classifier should have both a
+   </span>
+   <span>
+    high precision and high recall on the cross validation
+   </span>
+   <span>
+    set.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    If you always predict non-spam (output
+   </span>
+   <span hasmath="true">
+    $$y=0$$), your classifier will have 99% accuracy on the
+   </span>
+   <span>
+    training set, and it will likely perform similarly on
+   </span>
+   <span>
+    the cross validation set.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    If you always predict non-spam (output
+   </span>
+   <span hasmath="true">
+    $$y=0$$), your classifier will have 99% accuracy on the
+   </span>
+   <span>
+    training set, but it will do much worse on the cross
+   </span>
+   <span>
+    validation set because it has overfit the training
+   </span>
+   <span>
+    data.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  Which of the following statements are true? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    The "error analysis" process of manually
+   </span>
+   <span>
+    examining the examples which your algorithm got wrong
+   </span>
+   <span>
+    can help suggest what are good steps to take (e.g.,
+   </span>
+   <span>
+    developing new features) to improve your algorithm's
+   </span>
+   <span>
+    performance.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    If your model is underfitting the
+   </span>
+   <span>
+    training set, then obtaining more data is likely to
+   </span>
+   <span>
+    help.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    After training a logistic regression
+   </span>
+   <span>
+    classifier, you
+    <strong>
+     must
+    </strong>
+    use 0.5 as your threshold
+   </span>
+   <span>
+    for predicting whether an example is positive or
+   </span>
+   <span>
+    negative.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    Using a
+    <strong>
+     very large
+    </strong>
+    training set
+   </span>
+   <span>
+    makes it unlikely for model to overfit the training
+   </span>
+   <span>
+    data.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    It is a good idea to spend a lot of time
+   </span>
+   <span>
+    collecting a
+    <strong>
+     large
+    </strong>
+    amount of data before building
+   </span>
+   <span>
+    your first version of a learning algorithm.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

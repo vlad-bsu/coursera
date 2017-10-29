@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spatial convolution</title>
+<script src="Scripts/AC_RunActiveContent.js" type="text/javascript"></script>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body marginwidth="30" marginheight="30">
+<h1>
+Spatial convolution
+</h1>
+
+<blockquote>
+<em>Applet:</em> Katie Dektar
+<br>
+<em>Text:</em> Marc Levoy
+<br>
+<em>Technical assistance:</em> Andrew Adams
+</blockquote>
+<hr />
+<p>
+Convolution is an operation on two functions f and g, which produces a third
+function that can be interpreted as a modified ("filtered") version of f.  In
+this interpretation we call g the <em>filter</em>.  If f is defined on a
+spatial variable like x rather than a time variable like t, we call the
+operation <em>spatial convolution</em>.  Convolution lies at the heart of any
+physical device or computational procedure that performs smoothing or
+sharpening.  Applied to two dimensional functions like images, it's also useful
+for edge finding, feature detection, motion detection, image matching, and
+countless other tasks.  Formally, for functions <em>f(x)</em> and <em>g(x)</em>
+of a continuous variable <em>x</em>, convolution is defined as:
+<br>
+<img src=convolution-equation1-2c.jpg height=55 hspace=20>
+<br>
+where <em>*</em> means convolution
+and <em>&middot</em> means ordinary multiplication.
+For functions of a discrete variable <em>x</em>, i.e. arrays of numbers,
+the definition is:
+<br>
+<img src=convolution-equation2-c.jpg height=55 hspace=20>
+<br>
+Finally, for functions of two variables <em>x</em> and <em>y</em> (for example
+images), these definitions become:
+<br>
+<img src=convolution-equation3-c.jpg height=55 hspace=20>
+<br>
+and
+<br>
+<img src=convolution-equation4-c.jpg height=55 hspace=20>
+<br>
+In digital photography, the image produced by the lens is a continuous function
+f(x,y), Placing an antialiasing filter in front of the sensor convolves this
+image by a smoothing filter g(x,y).  This is the third equation above.  Once
+the image has been recorded by a sensor and stored in a file, loading the file
+into Photoshop and sharpening it using a filter g[x,y] is the fourth
+equation.
+<p>
+Despite its simple definition, convolution is a difficult concept to gain an
+intuition for, and the effect obtained by applying a particular filter to a
+particular function is not always obvious.  In this applet, we explore
+convolution of continuous 1D functions (first equation) and discrete
+2D functions (fourth equation).
+<center>
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="960" height="690" codebase="http://active.macromedia.com/flash7/cabs/swflash.cab#version=9,0,0,0">
+    <param name="movie" value="Convolution.swf">
+    <param name="quality" value="high">
+    <param name="play" value="true">
+    <embed src="Convolution.swf" width="960" height="690" play="true" quality="high" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+    </embed>
+</object>
+</center>
+<h4>
+Convolution of 1D functions
+</h4>
+<p>
+On the left side of the applet is a 1D function ("signal").  This is f.  You
+can draw on the function to change it, but leave it alone for now.  Beneath
+this is a menu of 1D filters.  This is g.  If you select "custom" you can also
+draw on the filter function, but leave that game for later.  At the bottom is
+the result of convolving f by g.  Click on a few of the filters.  Notice that
+"big rect" blurs f more than "rect", but it leaves kinks here and there.
+Notice also that "gaussian" blurs less than "big rect" but doesn't leave kinks.
+<p>
+Both functions (f and g) are drawn as if they were functions of a continuous
+variable x, so it would appear that this visualization is showing convolution
+of continuous functions (first equation above).  In practice the two functions
+are sampled finely and represented using 1D arrays.  These numbers are
+connected using lines when they are drawn, giving the appearance of continuous
+functions.  The convolution actually being performed in the applet's script is
+of two discrete functions (second equation above).
+<p>
+Whether we treat the convolution as continuous or discrete, its interpretation
+is the same: for each position x in the output function, we shift the filter
+function g left or right until it is centered at that position, we flip it
+left-to-right, we multiply every point on f by the corresponding point on our
+shifted g, and we add (or integrate) these products together.  The
+left-to-right flipping is because, for obscure reasons, the equation for
+convolution is defined as <em>g[x-k]</em>, not <em>g[x+k]</em> (using the 2nd
+equation as an example).
+
+<h4>
+An alternative way to think about convolution
+</h4>
+<p>
+If this procedure is a bit hard to wrap your head around, here's an equivalent
+way to describe it that may be easier to visualize: at each position x in the
+output function, we place a copy of the filter g, centered left-to-right around
+that position, flipped left-to-right, and scaled up or down according to the
+value of the signal f at that position.  After laying down these copies, if we
+add them all together at each x, we get the right answer!
+<p>
+To see this alternative way of understanding convolution in action, click on
+"animate", then "big rect".  The animation starts with the original signal f,
+then places copies of the filter g at positions along f, stretching them
+vertically according to the height of f at that position, then adds these
+copies together to make the thick output curve.  Although the animation only
+shows a couple dozen copies of the filter, in reality there would need to be
+one copy for every position x.  In addition, for this procedure to work the sum
+of copies must be divided by the area under the filter function, a processing
+called <a
+href=http://en.wikipedia.org/wiki/Normalizing_constant>normalization</a>.
+Otherwise, the output would be higher or lower than the input, rather than
+simply being smoothed or sharpened.  For all the filters except "custom",
+normalization is performed for you just before drawing the thick output curve.
+For the "custom" filter, see below.
+<p>
+Once you understand how this works, try the "sharpen" or "shift" filters.  The
+sharpen filter replaces each value of f with a weighted sum of its immediate
+neighbors, but subtracting off the values of neighbors a bit further away.  The
+effect of these subtractions is to exaggerate features in the original signal.
+The "Sharpen" filter in Photoshop does this; so do certain layers of neurons in
+your retina.  The shift filter replaces each value of f with a value of f taken
+from a neighbor some distance to the right.  (Yes, to the right, even though
+the spike in the filter is on the left side.  Remember that convolution flips
+the filter function left-to-right before applying it.)
+<p>
+Finally, click on "custom" and try drawing your own filter.  If the area under
+your filter is more or less than 1.0, the output function will jump up or down,
+respectively.  To avoid this, click on "normalize".  This will scale your
+filter up or down until its area is exactly 1.0.  By the way, if you animate
+the application of your custom filter, the scaled copies will only touch the
+corresponding point on the original function if your custom filter reached
+y=1.0 at its x=0 position.  Regardless, if your filter is normalized, the
+output function will be of the right height.
+
+<h4>
+Convolution of 2D functions
+</h4>
+<p>
+On the right side of the applet we extend these ideas to two-dimensional
+discrete functions, in particular ordinary photographic images.  The original
+2D signal is at top, the 2D filter is in the middle, depicted as an array of
+numbers, and the output is at the bottom.  Click on the different filter
+functions and observe the result.  The only difference between "sharpen" and
+"edges" is a change of the middle filter value from 9.00 to 8.00.  However,
+this change is crucial, as you can see.  In particular, the sum of all non-zero
+filter values in "edges" is zero.  Therefore, for positions in the original
+signal that are smooth (like the background), the output of the convolution is
+zero (i.e. black).  The filter "hand shake" approximates what happens in a
+long-exposure photograph, in this case if the camera's aim wanders from
+upper-left to lower-right during the exposure.
+<p>
+Finally, click on "identity", which sets the middle filter tap (as positions in
+a filter are sometimes called) to 1.0 and the rest to 0.0.  It should come as
+no surprise that this merely makes a copy of the original signal.  Now click on
+"custom", then click on individual taps and enter new values for them.  As you
+enter each value, the convolution is recomputed.  Try creating a smoothing
+filter, or a sharpening filtering.  Or starting with "identity", change the
+middle tap to 0.5, or 2.0.  Does the image scale down or up in intensity?  The
+applet is clipping outputs at 0.0 (black) and 255.0 (white), so if you try to
+scale intensites up, the image will simply saturate - like a camera if your
+exposure were too long.  Try putting 1.0's in the upper-left corner and the
+lower right corner, setting everything else to 0.0.  Do you get a double image?
+As with the custom 1D filter, if your filter values don't sum to 1.0, you might
+need to press "normalize".  Unless you're doing edge finding, in which case
+they should sum to 0.0.
+
+<p>
+<hr>
+Questions or Comments?
+Please <a href="mailto:cs178applets@gmail.com">e-mail</a> us.
+<br>
+<b><a href=/copyright.html>&copy 2010;</a>
+Marc Levoy</b><br>
+Last update:
+
+February 29, 2012 10:59:44 PM
+</address>
+<center>
+<a href="applets.html">Return to index of applets</a>
+</center>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10385959-1");
+pageTracker._trackPageview();
+var secondTracker = _gat._getTracker("UA-16809964-2");
+secondTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>

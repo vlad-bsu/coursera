@@ -1,0 +1,77 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  Before you download the written exercises, please read this very important note about direction of arrows in Relational Schema.
+ </p>
+ <p>
+  The arrow goes from the table that has a foreign key to the table where the key comes from (so the arrow points to the primary key).
+ </p>
+ <p>
+  Try to design a database so that each table has a unified theme with a unique identifier on each row that is consistent with that theme.
+ </p>
+ <p>
+  Whenever you have a 1:Many relationship, the relation mapped from the entity on the Many side of the relationship should get a foreign key that corresponds to the primary key of the relation on the 1 side of the relationship. This is because you would have to have duplicate values of the unique identifier of the entity on the 1 side in the table that represents the entity on the Many side.
+ </p>
+ <p>
+  An example is the description of the database in Question 5 of the relational Schema exercise said:
+ </p>
+ <p>
+  "Investment companies can manage multiple mutual funds. Investco Scout will not keep track of investment companies that do not manage any mutual funds. A mutual fund is managed by one investment company."
+ </p>
+ <p>
+  Thus, there is a 1:Many relationship between investment companies (1) and mutual funds (many), and there should be a foreign key in the mutual funds table that points to the primary key in the investment company table.
+ </p>
+ <p>
+  Whenever you have a 1:1 relationship, by the way, it doesn't matter which table has the primary vs. foreign key. Whenever you have a Many:Many relationship, on the other hand, recall that you will need a separate linking table that will have two foreign keys corresponding to the primary keys of the tables that represent the entities in the Many:Many relationship.
+ </p>
+ <asset assettype="generic" extension="pdf" id="DZ1hXrS7EeWGthIMjCSsPQ" name="Relational Schema Exercises">
+ </asset>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

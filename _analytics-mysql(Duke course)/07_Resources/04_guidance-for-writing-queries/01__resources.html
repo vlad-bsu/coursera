@@ -1,0 +1,134 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  Learning how to write queries takes time and practice, and writing valid queries is a critical skill in working with databases.  Below are some suggestions about working with queries, including a syntax error checklist of common problems.
+ </p>
+ <h3 level="3">
+  <strong>
+   Complicated Queries:
+  </strong>
+ </h3>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Click the document below for guidance on writing complicated queries.
+   </p>
+  </li>
+ </ul>
+ <asset assettype="pdf" extension="pdf" id="4NKru2iUEeakkArq5_q3Ow" name="Working through complicated queries">
+ </asset>
+ <h3 level="3">
+  <strong>
+   Running Time Issues:
+  </strong>
+ </h3>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    If you've written your complex query and it is not running quickly, it is likely due to the query itself, rather than something wrong with the MySQL server.
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Try running the complex query again, and wait at least a couple minutes for an answer.  If the query is still running after 5 minutes or so, you have likely tried to implement a Cartesian product in your query, and should check the syntax.
+    <a href="https://www.coursera.org/learn/analytics-mysql/resources/AaIGu">
+     There is a syntax error checklist to help trouble shoot problems with queries.
+    </a>
+   </p>
+  </li>
+ </ul>
+ <h3 level="3">
+  <strong>
+   Connection Issues:
+  </strong>
+ </h3>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    If even the simple query won't execute, learners should try saving and closing the notebook.
+   </p>
+  </li>
+  <li>
+   <p>
+    To shutdown notebooks, click the "Running" tab on your Jupyter home page and click "Shutdown" on the right.
+   </p>
+  </li>
+  <li>
+   <p>
+    Restart the notebook.  Usually these errors are temporary and will resolve themselves when our automated server monitoring notices an issue with the server and restarts the server. Open it, reconnect, and try the simple query again.
+   </p>
+  </li>
+  <li>
+   <p>
+    If the simple query still doesn't run, it likely means: (1) that there is a bad internet connection, or (2) that the partition has crashed due to bad queries (there are about 144 students per partition).
+   </p>
+  </li>
+  <li>
+   <p>
+    If we are made aware of a crashed partition, we will re-start it manually.  Otherwise, all partitions are restarted once every 24 hours, so the system will be running again within a day (unless people crash it again with too many intensive queries).
+   </p>
+  </li>
+ </ul>
+ <h3 level="3">
+  <strong>
+   Still need help?
+  </strong>
+ </h3>
+ <p>
+  If you have read through this document and are still having issues, ask your peers for help! Click below for detailed directions on posting to the forums and asking about help with your query.
+ </p>
+ <asset assettype="pdf" extension="pdf" id="bgMXHWiZEeayyA4wl7sUBw" name="Forums">
+ </asset>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

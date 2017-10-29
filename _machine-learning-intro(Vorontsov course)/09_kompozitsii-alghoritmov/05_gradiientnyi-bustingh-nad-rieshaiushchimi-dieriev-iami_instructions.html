@@ -1,0 +1,293 @@
+<meta charset="utf-8"/>
+<co-content>
+ <asset assettype="pdf" extension="pdf" id="s-xm721ZEeavkAqHAqo_cQ" name="statement-gbm">
+ </asset>
+ <p>
+ </p>
+ <p>
+  Данное задание основано на материалах лекций по композициям алгоритмов.
+ </p>
+ <h2 level="2">
+  Вы научитесь:
+ </h2>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    работать с градиентным бустингом и подбирать его гиперпараметры
+   </p>
+  </li>
+  <li>
+   <p>
+    сравнивать разные способы построения композиций
+   </p>
+  </li>
+  <li>
+   <p>
+    понимать, в каком случае лучше использовать случайный лес, а в каком — градиентный бустинг
+   </p>
+  </li>
+ </ul>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    использовать метрику log-loss
+   </p>
+  </li>
+ </ul>
+ <h2 level="2">
+  Введение
+ </h2>
+ <p>
+  Построение композиции — важный подход в машинном обучении, который позволяет объединять большое количество слабых алгоритмов в один сильный. Данный подход широко используется на практике в самых разных задачах.
+ </p>
+ <p>
+  На лекциях был рассмотрен метод градиентного бустинга, который последовательно строит композицию алгоритмов, причем каждый следующий алгоритм выбирается так, чтобы исправлять ошибки уже имеющейся композиции. Обычно в качестве базовых алгоритмов используют деревья небольшой глубины, поскольку их достаточно легко строить, и при этом они дают нелинейные разделяющие поверхности.
+ </p>
+ <p>
+  Другой метод построения композиций — случайный лес. В нем, в отличие от градиентного бустинга, отдельные деревья строятся независимо и без каких-либо ограничений на глубину — дерево наращивается до тех пор, пока не покажет наилучшее качество на обучающей выборке.
+ </p>
+ <p>
+  В этом задании мы будем иметь дело с задачей классификации. В качестве функции потерь будем использовать log-loss:
+ </p>
+ <img alt="" assetid="jpOJsbuLEeWW3xLV17cwNw" src="data:image/png;base64,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TUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4wLyI+CiAgICAgICAgIDxleGlmOlVzZXJDb21tZW50PkFBQUV5WGphYlZOZFRGeEZGRDduRHJTVWJzdmxwL1NIdGx4bDBRV2hBaTIyeFZaWm9NQmEyQ0s3Qzh1ZjYremQmI3hBOzJlWEMvZG5lTzZzdVdETVAyaGMxTWRVMHhqUU5YWDBoR244YW84WTBwb21KTHlZbWhmcnFTeE45OFVrZk5ORUgmI3hBO1ozOFNxK25jM0h2UCtlYk1tZm0rY3lhWk5RMlA5L1RjUllWVVZkZGNkS04rN21UamZpZTV3blR1eGYwdk1OY3omI3hBO0hIdk9UMTE5MlpEZW5SMDdvNjdqY0lHZnFOcXUyalovK3lPUEJqbzZIK3ZxUG41aTRNbmhrV2NtbjUyZGZ5NlImI3hBO1dsNDFMVHZtdDNPbXViM2J0MmZ2Z1lQejRjaXhTdDRadjI1U3o1dVZ5Q3JMZTV0MWFuMURZOU8rNXYxaXQvQ0omI3hBO2ZXSy9PQ2dPaWNQaWlEZ3FXamNQdFJ3K2NyUlZlK2hob1FnaXFrUzEyQ0YyaWhxeFM5VEd1TUZOTnU4NU9WZG4mI3hBO1VmWVNUNmgxU2Fxdlpsd25aNmVHSGROeDQxbVhVU3Rwc3BoZWRLTXB5bG5VY2xJc25xUWVNdzJiTFZrMFl4dHAmI3hBO1E2ZGNVcDNhUHZhNHI2ZTNiekVjQ1hMdUdza2NaMTQ4SElsSTI4Nkl2V0tQYUVxb25ST0JmSmUyMXFHZDFicnomI3hBOzJxTHBaTFExclZzTDlNcFB2cU1NbEp5MWppTDkvcE9uYmp3aFZORjQ0N1NvbXdsSFJoMmIzejNqTy92VTA0UEImI3hBO0llbUhxY1hrTDJLc01ibFZldFNrR1UvVWk0YTJ3UUNVaHFyT1REbzIxWjJ0YzZOajQvR3lmc3liTHh1MlhGNFkmI3hBO0QxVVN5d3dYU2pyTDJQTVRoWW1RcERKaTZFVnkxTTFMTUR4VnVCQktxQTMzTVV5VjZUMFEzSjcyUmFLeEdabWwmI3hBO0pHZ2tTM1VtU3plN2JIQ21FdEU4MUFzeWFYeXVNQmVhcmNTVU5GenNrMm9kS0txMXRaaHk5SnpGYkY0NjdrSnYmI3hBO1Q1WXZyVk9YRzdySkx0VXU1andtazY3U0RGdVFacEdOdDdSZUt0Y2xyVjBpS1MzdHVQSzF1VlpDNzEreFRpM1AmI3hBO3kxdEpHV2xSdnV6OWY2NElQbWh1SWNmVHA1YldEVHNybWRwNmVhTjB6dFM0by9GOGxta3B3NVVhbW5scFVOMDEmI3hBOzVGazFmWm02Vk9meVR0UnVUei92bzhsWUxCeVpIaHRTY2JSSGt3K0k1aTBmUzJlS2pjME5pNG1XdHVDdFVPY3YmI3hBOzRkZHRxWkN4VWxncDFtaEVkcUJhMVFhVjBUWjRvbXpJRUNmN2ZuWkNscVl4SEpuTWNTcTc5dC9DTlFCZTNwRDkmI3hBO0hZNmNaM21XQ2xZdUpOUkFQVFJES3dTZ0QvcGhBTTVBQWhpWThDSzhBcGZoTGJnQzc4QlZlQmZlZzJ0d0hUYWcmI3hBO0FCL0F4L0FwM0lUUDRRdjRDcjZHVy9BTjNJYnY0QTdjZzEvaE4vZ0Qvc1pxYk1RbWJNRUE5dUp4N01lVG1NSlYmI3hBO3ROREJpK2hoRGwvRzEvQU5mQnV2NFhYY3dFMzhFRy9pbDNnYnY4Y2Y4RWY4Q2UvaHovZzcvb2wvS2FyU3JuUXAmI3hBO3A1V2dNcXljVThhVlNXVktpU3NKaFNxNndzZ0FDWkl4RWlKVFpKck1rZ1NoWklVNHhDVjVzazVlSlcrU0srUXEmI3hBOytZaDhWbFpJd1lwbUh2eG5rRy8vQWQxTmZvaz0mI3hBOzwvZXhpZjpVc2VyQ29tbWVudD4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24+CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+CtBhh50AABOFSURBVHgB7Z1NqCVHFcdnNCQw8mLi10Yxnc1bCENcCG40q6cg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"/>
+ <p>
+  Здесь через y обозначен истинный ответ, через z — прогноз алгоритма. Данная функция является дифференцируемой, и поэтому подходит для использования в градиентном бустинге. Также можно показать, что при ее использовании итоговый алгоритм будет приближать истинные вероятности классов.
+ </p>
+ <h2 level="2">
+  Реализация в sklearn
+ </h2>
+ <p>
+  В пакете scikit-learn градиентный бустинг реализован в модуле ensemble в виде классов
+  <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html">
+   GradientBoostingClassifier
+  </a>
+  и
+  <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html">
+   GradientBoostingRegressor
+  </a>
+  . Основные параметры, которые будут интересовать нас:
+  <em>
+   n_estimators
+  </em>
+  ,
+  <em>
+   learning_rate.
+  </em>
+  Иногда может быть полезен параметр
+  <em>
+   verbose
+  </em>
+  для отслеживания процесса обучения.
+ </p>
+ <p>
+  Чтобы была возможность оценить качество построенной композиции на каждой итерации, у класса есть метод
+  <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#sklearn.ensemble.GradientBoostingClassifier.staged_decision_function">
+   staged_decision_function
+  </a>
+  . Для заданной выборки он возвращает ответ на каждой итерации.
+ </p>
+ <p>
+  Помимо алгоритмов машинного обучения, в пакете scikit-learn представлено большое число различных инструментов. В этом задании будет предложено воспользоваться функцией
+  <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.train_test_split.html">
+   train_test_split
+  </a>
+  модуля cross_validation. С помощью нее можно разбивать выборки случайным образом. На вход можно передать несколько выборок (с условием, что они имеют одинаковое количество строк). Пусть, например, имеются данные X и y, где X — это признаковое описание объектов, y — целевое значение. Тогда следующий код будет удобен для разбиения этих данных на обучающее и тестовое множества:
+ </p>
+ <pre language="python">X_train, X_test, y_train, y_test = 
+                     train_test_split(X, y, 
+                                      test_size=0.33, 
+                                      random_state=42)</pre>
+ <p>
+  Обратите внимание, что при фиксированном параметре random_state результат разбиения можно воспроизвести.
+ </p>
+ <p>
+  Метрика
+  <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html">
+   log-loss
+  </a>
+  реализована в пакете metrics:
+  <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html">
+   sklearn.metrics.log_loss
+  </a>
+  . Заметим, что данная метрика предназначена для классификаторов, выдающих оценку принадлежности классу, а не бинарные ответы. И градиентный бустинг, и случайный лес умеют строить такие прогнозы — для этого нужно использовать метод predict_proba:
+ </p>
+ <pre language="python">pred = clf.predict_proba(X_test)</pre>
+ <p>
+  Метод predict_proba возвращает матрицу, i-й столбец которой содержит оценки принадлежности i-му классу.
+ </p>
+ <p>
+  Для рисования кривых качества на обучении и контроле можно воспользоваться следующим кодом:
+ </p>
+ <pre language="python">import matplotlib.pyplot as plt
+%matplotlib inline
+plt.figure()
+plt.plot(test_loss, 'r', linewidth=2)
+plt.plot(train_loss, 'g', linewidth=2)
+plt.legend(['test', 'train'])</pre>
+ <h2 level="2">
+  Материалы
+ </h2>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    <a href="https://github.com/esokolov/ml-course-hse/blob/master/2016-fall/lecture-notes/lecture09-ensembles.pdf">
+     Подробнее о градиентном бустинге и особенностях его применения к деревьям
+    </a>
+   </p>
+  </li>
+ </ul>
+ <h2 level="2">
+  Данные
+ </h2>
+ <p>
+  В рамках данного задания мы рассмотрим датасет с конкурса
+  <a href="https://www.kaggle.com/c/bioresponse">
+   Predicting a Biological Response
+  </a>
+  .
+ </p>
+ <h2 level="2">
+  Инструкция по выполнению
+ </h2>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Загрузите выборку из файла gbm-data.csv с помощью pandas и преобразуйте ее в массив numpy (параметр values у датафрейма). В первой колонке файла с данными записано, была или нет реакция. Все остальные колонки (d1 - d1776) содержат различные характеристики молекулы, такие как размер, форма и т.д. Разбейте выборку на обучающую и тестовую, используя функцию
+    <em>
+     train_test_split
+    </em>
+    с параметрами
+    <em>
+     test_size = 0.8
+    </em>
+    и
+    <em>
+     random_state = 241
+    </em>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    Обучите GradientBoostingClassifier с параметрами n_estimators=250, verbose=True, random_state=241 и для каждого значения learning_rate из списка [1, 0.5, 0.3, 0.2, 0.1] проделайте следующее:
+   </p>
+  </li>
+ </ol>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Используйте метод
+    <em>
+     staged_decision_function
+    </em>
+    для предсказания качества на обучающей и тестовой выборке на каждой итерации.
+   </p>
+  </li>
+  <li>
+   <p>
+    Преобразуйте полученное предсказание с помощью сигмоидной функции по формуле 1 / (1 + e^{−y_pred}), где y_pred — предсказанное значение.
+   </p>
+  </li>
+  <li>
+   <p>
+    Вычислите и постройте график значений
+    <em>
+     log-loss
+    </em>
+    (которую можно посчитать с помощью функции sklearn.metrics.log_loss) на обучающей и тестовой выборках, а также найдите минимальное значение метрики и номер итерации, на которой оно достигается.
+   </p>
+  </li>
+ </ul>
+ <p>
+  3. Как можно охарактеризовать график качества на тестовой выборке, начиная с некоторой итерации: переобучение (overfitting) или недообучение (underfitting)? В ответе укажите одно из слов overfitting либо underfitting.
+ </p>
+ <p>
+  4. Приведите минимальное значение log-loss на тестовой выборке и номер итерации, на котором оно достигается, при learning_rate = 0.2.
+ </p>
+ <p>
+  5. На этих же данных обучите RandomForestClassifier с количеством деревьев, равным количеству итераций, на котором достигается наилучшее качество у градиентного бустинга из предыдущего пункта, c random_state=241 и остальными параметрами по умолчанию. Какое значение log-loss на тесте получается у этого случайного леса? (Не забывайте, что предсказания нужно получать с помощью функции predict_proba. В данном случае брать сигмоиду от оценки вероятности класса не нужно)
+ </p>
+ <p>
+  Если ответом является нецелое число, то целую и дробную часть необходимо разграничивать точкой, например, 0.42. При необходимости округляйте дробную часть до двух знаков.
+ </p>
+ <p>
+  Обратите внимание, что, хотя в градиентного бустинге гораздо более слабые базовые алгоритмы, он выигрывает у случайного леса благодаря более "направленной" настройке — каждый следующий алгоритм исправляет ошибки имеющейся композиции. Также он обучается быстрее случайного леса благодаря использованию неглубоких деревьев. В то же время, случайный лес может показать более высокое качество при неограниченных ресурсах — так, он выиграет у градиентного бустинга на наших данных, если увеличить число деревьев до нескольких сотен (проверьте сами!).
+ </p>
+ <p>
+  Ответ на каждое задание — текстовый файл, содержащий ответ в первой строчке. Обратите внимание, что отправляемые файлы не должны содержать перевод строки в конце. Данный нюанс является ограничением платформы Coursera. Мы работаем над тем, чтобы убрать это ограничение.
+ </p>
+ <asset assettype="generic" extension="csv" id="vVKVBLvHEeWHhw4MvaB3nw" name="gbm-data">
+ </asset>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

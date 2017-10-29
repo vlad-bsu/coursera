@@ -1,0 +1,293 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  For which of the following tasks might K-means clustering be a suitable algorithm? Select all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Given many emails, you want to determine if they are Spam or Non-Spam emails.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    From the user usage patterns on a website, figure out what different groups of users exist.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Given a set of news articles from many different news websites, find out what are the main topics covered.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="checkbox"/>
+  <co-content>
+   <span>
+    Given historical weather records, predict if tomorrow's weather will be sunny or rainy.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose we have three cluster centroids $$\mu_1 = \begin{bmatrix}1 \\ 2 \end{bmatrix}$$, $$\mu_2 = \begin{bmatrix}-3 \\ 0 \end{bmatrix}$$ and $$\mu_3 = \begin{bmatrix}4 \\ 2 \end{bmatrix}$$. Furthermore, we have a training example $$x^{(i)} = \begin{bmatrix}-2 \\ 1 \end{bmatrix}$$. After a cluster assignment step, what will $$c^{(i)}$$ be?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$c^{(i)} = 1$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$c^{(i)}$$ is not assigned
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$c^{(i)} = 3$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$c^{(i)} = 2$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p>
+  K-means is an iterative algorithm, and two of the following steps are repeatedly carried out in its inner-loop. Which two?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    Test on the cross-validation set.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span>
+    Randomly initialize the cluster centroids.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Move the cluster centroids, where the centroids $$\mu_k$$ are updated.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    The cluster assignment step, where the parameters $$c^{(i)}$$ are updated.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose you have an unlabeled dataset $$\{x^{(1)}, \ldots,         x^{(m)}\}$$. You run K-means with 50 different random
+ </p>
+ <p>
+  initializations, and obtain 50 different clusterings of the
+ </p>
+ <p>
+  data. What is the recommended way for choosing which one of
+ </p>
+ <p>
+  these 50 clusterings to use?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    The only way to do so is if we also have labels $$y^{(i)}$$ for our data.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    The answer is ambiguous, and there is no good way of choosing.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    Always pick the final (50th) clustering found, since by that time it is more likely to have converged to a good solution.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    For each of the clusterings, compute $$\frac{1}{m} \sum_{i=1}^m{ ||x^{(i)} - \mu_{c^{(i)}}||^2}$$, and pick the one that minimizes this.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  Which of the following statements are true? Select all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    Once an example has been assigned to a particular centroid, it will never be reassigned to another different centroid
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    A good way to initialize K-means is to select K (distinct) examples from the training set and set the cluster centroids equal to these selected examples.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    On every iteration of K-means, the cost function $$J(c^{(1)}, \ldots, c^{(m)}, \mu_1, \ldots,\mu_k)$$ (the distortion function) should either stay the same or decrease; in particular, it should not increase.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    K-Means will always give the same results regardless of the initialization of the centroids.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

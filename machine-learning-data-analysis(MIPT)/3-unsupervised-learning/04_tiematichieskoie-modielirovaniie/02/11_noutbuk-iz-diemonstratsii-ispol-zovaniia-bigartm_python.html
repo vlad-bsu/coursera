@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Changes in Python API &mdash; BigARTM 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+
+  
+    <link rel="stylesheet" href="https://media.readthedocs.org/css/sphinx_rtd_theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="BigARTM 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="Release Notes" href="index.html"/>
+        <link rel="next" title="Changes in Protobuf Messages" href="messages.html"/>
+        <link rel="prev" title="Release Notes" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="http://bigartm.readthedocs.io/en/stable/release_notes/python.html" />
+
+<link rel="stylesheet" href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="text/javascript" src="../_static/readthedocs-data.js"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'release_notes/python'
+</script>
+
+<script type="text/javascript" src="../_static/readthedocs-dynamic-include.js"></script>
+
+<!-- end RTD <extrahead> --></head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> BigARTM
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                stable
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">User&#8217;s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_references/index.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visartm/index.html">VisARTM</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release Notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Changes in Python API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v0-8-3">v0.8.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#v0-8-2">v0.8.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#v0-8-1">v0.8.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#v0-8-0">v0.8.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#v0-7-x">v0.7.x</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="messages.html">Changes in Protobuf Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bigartm_cli.html">Changes in BigARTM CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c_interface.html">Changes in c_interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v0.7.html">BigARTM v0.7.X Release Notes</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devguide.html">BigARTM Developer&#8217;s Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">BigARTM</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Release Notes</a> &raquo;</li>
+      
+    <li>Changes in Python API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/bigartm/bigartm/blob/stable/docs/release_notes/python.txt" class="fa fa-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="changes-in-python-api">
+<h1>Changes in Python API<a class="headerlink" href="#changes-in-python-api" title="Permalink to this headline">¶</a></h1>
+<p>This page describes recent changes in BigARTM&#8217;s Python API.
+Note that the API might be affected by changes in the underlying protobuf messages.
+For this reason we recommend to review <a class="reference internal" href="messages.html"><em>Changes in Protobuf Messages</em></a>.</p>
+<p>For further reference about Python API refer to <a class="reference internal" href="../api_references/python_interface/artm_model.html"><em>ARTM model</em></a>,
+<a class="reference external" href="https://github.com/bigartm/bigartm/wiki/Q&amp;A">Q &amp; A</a> or <a class="reference external" href="https://github.com/bigartm/bigartm-book/blob/master/README.md">tutorials</a>.</p>
+<div class="section" id="v0-8-3">
+<h2>v0.8.3<a class="headerlink" href="#v0-8-3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Enable copying of ARTM, LDA, hARTM and ARTM_Level objects with <code class="docutils literal"><span class="pre">clone()</span></code> method and <code class="docutils literal"><span class="pre">copy.deepcopy(obj)</span></code>.</li>
+<li>Experimental support for import/export/editing of theta matrices; for more details see python reference of <code class="docutils literal"><span class="pre">ARTM.__init__(ptd_name='ptd')</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="v0-8-2">
+<h2>v0.8.2<a class="headerlink" href="#v0-8-2" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">BigARTM 3rdparty dependency had been upgraded from <code class="docutils literal"><span class="pre">protobuf</span> <span class="pre">2.6.1</span></code> to <code class="docutils literal"><span class="pre">protobuf</span> <span class="pre">3.0.0</span></code>.
+This may affect you upgrade from previous version of bigartm.
+Pelase report any issues at <a class="reference external" href="https://groups.google.com/group/bigartm-users">bigartm-users&#64;googlegroups.com</a>.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">BigARTM now require you to install <a class="reference external" href="https://github.com/tqdm/tqdm">tqdm</a> library to visualize progress bars.
+To install use <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tqdm</span></code> or <code class="docutils literal"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">tqdm</span></code>.</p>
+</div>
+<ul>
+<li><p class="first">Add support for python 3.0</p>
+</li>
+<li><p class="first">Add hARTM class to support hierarchy model</p>
+</li>
+<li><p class="first">Add HierarchySparsingTheta for advanced inference of hierarchical models</p>
+</li>
+<li><p class="first">Enable replacing regularizers in ARTM-like models:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># using operator[]-like style</span>
+<span class="n">model</span><span class="o">.</span><span class="n">regularizers</span><span class="p">[</span><span class="s1">&#39;somename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SomeRegularizer</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="c1"># using keyword argument overwrite in add function</span>
+<span class="n">model</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">SomeRegularizer</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;somename&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span> <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Better error reporting: raise exception in fit_offline, fit_online and transform if there is no data to process)</p>
+</li>
+<li><p class="first">Better support for changes in topic names, with reconfigure(), initialize() and merge_model()</p>
+</li>
+<li><p class="first">Show progress bars in <code class="docutils literal"><span class="pre">fit_offline</span></code>, <code class="docutils literal"><span class="pre">fit_online</span></code> and <code class="docutils literal"><span class="pre">transform</span></code>.</p>
+</li>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">ARTM.reshape_topics</span></code> method to add/remove/reorder topics.</p>
+</li>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">max_dictionary_size</span></code> parameter to <code class="docutils literal"><span class="pre">Dictionary.filter()</span></code></p>
+</li>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">class_ids</span></code> parameter to <code class="docutils literal"><span class="pre">BatchVectorizer.__init__()</span></code></p>
+</li>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">dictionary_name</span></code> parameter to <code class="docutils literal"><span class="pre">MasterComponent.merge_model()</span></code></p>
+</li>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">ARTM.transform_sparse()</span></code> and <code class="docutils literal"><span class="pre">ARTM.get_theta_sparse()</span></code> for sparse retrieval of theta matrix</p>
+</li>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">ARTM.get_phi_sparse()</span></code> for sparse retrieval of phi matrix</p>
+</li>
+</ul>
+</div>
+<div class="section" id="v0-8-1">
+<h2>v0.8.1<a class="headerlink" href="#v0-8-1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>New source type &#8216;bow_n_wd&#8217; was added into BatchVectorizer class. This type oriented on using the output of CountVectorizer and TfIdfVectorizers classes from sklearn.
+New parameters of BatchVectorizer are: n_wd (numpy.array) and vocabulary(dict)</li>
+<li>LDA model was added as one of the public interfaces. It is a restricted ARTM model created to simplify BigARTM usage for new users with few experience in topic modeling.</li>
+<li>BatchVectorizer got a flag &#8216;gather_dictionary&#8217;, which has default value &#8216;True&#8217;. This means that BV would create dictionary and save it in the BV.dictionary field.
+For &#8216;bow_n_wd&#8217; format the dictionary will be gathered whenever the flag was set to &#8216;False&#8217; or to &#8216;True&#8217;.</li>
+<li>Add relative regularization for Phi matrix</li>
+</ul>
+</div>
+<div class="section" id="v0-8-0">
+<h2>v0.8.0<a class="headerlink" href="#v0-8-0" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Note that your script can be affected by our changes in the default values for <code class="docutils literal"><span class="pre">num_document_passes</span></code> and <code class="docutils literal"><span class="pre">reuse_theta</span></code> parameters (see below).
+We recommend to use our new default settings, <code class="docutils literal"><span class="pre">num_document_passes</span> <span class="pre">=</span> <span class="pre">10</span></code> and <code class="docutils literal"><span class="pre">reuse_theta</span> <span class="pre">=</span> <span class="pre">False</span></code>.
+However, if you choose to explicitly set <code class="docutils literal"><span class="pre">num_document_passes</span> <span class="pre">=</span> <span class="pre">1</span></code> then make sure to also set <code class="docutils literal"><span class="pre">reuse_theta</span> <span class="pre">=</span> <span class="pre">True</span></code>,
+otherwise you will experience very slow convergence.</p>
+</div>
+<ul>
+<li><p class="first">all operations to work with dictionaries were moved into a separate class <code class="docutils literal"><span class="pre">artm.Dictionary</span></code>.
+(details in <a class="reference external" href="http://docs.bigartm.org/en/master/python_interface/dictionary.html">the documentation</a>).
+The mapping between old and new methods is very straighforward:
+<code class="docutils literal"><span class="pre">ARTM.gather_dictionary</span></code> is replaced with <code class="docutils literal"><span class="pre">Dictionary.gather</span></code> method, which allows to gather a dictionary from a set of batches;
+<code class="docutils literal"><span class="pre">ARTM.filter_dictionary</span></code> is replaced with <code class="docutils literal"><span class="pre">Dictionary.filter</span></code> method, which allows to filter a dictionary based on term frequency and document frequency;
+<code class="docutils literal"><span class="pre">ARTM.load_dictionary</span></code> is replaced with <code class="docutils literal"><span class="pre">Dictionary.load</span></code> method, which allows to load a dictionary previously exported to disk in <code class="docutils literal"><span class="pre">Dictionary.save</span></code> method;
+<code class="docutils literal"><span class="pre">ARTM.create_dictionary</span></code> is replaced with <code class="docutils literal"><span class="pre">Dictionary.create</span></code> method, which allows to create a dictionary based on custom protobuf message <code class="docutils literal"><span class="pre">DictionaryData</span></code>, containing a set of dictionary entries;
+etc... The following code snippet gives a basic example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">my_dictionary</span> <span class="o">=</span> artm.Dictionary<span class="o">()</span>
+my_dictionary.gather<span class="o">(</span><span class="nv">data_path</span><span class="o">=</span><span class="s1">&#39;my_collection_batches&#39;</span>, <span class="nv">vocab_file_path</span><span class="o">=</span><span class="s1">&#39;vocab.txt&#39;</span><span class="o">)</span>
+my_dictionary.save<span class="o">(</span><span class="nv">dictionary_path</span><span class="o">=</span><span class="s1">&#39;my_collection_batches/my_dictionary&#39;</span><span class="o">)</span>
+my_dictionary.load<span class="o">(</span><span class="nv">dictionary_path</span><span class="o">=</span><span class="s1">&#39;my_collection_batches/my_dictionary.dict&#39;</span><span class="o">)</span>
+<span class="nv">model</span> <span class="o">=</span> artm.ARTM<span class="o">(</span><span class="nv">num_topics</span><span class="o">=</span>20, <span class="nv">dictionary</span><span class="o">=</span>my_dictionary<span class="o">)</span>
+model.scores.add<span class="o">(</span>artm.PerplexityScore<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;my_fisrt_perplexity_score&#39;</span>,
+                                      <span class="nv">use_unigram_document_model</span><span class="o">=</span>False,
+                                      <span class="nv">dictionary</span><span class="o">=</span>my_dictionary<span class="o">))</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">added <code class="docutils literal"><span class="pre">library_version</span></code> property to <code class="docutils literal"><span class="pre">ARTM</span></code> class to query for the version of the underlying BigARTM library; returns a string in MAJOR.MINOR.PATCH format;</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">dictionary_name</span></code> argument had been renamed to <code class="docutils literal"><span class="pre">dictionary</span></code> in many places across python interface, including scores and regularizers.
+This is done because those arguments can now except not just a string, but also the <code class="docutils literal"><span class="pre">artm.Dictionary</span></code> class itself.</p>
+</li>
+<li><p class="first">with <code class="docutils literal"><span class="pre">Dictionary</span></code> class users no longer have to generate names for their dictionaries (e.g. the unique <code class="docutils literal"><span class="pre">dictionary_name</span></code> identifier that references the dictionary).
+You may use <code class="docutils literal"><span class="pre">Dictionary.name</span></code> field to access to the underlying name of the dictionary.</p>
+</li>
+<li><p class="first">added <code class="docutils literal"><span class="pre">dictionary</span></code> argument to <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor to let user initialize the model;
+note that we&#8217;ve change the behavior that model is automatically initialized whenever user calls <code class="docutils literal"><span class="pre">fit_offline</span></code> or <code class="docutils literal"><span class="pre">fit_online</span></code>.
+Now this is no longer the case, and we expect user to either pass a dictionary in <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor, or manually call <code class="docutils literal"><span class="pre">ARTM.initialize</span></code> method.
+If neither is performed then <code class="docutils literal"><span class="pre">ARTM.fit_offline</span></code> and <code class="docutils literal"><span class="pre">ARTM.fit_online</span></code> will throw an exception.</p>
+</li>
+<li><p class="first">added <code class="docutils literal"><span class="pre">seed</span></code> argument to <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor to let user randomly initialize the model;</p>
+</li>
+<li><p class="first">added new score and score tracker <code class="docutils literal"><span class="pre">BackgroundTokensRatio</span></code></p>
+</li>
+<li><p class="first">remove the default value from <code class="docutils literal"><span class="pre">num_topics</span></code> argument in <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor, which previously was defaulting to <code class="docutils literal"><span class="pre">num_topics</span> <span class="pre">=</span> <span class="pre">10</span></code>;
+now user must always specify the desired number of topics;</p>
+</li>
+<li><p class="first">moved argument <code class="docutils literal"><span class="pre">reuse_theta</span></code> from <code class="docutils literal"><span class="pre">fit_offline</span></code> method into <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor;
+the argument is still used to indicate that the previous theta matrix should be re-used on the next pass over the collection;
+setting <code class="docutils literal"><span class="pre">reuse_theta</span> <span class="pre">=</span> <span class="pre">True</span></code> in the constructor will now be applied to <code class="docutils literal"><span class="pre">fit_online</span></code>, which previously did not have this option.</p>
+</li>
+<li><p class="first">moved common argument <code class="docutils literal"><span class="pre">num_document_passes</span></code> from <code class="docutils literal"><span class="pre">ARTM.fit_offline</span></code>, <code class="docutils literal"><span class="pre">ARTM.fit_online</span></code>, <code class="docutils literal"><span class="pre">ARTM.transform</span></code> methods into <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor.</p>
+</li>
+<li><p class="first">changed the default value of <code class="docutils literal"><span class="pre">cache_theta</span></code> parameter from <code class="docutils literal"><span class="pre">True</span></code> to <code class="docutils literal"><span class="pre">False</span></code> (in <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor);
+this is done to avoid excessive memory usage due to caching of the entire Theta matrix;
+if caching is indeed required user has to manually turn it on by setting <code class="docutils literal"><span class="pre">cache_theta</span> <span class="pre">=</span> <span class="pre">True</span></code>.</p>
+</li>
+<li><p class="first">changed the default value of <code class="docutils literal"><span class="pre">reuse_theta</span></code> parameter from <code class="docutils literal"><span class="pre">True</span></code> to <code class="docutils literal"><span class="pre">False</span></code> (in <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor);
+the reason is the same as for changing the default for <code class="docutils literal"><span class="pre">cache_theta</span></code> parameter</p>
+</li>
+<li><p class="first">changed the default value of <code class="docutils literal"><span class="pre">num_document_passes</span></code> parameter from <code class="docutils literal"><span class="pre">1</span></code> to <code class="docutils literal"><span class="pre">10</span></code> (in <code class="docutils literal"><span class="pre">ARTM.__init__</span></code> constructor);</p>
+</li>
+<li><p class="first">added arguments <code class="docutils literal"><span class="pre">apply_weight</span></code>, <code class="docutils literal"><span class="pre">decay_weight</span></code> and <code class="docutils literal"><span class="pre">update_after</span></code> in <code class="docutils literal"><span class="pre">ARTM.fit_online</span></code> method;
+each argument accepts a list of floats;
+setting all three arguments will override the default behavior of the online algorithm
+that rely on a specific formula with <code class="docutils literal"><span class="pre">tau0</span></code>, <code class="docutils literal"><span class="pre">kappa</span></code> and <code class="docutils literal"><span class="pre">update_every</span></code>.</p>
+</li>
+<li><p class="first">added argument <code class="docutils literal"><span class="pre">async</span></code> (boolean flag) in <code class="docutils literal"><span class="pre">ARTM.fit_online</span></code> method for improved performance.</p>
+</li>
+<li><p class="first">added argument <code class="docutils literal"><span class="pre">theta_matrix_type</span></code> in <code class="docutils literal"><span class="pre">ARTM.transform</span></code> method;
+potential values are: <code class="docutils literal"><span class="pre">&quot;dense_theta&quot;</span></code>, <code class="docutils literal"><span class="pre">&quot;dense_ptdw&quot;</span></code>, <code class="docutils literal"><span class="pre">None</span></code>; default matrix type is <code class="docutils literal"><span class="pre">&quot;dense_theta&quot;</span></code>.</p>
+</li>
+<li><p class="first">introduced a separate method <code class="docutils literal"><span class="pre">ARTM.remove_theta</span></code> to clear cached theta matrix; remove corresponding boolean switch <code class="docutils literal"><span class="pre">remove_theta</span></code> from <code class="docutils literal"><span class="pre">ARTM.get_theta</span></code> method.</p>
+</li>
+<li><p class="first">removed <code class="docutils literal"><span class="pre">ARTM.fit_transform</span></code> method;
+note that the name was confusing because this method has never fitted the model;
+the purpose of <code class="docutils literal"><span class="pre">ARTM.fit_transform</span></code> was to retrieve Theta matrix after fitting the model (<code class="docutils literal"><span class="pre">ARTM.fit_offline</span></code> or <code class="docutils literal"><span class="pre">ARTM.fit_online</span></code>);
+same functionality is now available via <code class="docutils literal"><span class="pre">ARTM.get_theta</span></code> method.</p>
+</li>
+<li><p class="first">introduced <code class="docutils literal"><span class="pre">ARTM.get_score</span></code> method, which will exist in parallel to score tracking functionality;
+the goal for <code class="docutils literal"><span class="pre">ARTM.get_score(score_name)</span></code> is to always return the latest version of the score;
+for Phi scores this means to calculate them on fly;
+for Theta scores this means to return a score aggregated over last call to <code class="docutils literal"><span class="pre">ARTM.fit_offline</span></code>, <code class="docutils literal"><span class="pre">ARTM.fit_online</span></code> or <code class="docutils literal"><span class="pre">ARTM.transform</span></code> methods;
+opposite to <code class="docutils literal"><span class="pre">ARTM.get_score</span></code> the score tracking functionality returns the overall history of a score.
+For further details on score calculation refer to <a class="reference external" href="https://github.com/bigartm/bigartm/wiki/Q&amp;A#how-to-calculate-perplexity-on-held-out-sample">Q&amp;A section</a> in our wiki page.</p>
+</li>
+<li><p class="first">added <code class="docutils literal"><span class="pre">data_weight</span></code> in <code class="docutils literal"><span class="pre">BatchVectorizer.__init__</span></code> constructor to let user specify an individual weight for each batch</p>
+</li>
+<li><p class="first">score tracker classes had been rewritten, so you should make minor changes in the code that retrieves scores; for example:</p>
+</li>
+<li><p class="first">added an API to initialize logging with custom logging directory, log level, etc...
+Search out wiki page <a class="reference external" href="https://github.com/bigartm/bigartm/wiki/Q&amp;A">Q&amp;A</a> for more details.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># in v0.7.x</span>
+print model.score_tracker<span class="o">[</span><span class="s1">&#39;Top100Tokens&#39;</span><span class="o">]</span>.last_topic_info<span class="o">[</span>topic_name<span class="o">]</span>.tokens
+
+<span class="c1"># in v0.8.0</span>
+<span class="nv">last_tokens</span> <span class="o">=</span> model.score_tracker<span class="o">[</span><span class="s1">&#39;Top100Tokens&#39;</span><span class="o">]</span>.last_tokens
+print last_tokens<span class="o">[</span>topic_name<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="v0-7-x">
+<h2>v0.7.x<a class="headerlink" href="#v0-7-x" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="v0.7.html"><em>BigARTM v0.7.X Release Notes</em></a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="messages.html" class="btn btn-neutral float-right" title="Changes in Protobuf Messages" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Release Notes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Konstantin Vorontsov.
+      
+        <span class="commit">
+          Revision <code>4bf8a7a3</code>.
+        </span>
+      
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+
+
+<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter29670410 = new Ya.Metrika({id:29670410, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/29670410" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+
+<!-- Google Analytics counter -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61792278-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: stable
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="/en/v0.8.3/">v0.8.3</a></dd>
+        
+          <dd><a href="/en/v0.8.2/">v0.8.2</a></dd>
+        
+          <dd><a href="/en/v0.8.1/">v0.8.1</a></dd>
+        
+          <dd><a href="/en/v0.8.0/">v0.8.0</a></dd>
+        
+          <dd><a href="/en/v0.7.6/">v0.7.6</a></dd>
+        
+          <dd><a href="/en/v0.7.5/">v0.7.5</a></dd>
+        
+          <dd><a href="/en/v0.7.4/">v0.7.4</a></dd>
+        
+          <dd><a href="/en/v0.7.3/">v0.7.3</a></dd>
+        
+          <dd><a href="/en/v0.7.2/">v0.7.2</a></dd>
+        
+          <dd><a href="/en/v0.7.1/">v0.7.1</a></dd>
+        
+          <dd><a href="/en/v0.7.0/">v0.7.0</a></dd>
+        
+          <dd><a href="/en/v0.6.4/">v0.6.4</a></dd>
+        
+          <dd><a href="/en/v0.6.3/">v0.6.3</a></dd>
+        
+          <dd><a href="/en/v0.6.2/">v0.6.2</a></dd>
+        
+          <dd><a href="/en/v0.6.1/">v0.6.1</a></dd>
+        
+          <dd><a href="/en/v0.6.0/">v0.6.0</a></dd>
+        
+          <dd><a href="/en/v0.5.9/">v0.5.9</a></dd>
+        
+          <dd><a href="/en/v0.5.8/">v0.5.8</a></dd>
+        
+          <dd><a href="/en/v0.5.7/">v0.5.7</a></dd>
+        
+          <dd><a href="/en/v0.5.6/">v0.5.6</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>Downloads</dt>
+        
+          <dd><a href="//readthedocs.org/projects/bigartm/downloads/pdf/stable/">pdf</a></dd>
+        
+          <dd><a href="//readthedocs.org/projects/bigartm/downloads/htmlzip/stable/">htmlzip</a></dd>
+        
+          <dd><a href="//readthedocs.org/projects/bigartm/downloads/epub/stable/">epub</a></dd>
+        
+      </dl>
+      <dl>
+        <dt>On Read the Docs</dt>
+          <dd>
+            <a href="//readthedocs.org/projects/bigartm/?fromdocs=bigartm">Project Home</a>
+          </dd>
+          <dd>
+            <a href="//readthedocs.org/builds/bigartm/?fromdocs=bigartm">Builds</a>
+          </dd>
+      </dl>
+      <hr/>
+      Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+  </div>
+
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/underscore.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/doctools.js"></script>
+      <script type="text/javascript" src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

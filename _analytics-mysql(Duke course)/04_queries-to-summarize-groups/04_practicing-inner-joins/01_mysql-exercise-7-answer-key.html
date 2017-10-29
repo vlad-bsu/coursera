@@ -1,0 +1,222 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  Below is  the answer key to MySQL Exercise 7. If you would like the PDF version of this answer key, it is located at the bottom of the page.
+ </p>
+ <p>
+  <strong>
+   Question 1:
+  </strong>
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT COUNT(DISTINCT dog_guid)
+ </p>
+ <p>
+  FROM reviews;
+ </p>
+ <p>
+  <strong>
+   Question 2:
+  </strong>
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT COUNT(DISTINCT user_guid)
+ </p>
+ <p>
+  FROM reviews;
+ </p>
+ <p>
+  <strong>
+   Question 3:
+  </strong>
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT COUNT(DISTINCT dog_guid)
+ </p>
+ <p>
+  FROM dogs;
+ </p>
+ <p>
+  <strong>
+   Question 4:
+  </strong>
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT COUNT(DISTINCT user_guid)
+ </p>
+ <p>
+  FROM dogs;
+ </p>
+ <p>
+  <strong>
+   Question 5:
+  </strong>
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT d.user_guid AS UserID, d.dog_guid AS DogID, d.breed,
+d.breed_type, d.breed_group
+ </p>
+ <p>
+  FROM dogs d, complete_tests c
+ </p>
+ <p>
+  WHERE d.dog_guid=c.dog_guid AND test_name='Yawn Warm-up';
+ </p>
+ <p>
+  <strong>
+   Question 6:
+  </strong>
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT DISTINCT d.user_guid AS UserID, u.membership_type, d.dog_guid AS
+DogID, d.breed
+ </p>
+ <p>
+  FROM dogs d, complete_tests c, users u
+ </p>
+ <p>
+  WHERE d.dog_guid=c.dog_guid
+ </p>
+ <p>
+  AND d.user_guid=u.user_guid
+ </p>
+ <p>
+  AND d.breed="golden retriever";
+ </p>
+ <p>
+  <strong>
+   Question 7
+  </strong>
+  :
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT u.state AS state, d.breed AS breed, COUNT(DISTINCT d.dog_guid)
+ </p>
+ <p>
+  FROM users u, dogs d
+ </p>
+ <p>
+  WHERE d.user_guid=u.user_guid AND breed="Golden Retriever"
+ </p>
+ <p>
+  GROUP BY state
+ </p>
+ <p>
+  HAVING state="NC";
+ </p>
+ <p>
+  <strong>
+   Question 8:
+  </strong>
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT u.membership_type AS Membership, COUNT(DISTINCT r.user_guid)
+ </p>
+ <p>
+  FROM users u, reviews r
+ </p>
+ <p>
+  WHERE u.user_guid=r.user_guid AND r.rating IS NOT NULL
+ </p>
+ <p>
+  GROUP BY membership_type;
+ </p>
+ <p>
+  <strong>
+   Question 9
+  </strong>
+  :
+ </p>
+ <p>
+  %%sql
+ </p>
+ <p>
+  SELECT d.breed, COUNT(s.script_detail_id) AS activity
+ </p>
+ <p>
+  FROM dogs d, site_activities s
+ </p>
+ <p>
+  WHERE d.dog_guid=s.dog_guid AND s.script_detail_id IS NOT NULL
+ </p>
+ <p>
+  GROUP BY breed
+ORDER BY activity DESC
+ </p>
+ <asset assettype="pdf" extension="pdf" id="Ou5mAVQ5Eeaztg6Pg6w09w" name="MySQL Exercise 7">
+ </asset>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

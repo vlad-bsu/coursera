@@ -1,0 +1,303 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  You are training a three layer neural network and would like to use backpropagation to compute the gradient of the cost function.  In the backpropagation algorithm, one of the steps is to update
+ </p>
+ <p hasmath="true">
+  $$\Delta^{(2)}_{ij} := \Delta^{(2)}_{ij}    \delta^{(3)}_i * (a^{(2)})_j$$
+ </p>
+ <p hasmath="true">
+  for every $$i, j$$.  Which of the following is a correct vectorization of this step?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\Delta^{(2)} := \Delta^{(2)}   (a^{(3)})^T * \delta^{(2)}$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\Delta^{(2)} := \Delta^{(2)}    (a^{(2)})^T * \delta^{(3)}$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\Delta^{(2)} := \Delta^{(2)}    \delta^{(3)} * (a^{(3)})^T$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="0" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\Delta^{(2)} := \Delta^{(2)}    \delta^{(3)} * (a^{(2)})^T$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose $$\tt{Theta1}$$ is a 5x3 matrix, and $$\tt{Theta2}$$ is a 4x6 matrix. You set $$\tt{thetaVec = [Theta1(:) ; Theta2(:)]}$$.  Which of the following correctly recovers $$\tt{Theta2}$$?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tt{reshape(thetaVec(16:39), 4, 6)}$$
+   </span>
+   <span>
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tt{reshape(thetaVec(15:38), 4, 6)}$$
+   </span>
+   <span>
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tt{reshape(thetaVec(16:24), 4, 6)}$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tt{reshape(thetaVec(15:39), 4, 6)}$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\tt{reshape(thetaVec(16:39), 6, 4)}$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p hasmath="true">
+  Let $$J(\theta) = 2 \theta^4   2$$.  Let $$\theta=1$$, and $$\epsilon = 0.01$$.  Use the formula $$\frac{J(\theta   \epsilon) - J(\theta - \epsilon)}{2\epsilon}$$ to numerically compute an approximation to the derivative at $$\theta=1$$.  What value do you get? (When $$\theta = 1$$, the true/exact derivative is $$\frac{dJ(\theta)}{d\theta} = 8$$.)
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    7.9992
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    10
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    8
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span>
+    8.0008
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p>
+  Which of the following statements are true? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    If our neural network overfits the training set, one reasonable step to take is to increase the regularization parameter $$\lambda$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    Gradient checking is useful if we are using gradient descent as our optimization algorithm.  However, it serves little purpose if we are using one of the advanced optimization methods (such as in fminunc).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Using a large value of $$\lambda$$ cannot hurt the performance of your neural network; the only reason we do not set $$\lambda$$ to be too large is to avoid numerical problems.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="checkbox"/>
+  <co-content>
+   <span>
+    Using gradient checking can help verify if one's implementation of backpropagation is bug-free.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  Which of the following statements are true? Check all that apply.
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    Suppose you have a three layer network with parameters $$\Theta^{(1)}$$ (controlling the function mapping from the inputs to the hidden units) and $$\Theta^{(2)}$$ (controlling the mapping from the hidden units to the outputs).  If we set all the elements of $$\Theta^{(1)}$$ to be 0, and all the elements of $$\Theta^{(2)}$$ to be 1, then this suffices for symmetry breaking, since the neurons are no longer all computing the same function of the input.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    If we are training a neural network using gradient descent, one reasonable "debugging" step to make sure it is working is to plot $$J(\Theta)$$ as a function of the number of iterations, and make sure it is decreasing (or at least non-increasing) after each iteration.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    Suppose you are training a neural network using gradient descent.  Depending on your random initialization, your algorithm may converge to different local optima (i.e., if you run the algorithm twice with different random initializations, gradient descent may converge to two different solutions).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    If we initialize all the parameters of a neural network to ones instead of zeros, this will suffice for the purpose of "symmetry breaking" because the parameters are no longer symmetrically equal to zero.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

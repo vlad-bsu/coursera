@@ -1,0 +1,237 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  Эти задания помогают студенту самостоятельно разобраться с библиотекой NumPy. Задания не проверяются.
+ </p>
+ <p>
+  Для импорта модуля numpy необходимо выполнить следующую строку (модуль numpy импортируется с псевдонимом np, через который в дальнейшем будет обращение к модулю):
+ </p>
+ <pre language="python">import numpy as np</pre>
+ <p>
+  <strong>
+   Генерация случайной матрицы
+  </strong>
+ </p>
+ <p>
+  Сгенерируйте матрицу, состоящую из 1000 строк и 50 столбцов, элементы которой являются случайными из нормального распределения N(1,100).
+ </p>
+ <p>
+  Функция для генерации чисел из нормального распределения:
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html">
+   np.random.normal
+  </a>
+ </p>
+ <p>
+  Параметры:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    loc: среднее нормального распределения (в нашем случае 1)
+   </p>
+  </li>
+  <li>
+   <p>
+    scale: стандартное отклонение нормального распределения (в нашем случае 10)
+   </p>
+  </li>
+  <li>
+   <p>
+    size: размер матрицы (в нашем случае (1000, 50))
+   </p>
+  </li>
+ </ul>
+ <p>
+  <strong>
+   <em>
+    Код для самопроверки
+   </em>
+  </strong>
+ </p>
+ <pre language="python">X = np.random.normal(loc=1, scale=10, size=(1000, 50))
+print X</pre>
+ <p>
+  <strong>
+  </strong>
+ </p>
+ <p>
+  <strong>
+   Нормировка матрицы
+  </strong>
+ </p>
+ <p>
+  Произведите нормировку матрицы из предыдущего задания: вычтите из каждого столбца его среднее значение, а затем поделите на его стандартное отклонение.
+ </p>
+ <p>
+  Функция для вычисления среднего:
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.mean.html">
+   np.mean
+  </a>
+ </p>
+ <p>
+  Функция для вычисления стандартного отклонения:
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html">
+   np.std
+  </a>
+ </p>
+ <p>
+  Первый параметр — матрица, для которой производятся вычисления. Также полезным будет параметр axis, который указывает, по какому измерению вычисляются среднее и стандартное отклонение (если axis=0, то по столбцам, если axis=1, то по строкам; если его не указывать, то данные величины будут вычислены по всей матрице).
+ </p>
+ <p>
+  <strong>
+   <em>
+    Код для самопроверки
+   </em>
+  </strong>
+ </p>
+ <pre language="python">m = np.mean(X, axis=0)
+std = np.std(X, axis=0)
+X_norm = ((X - m)  / std)
+print X_norm</pre>
+ <p>
+  <strong>
+  </strong>
+ </p>
+ <p>
+  <strong>
+   Операции над элементами матрицы
+  </strong>
+ </p>
+ <p>
+  Выведите для заданной матрицы номера строк, сумма элементов в которых превосходит 10.
+ </p>
+ <p>
+  Функция для подсчета суммы:
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sum.html">
+   np.sum
+  </a>
+ </p>
+ <p>
+  Аргументы аналогичны функциям
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.mean.html">
+   np.mean
+  </a>
+  и
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html">
+   np.std
+  </a>
+  .
+ </p>
+ <p>
+  К матрицам можно применять логические операции, которые будут применяться поэлементно. Соответственно, результатом такой операции будет матрица такого же размера, в ячейках которой будет записано либо True, либо False. Индексы элементов со значением True можно получить с помощью функции
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.nonzero.html">
+   np.nonzero
+  </a>
+  .
+ </p>
+ <p>
+  <strong>
+   <em>
+    Заданная матрица
+   </em>
+  </strong>
+ </p>
+ <pre language="python">Z = np.array([[4, 5, 0], 
+             [1, 9, 3],              
+             [5, 1, 1],
+             [3, 3, 3], 
+             [9, 9, 9], 
+             [4, 7, 1]])</pre>
+ <p>
+  <strong>
+   <em>
+    Код для самопроверки
+   </em>
+  </strong>
+ </p>
+ <pre language="python">r = np.sum(Z, axis=1)
+print np.nonzero(r &gt; 10)</pre>
+ <p>
+  <strong>
+  </strong>
+ </p>
+ <p>
+  <strong>
+   Объединение матриц
+  </strong>
+ </p>
+ <p>
+  Сгенерируйте две единичные матрицы (т.е. с единицами на диагонали) размера 3x3. Соедините две матрицы в одну размера 6x3.
+ </p>
+ <p>
+  Функция для генерации единичной матрицы:
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.eye.html">
+   np.eye
+  </a>
+ </p>
+ <p>
+  Аргумент: число строк (или, что эквивалентно, столбцов).
+ </p>
+ <p>
+  Функция для вертикальной стыковки матриц:
+  <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html">
+   np.vstack((A, B))
+  </a>
+ </p>
+ <p>
+  <strong>
+   <em>
+    Код для самопроверки
+   </em>
+  </strong>
+ </p>
+ <pre language="python">A = np.eye(3)
+B = np.eye(3)
+print A
+print B</pre>
+ <pre language="python">AB = np.vstack((A, B))
+print AB</pre>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

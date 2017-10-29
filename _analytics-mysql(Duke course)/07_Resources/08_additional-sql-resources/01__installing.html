@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en" class="svg no-js">
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Language" content="en">
+
+    <title>MySQL :: MySQL 5.7 Reference Manual :: 2 Installing and Upgrading MySQL</title>
+    <link rel="stylesheet" media="all" href="https://labs.mysql.com/common/css/main-20170712.min.css" />
+            <link rel="stylesheet" media="all" href="https://labs.mysql.com/common/css/docs-20170712.min.css" />
+    
+    
+    <link rel="stylesheet" media="print" href="https://labs.mysql.com/common/css/print-20170712.min.css" />
+
+    
+    
+    
+    
+            <link rel="contents" href="index.html" title="MySQL 5.7 Reference Manual" />
+<link rel="start" href="index.html" title="MySQL 5.7 Reference Manual" />
+<link rel="prev" href="supporters.html" title="1.9.5 Supporters of MySQL" />
+<link rel="next" href="general-installation-issues.html?ff=nopfpls" title="2.1 General Installation Guidance" />
+
+    
+    <link rel="shortcut icon" href="https://labs.mysql.com/common/themes/sakila/favicon.ico" />
+    <script>(function(H){ H.className=H.className.replace(/\bno-js\b/,'js') })(document.documentElement)</script>
+    <script src="https://labs.mysql.com/common/js/site-20170626.min.js"></script>
+
+    
+    
+    
+    <!--[if lt IE 9]>
+        <script src="https://labs.mysql.com/common/js/polyfills/html5shiv-printshiv-3.7.2.min.js"></script>
+        <script src="https://labs.mysql.com/common/js/polyfills/respond-1.4.2.min.js"></script>
+    <![endif]-->
+        <!--[if IE 9]>
+        <style>#docs-sidebar-toc { box-sizing: content-box; }</style>
+    <![endif]-->
+    </head>
+
+<body class="no-sidebar full-page dev">
+<div class="page-wrapper">
+    <header>
+
+                        <a href="https://dev.mysql.com/" title="MySQL" id="l1-home-link"></a>
+        
+        <div id="l1-nav-container">
+            <div id="l1-line1">
+                <div id="l1-auth-links">
+                    <a href="https://www.mysql.com/about/contact/"><b>Contact MySQL</b></a>
+                    <span id="l1-contact-separator">&nbsp;|&nbsp;</span>
+                    <span id="l1-contact-separator-br"><br /></span>
+                                             <a href="https://dev.mysql.com/auth/login/?dest=https%3A%2F%2Fdev.mysql.com%2Fdoc%2Frefman%2F5.7%2Fen%2Finstalling.html">Login</a> &nbsp;|&nbsp;
+                         <a href="https://dev.mysql.com/auth/register/">Register</a>
+                                    </div>
+                <div id="l1-lhs">
+                    <div id="l1-slogan">
+                        The world's most popular open source database
+                    </div>
+                    <div id="l1-search-box">
+                        <form id="l1-search-form" method="get" action="https://www.oracle.com/search/results">
+                        <input type="hidden" name="cat" value="mysql" />
+                        <input type="hidden" name="Ntk" value="SI-ALL5" />
+                        <input id="l1-search-input" type="search" class="icon-search" placeholder="Search" name="Ntt" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="l1-line2">
+                <div class="social-icons">
+                    <a title="Join us on Facebook" href="http://www.facebook.com/mysql"><span class="icon-facebook"></span></a>
+                    <a title="Follow us on Twitter" href="https://twitter.com/#!/mysql"><span class="icon-twitter"></span></a>
+                    <a title="Follow us on LinkedIn" href="https://www.linkedin.com/company-beta/165081/"><span class="icon-linkedin"></span></a>
+                    <a title="Join Google+ to follow MySQL" href="https://plus.google.com/+mysql"><span class="icon-google-plus"></span></a>
+                    <a title="Visit our YouTube channel" href="http://www.youtube.com/mysqlchannel"><span class="icon-youtube"></span></a>
+                </div>
+                <ul id="l1-nav">
+                    <li>
+                        <a href="https://www.mysql.com/"><!-- <span class="icon-sakila"></span>  -->MySQL.com</a>
+                    </li><li>
+                        <a href="https://www.mysql.com/downloads/"><!-- <span class="icon-download-thin"></span>  -->Downloads</a>
+                    </li><li class="active">
+                        <a href="/doc/"><!-- <span class="icon-books"></span>  -->Documentation</a>
+                    </li><li>
+                        <a href="/"><!-- <span class="icon-code"></span>  -->Developer Zone</a>
+                    </li>                </ul>
+            </div>
+        </div>
+        <div id="sub-header">
+            <div id="l2-nav-container">
+                <div id="l2-nav-toggle">
+                    <span class="icon-three-bars"></span>
+                </div>
+                                                                                        <a class="button nav-button-3" href="/"><span class="icon-code"></span> Developer Zone</a>
+                                                                                                                                    <a class="button nav-button-2" href="https://www.mysql.com/downloads/"><span class="icon-download-thin"></span> Downloads</a>
+                                                                                                <a class="button nav-button-1" href="https://www.mysql.com/"><span class="icon-sakila"></span> MySQL.com</a>
+                                                                        <div id="l2-search-toggle">
+                    <span class="icon-search"></span>
+                </div>
+                <div id="l2-site-icon">
+                                                                                                                                                                                                    <span class="icon-books"></span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                <div id="l1-section-title">
+                    <span id="l1-section-label">
+                        <a href="/doc/">Documentation</a>
+                    </span>
+                </div>
+                <nav>
+                    
+
+<ul id="l2-nav">
+            	<li class="active"><a class="active " href="/doc/refman/en/">MySQL Server</a>
+    			</li>
+	        	<li class=""><a  href="/doc/index-enterprise.html">MySQL Enterprise</a>
+    			</li>
+	        	<li class=""><a  href="/doc/workbench/en/">Workbench</a>
+    			</li>
+	        	<li class=""><a  href="/doc/en/mysql-innodb-cluster-userguide.html">InnoDB Cluster</a>
+    			</li>
+	        	<li class=""><a  href="/doc/index-cluster.html">MySQL NDB Cluster</a>
+    			</li>
+	        	<li class=""><a  href="/doc/index-connectors.html">Connectors</a>
+    			</li>
+	        	<li class=" last"><a  href="/doc/index-other.html">More</a>
+    			</li>
+	                        <li class="other-section"><a href="https://www.mysql.com/">MySQL.com</a></li>
+                            <li class="other-section"><a href="https://www.mysql.com/downloads/">Downloads</a></li>
+                                        <li class="other-section"><a href="/">Developer Zone</a></li>
+            </ul>
+                </nav>
+            </div>
+            <div id="l3-search-container"></div>
+            <div id="top-orange"><span id="section-nav">Section Menu: &nbsp; </span></div>
+        </div>
+    </header>
+    <div id="page">
+                        <div role="main" id="main">
+
+            
+                
+            
+<div>
+    <div id="docs-sidebar-toc" class="">
+    <div id="docs-toc-inner">
+        <div class="docs-sidebar-header" id="docs-nav-header">
+            <a class="docs-show-hide-nav" id="docs-hide-nav" href="" title="Hide Sidebar"><span class="icon-arrow-small-left"></span></a>
+            <div class="docs-nav-links">
+                                    
+    <a href="supporters.html"
+        title="Previous: Supporters of MySQL"><span
+        class="icon-chevron-left"></span></a>
+<a href="index.html" title="Start"><span class="icon-book-open"></span></a>
+    <a href="index.html" title="Up"><span class="icon-chevron-up"></span></a>
+    <a href="general-installation-issues.html"
+        title="Next: General Installation Guidance"><span
+        class="icon-chevron-right"></span></a>
+                            </div>
+        </div>
+                    
+<div id="docs-sidebar-search-container">
+    <div id="docs-sidebar-search-box">
+        <form method="get" action="/doc/search/">
+            <input type="hidden" name="d" id="d" value="12" />
+            <input type="hidden" name="p" id="p" value="1" />
+            <input type="text" name="q" id="q"
+                value="Search this Manual"
+                style="color: #bbb;"
+                onfocus="if(this.value == 'Search this Manual') {this.value='';this.style.color='#555';}"
+                onblur="if(this.value == '') {this.value='Search this Manual';this.style.color='#bbb';}" />
+
+            <button class="docs-sidebar-search-btn" title="Search" type="submit">
+                <span class="icon-search"></span>
+            </button>
+        </form>
+    </div>
+</div>
+                <div class="docs-sidebar-nav">
+            <a class="docs-icon-home" href="/doc/"><span class="icon-home"></span>Documentation Home</a><hr />
+            <div class="docs-sidebar-mtitle">MySQL 5.7 Reference Manual</div>
+            <nav class="doctoc" id="doc-12">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="preface.html">Preface and Legal Notices</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="introduction.html">General Information</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-down"></span></a></div><div class="docs-sidebar-nav-link current"><a href="installing.html">Installing and Upgrading MySQL</a></div></div>                        <div class="docs-submenu">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="general-installation-issues.html">General Installation Guidance</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="which-version.html">Which MySQL Version and Distribution to Install</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="getting-mysql.html">How to Get MySQL</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="verifying-package-integrity.html">Verifying Package Integrity Using MD5 Checksums or GnuPG</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="verifying-md5-checksum.html">Verifying the MD5 Checksum</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="checking-gpg-signature.html">Signature Checking Using GnuPG</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="checking-gpg-signature-windows.html">Signature Checking Using Gpg4win for Windows</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="checking-rpm-signature.html">Signature Checking Using RPM</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="installation-layouts.html">Installation Layouts</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="compiler-characteristics.html">Compiler-Specific Build Characteristics</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="binary-installation.html">Installing MySQL on Unix/Linux Using Generic Binaries</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="windows-installation.html">Installing MySQL on Microsoft Windows</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-installation-layout.html">MySQL Installation Layout on Microsoft Windows</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-choosing-package.html">Choosing an Installation Package</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="mysql-installer.html">MySQL Installer for Windows</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="mysql-installer-setup.html">MySQL Installer Initial Setup</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="mysql-installer-workflow.html">Installation Workflow with MySQL Installer</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="mysql-installer-catalog-dashboard.html">MySQL Installer Product Catalog and Dashboard</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="MySQLInstallerConsole.html">MySQLInstallerConsole Reference</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="windows-notifier.html">MySQL Notifier</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-notifier-usage.html">MySQL Notifier Usage</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-notifier-installation.html">Setting Up Remote Monitoring in MySQL Notifier</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="windows-install-archive.html">Installing MySQL on Microsoft Windows Using a noinstall Zip Archive</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-extract-archive.html">Extracting the Install Archive</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-create-option-file.html">Creating an Option File</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-select-server.html">Selecting a MySQL Server Type</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-initialize-data-directory.html">Initializing the Data Directory</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-server-first-start.html">Starting the Server for the First Time</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-start-command-line.html">Starting MySQL from the Windows Command Line</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="mysql-installation-windows-path.html">Customizing the PATH for MySQL Tools</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-start-service.html">Starting MySQL as a Windows Service</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-testing.html">Testing The MySQL Installation</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-troubleshooting.html">Troubleshooting a Microsoft Windows MySQL Server Installation</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-postinstallation.html">Windows Postinstallation Procedures</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="windows-upgrading.html">Upgrading MySQL on Windows</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="osx-installation.html">Installing MySQL on OS X</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="osx-installation-notes.html">General Notes on Installing MySQL on OS X</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="osx-installation-pkg.html">Installing MySQL on OS X Using Native Packages</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="osx-installation-launchd.html">Installing a MySQL Launch Daemon</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="osx-installation-prefpane.html">Installing and Using the MySQL Preference Pane</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="linux-installation.html">Installing MySQL on Linux</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="linux-installation-yum-repo.html">Installing MySQL on Linux Using the MySQL Yum Repository</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="replace-third-party-yum.html">Replacing a Third-Party Distribution of MySQL Using the MySQL Yum
+      Repository</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="linux-installation-apt-repo.html">Installing MySQL on Linux Using the MySQL APT Repository</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="linux-installation-sles-repo.html">Installing MySQL on Linux Using the MySQL SLES Repository</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="linux-installation-rpm.html">Installing MySQL on Linux Using RPM Packages from Oracle</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="linux-installation-debian.html">Installing MySQL on Linux Using Debian Packages from Oracle</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="linux-installation-docker.html">Deploying MySQL on Linux with Docker</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="docker-mysql-getting-started.html">Basic Steps for MySQL Server Deployment with Docker</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="docker-mysql-more-topics.html">More Topics on Deploying MySQL Server with Docker</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="linux-installation-native.html">Installing MySQL on Linux from the Native Software Repositories</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="linux-installation-juju.html">Installing MySQL on Linux with Juju</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="using-systemd.html">Managing MySQL Server with systemd</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="uln-installation.html">Installing MySQL Using Unbreakable Linux Network (ULN)</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="solaris-installation.html">Installing MySQL on Solaris</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="solaris-installation-pkg.html">Installing MySQL on Solaris Using a Solaris PKG</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="freebsd-installation.html">Installing MySQL on FreeBSD</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="source-installation.html">Installing MySQL from Source</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="source-installation-layout.html">MySQL Layout for Source Installation</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="installing-source-distribution.html">Installing MySQL Using a Standard Source Distribution</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="installing-development-tree.html">Installing MySQL Using a Development Source Tree</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="source-configuration-options.html">MySQL Source-Configuration Options</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="compilation-problems.html">Dealing with Problems Compiling MySQL</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="source-configuration-third-party.html">MySQL Configuration and Third-Party Tools</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="postinstallation.html">Postinstallation Setup and Testing</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="data-directory-initialization.html">Initializing the Data Directory</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="data-directory-initialization-mysqld.html">Initializing the Data Directory Manually Using mysqld</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="data-directory-initialization-mysql-install-db.html">Initializing the Data Directory Manually Using mysql_install_db</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="mysql-install-db-problems.html">Problems Running mysql_install_db</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="starting-server.html">Starting the Server</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="starting-server-troubleshooting.html">Troubleshooting Problems Starting the MySQL Server</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="testing-server.html">Testing the Server</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="default-privileges.html">Securing the Initial MySQL Accounts</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="automatic-start.html">Starting and Stopping MySQL Automatically</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="upgrading-downgrading.html">Upgrading or Downgrading MySQL</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="upgrading.html">Upgrading MySQL</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="upgrading-from-previous-series.html">Changes Affecting Upgrades to MySQL 5.7</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="updating-yum-repo.html">Upgrading MySQL with the MySQL Yum Repository</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="updating-apt-repo.html">Upgrading MySQL with the MySQL APT Repository</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="updating-direct-rpms.html">Upgrading MySQL with Directly-Downloaded RPM Packages</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="downgrading.html">Downgrading MySQL</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="downgrading-to-previous-series.html">Changes Affecting Downgrades from MySQL 5.7</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="rebuilding-tables.html">Rebuilding or Repairing Tables or Indexes</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="copying-databases.html">Copying MySQL Databases to Another Machine</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable  loaded" href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="perl-support.html">Perl Installation Notes</a></div></div>                        <div class="docs-submenu hidden">
+                                    
+    <ul>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="perl-installation.html">Installing Perl on Unix</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="activestate-perl.html">Installing ActiveState Perl on Windows</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="perl-support-problems.html">Problems Using the Perl DBI/DBD Interface</a></div></div>                    </li>
+        </ul>
+                            </div>
+                    </li>
+        </ul>
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="tutorial.html">Tutorial</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="programs.html">MySQL Programs</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="server-administration.html">MySQL Server Administration</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="security.html">Security</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="backup-and-recovery.html">Backup and Recovery</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="optimization.html">Optimization</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="language-structure.html">Language Structure</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="globalization.html">Globalization</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="data-types.html">Data Types</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="functions.html">Functions and Operators</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="sql-syntax.html">SQL Statement Syntax</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="innodb-storage-engine.html">The InnoDB Storage Engine</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="storage-engines.html">Alternative Storage Engines</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="replication.html">Replication</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="group-replication.html">Group Replication</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="mysql-shell.html">MySQL Shell User Guide</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="document-store.html">Using MySQL as a Document Store</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="mysql-innodb-cluster-userguide.html">InnoDB Cluster</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="mysql-cluster.html">MySQL NDB Cluster 7.5 and NDB Cluster 7.6</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="partitioning.html">Partitioning</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="stored-programs-views.html">Stored Programs and Views</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="information-schema.html">INFORMATION_SCHEMA Tables</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="performance-schema.html">MySQL Performance Schema</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="sys-schema.html">MySQL sys Schema</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="connectors-apis.html">Connectors and APIs</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="extending-mysql.html">Extending MySQL</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="mysql-enterprise.html">MySQL Enterprise Edition</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="workbench.html">MySQL Workbench</a></div></div>                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="faqs.html">MySQL 5.7 Frequently Asked Questions</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="error-handling.html">Errors, Error Codes, and Common Problems</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="restrictions.html">Restrictions and Limits</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><a class="expandable " href=""><span class="icon-chevron-right"></span></a></div><div class="docs-sidebar-nav-link"><a href="indexes.html">Indexes</a></div></div>                        <div class="docs-submenu hidden">
+                            </div>
+                    </li>
+            <li>
+            <div><div class="docs-sidebar-nav-icon"><span class="icon-dot"></span></div><div class="docs-sidebar-nav-link"><a href="glossary.html">MySQL Glossary</a></div></div>                    </li>
+        </ul>
+                            </nav>
+        </div>
+
+        
+<a class="docs-sidebar-section" href=""><span class="icon-related"></span>
+    <span class="text">Related Documentation</span></a>
+<div class="docs-sidebar-accordian open">
+    <div class="text">
+        <a href="/doc/relnotes/mysql/5.7/en/">MySQL 5.7 Release Notes</a><br />
+        </div>
+</div>
+
+    <a class="docs-sidebar-section" href=""><span class="icon-download-thin"></span>
+        <span class="text">
+            Download
+                            this Manual
+                    </span>
+    </a>
+    <div class="docs-sidebar-accordian open">
+        <div class="text">
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.pdf">PDF (US Ltr)</a>
+            - 38.1Mb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.a4.pdf">PDF (A4)</a>
+            - 38.1Mb<br />
+                        <a href="https://downloads.mysql.com/docs/mysql-ref-manual-5.7-en-pdf-1-20171028.noarch.rpm">PDF (RPM)</a>
+            - 37.4Mb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.html-chapter.tar.gz">HTML Download (TGZ)</a>
+            - 10.2Mb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.html-chapter.zip">HTML Download (Zip)</a>
+            - 10.2Mb<br />
+                        <a href="https://downloads.mysql.com/docs/mysql-ref-manual-5.7-en-html-chapter-1-20171028.noarch.rpm">HTML Download (RPM)</a>
+            - 8.9Mb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.man-gpl.tar.gz">Man Pages (TGZ)</a>
+            - 216.8Kb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.man-gpl.zip">Man Pages (Zip)</a>
+            - 329.7Kb<br />
+                        <a href="https://downloads.mysql.com/docs/mysql-5.7.info.gz">Info (Gzip)</a>
+            - 3.5Mb<br />
+                        <a href="https://downloads.mysql.com/docs/mysql-5.7.info.zip">Info (Zip)</a>
+            - 3.5Mb<br />
+                    </div>
+    </div>
+
+<a class="docs-sidebar-section" href=""><span class="icon-book"></span>
+    <span class="text">Excerpts from this Manual</span></a>
+<div class="docs-sidebar-accordian">
+    <div class="text">
+                <a href="/doc/mysql-backup-excerpt/5.7/en/">MySQL Backup and Recovery</a><br />
+                <a href="/doc/mysql-g11n-excerpt/5.7/en/">MySQL Globalization</a><br />
+                <a href="/doc/mysql-infoschema-excerpt/5.7/en/">MySQL Information Schema</a><br />
+                <a href="/doc/mysql-installation-excerpt/5.7/en/">MySQL Installation Guide</a><br />
+                <a href="/doc/mysql-linuxunix-excerpt/5.7/en/">MySQL and Linux/Unix</a><br />
+                <a href="/doc/mysql-osx-excerpt/5.7/en/">MySQL and OS X</a><br />
+                <a href="/doc/mysql-partitioning-excerpt/5.7/en/">MySQL Partitioning</a><br />
+                <a href="/doc/mysql-perfschema-excerpt/5.7/en/">MySQL Performance Schema</a><br />
+                <a href="/doc/mysql-replication-excerpt/5.7/en/">MySQL Replication</a><br />
+                <a href="/doc/mysql-repo-excerpt/5.7/en/">Using the MySQL Yum Repository</a><br />
+                <a href="/doc/mysql-reslimits-excerpt/5.7/en/">MySQL Restrictions and Limitations</a><br />
+                <a href="/doc/mysql-security-excerpt/5.7/en/">Security in MySQL</a><br />
+                <a href="/doc/mysql-solaris-excerpt/5.7/en/">MySQL and Solaris</a><br />
+                <a href="/doc/mysql-sourcebuild-excerpt/5.7/en/">Building MySQL from Source</a><br />
+                <a href="/doc/mysql-startstop-excerpt/5.7/en/">Starting and Stopping MySQL</a><br />
+                <a href="/doc/mysql-tutorial-excerpt/5.7/en/">MySQL Tutorial</a><br />
+                <a href="/doc/mysql-windows-excerpt/5.7/en/">MySQL and Windows</a><br />
+                <a href="/doc/mysql-cluster-excerpt/5.7/en/">MySQL NDB Cluster 7.5</a><br />
+                <a href="/doc/mysql-secure-deployment-guide/5.7/en/">MySQL 5.7 Secure Deployment Guide</a><br />
+            </div>
+</div>
+
+        <br /><span id="wkr"><br /></span>
+    </div>
+    </div>
+
+    <div id="docs-main" class="has-toc">
+    <div id="docs-main-inner">
+
+                <div class="right" id="docs-version-nav">
+            <a href="" id="docs-version-nav-toggle">version 5.7
+            <span class="icon-chevron-down"></span></a>
+            <div id="docs-version-list">
+                                                        <a                         href="/doc/refman/8.0/en/installing.html">
+                        8.0
+                                            </a><br />
+                                                                                                                <a                         href="/doc/refman/5.6/en/installing.html">
+                        5.6
+                                            </a><br />
+                                                                            <a                         href="/doc/refman/5.5/en/installing.html">
+                        5.5
+                                            </a><br />
+                                                                        <div id="docs-version-nav-lang">
+                                                                                                                                                    <a                                     href="/doc/refman/5.6/ja/installing.html">
+                                    5.6&nbsp;
+                                                                            Japanese
+                                                                    </a><br />
+                                                                                            </div>
+                            </div>
+        </div>
+        
+        <div id="docs-show-nav" class="left hidden" style="margin-right: 15px;">
+            <a class="docs-show-hide-nav" href=""
+                title="Show Sidebar"><span class="icon-arrow-small-right"></span></a>
+        </div>
+
+                        <div id="docs-breadcrumbs">
+            <a href="/doc/refman/5.7/en/">MySQL 5.7 Reference Manual</a> &nbsp;/&nbsp;
+                                                                                Installing and Upgrading MySQL
+                                    </div>
+        
+        <div id="docs-body">
+        
+<div class="chapter">
+<div class="titlepage">
+<div>
+<div>
+<h1 class="title"><a name="installing"></a>Chapter 2 Installing and Upgrading MySQL</h1>
+
+</div>
+
+</div>
+
+</div>
+<div class="toc">
+<p><b>Table of Contents</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-1'); toggle('tocdetail-2'); toggle('tocdetail-3'); toggle('tocdetail-4'); toggle('tocdetail-5'); toggle('tocdetail-6'); toggle('tocdetail-7'); toggle('tocdetail-8'); toggle('tocdetail-9'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-1'); toggle('tocdetail-2'); toggle('tocdetail-3'); toggle('tocdetail-4'); toggle('tocdetail-5'); toggle('tocdetail-6'); toggle('tocdetail-7'); toggle('tocdetail-8'); toggle('tocdetail-9'); return false; } ">+/-</a>]</small></p><dl id="tocdetail"><dt><span class="section"><a href="general-installation-issues.html">2.1 General Installation Guidance</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-1'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-1'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-1"><dl><dt><span class="section"><a href="which-version.html">2.1.1 Which MySQL Version and Distribution to Install</a></span></dt><dt><span class="section"><a href="getting-mysql.html">2.1.2 How to Get MySQL</a></span></dt><dt><span class="section"><a href="verifying-package-integrity.html">2.1.3 Verifying Package Integrity Using MD5 Checksums or GnuPG</a></span></dt><dt><span class="section"><a href="installation-layouts.html">2.1.4 Installation Layouts</a></span></dt><dt><span class="section"><a href="compiler-characteristics.html">2.1.5 Compiler-Specific Build Characteristics</a></span></dt></dl></dd><dt><span class="section"><a href="binary-installation.html">2.2 Installing MySQL on Unix/Linux Using Generic Binaries</a></span></dt><dt><span class="section"><a href="windows-installation.html">2.3 Installing MySQL on Microsoft Windows</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-2'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-2'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-2"><dl><dt><span class="section"><a href="windows-installation-layout.html">2.3.1 MySQL Installation Layout on Microsoft Windows</a></span></dt><dt><span class="section"><a href="windows-choosing-package.html">2.3.2 Choosing an Installation Package</a></span></dt><dt><span class="section"><a href="mysql-installer.html">2.3.3 MySQL Installer for Windows</a></span></dt><dt><span class="section"><a href="windows-notifier.html">2.3.4 MySQL Notifier</a></span></dt><dt><span class="section"><a href="windows-install-archive.html">2.3.5 Installing MySQL on Microsoft Windows Using a noinstall Zip Archive</a></span></dt><dt><span class="section"><a href="windows-troubleshooting.html">2.3.6 Troubleshooting a Microsoft Windows MySQL Server Installation</a></span></dt><dt><span class="section"><a href="windows-postinstallation.html">2.3.7 Windows Postinstallation Procedures</a></span></dt><dt><span class="section"><a href="windows-upgrading.html">2.3.8 Upgrading MySQL on Windows</a></span></dt></dl></dd><dt><span class="section"><a href="osx-installation.html">2.4 Installing MySQL on OS X</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-3'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-3'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-3"><dl><dt><span class="section"><a href="osx-installation-notes.html">2.4.1 General Notes on Installing MySQL on OS X</a></span></dt><dt><span class="section"><a href="osx-installation-pkg.html">2.4.2 Installing MySQL on OS X Using Native Packages</a></span></dt><dt><span class="section"><a href="osx-installation-launchd.html">2.4.3 Installing a MySQL Launch Daemon</a></span></dt><dt><span class="section"><a href="osx-installation-prefpane.html">2.4.4 Installing and Using the MySQL Preference Pane</a></span></dt></dl></dd><dt><span class="section"><a href="linux-installation.html">2.5 Installing MySQL on Linux</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-4'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-4'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-4"><dl><dt><span class="section"><a href="linux-installation-yum-repo.html">2.5.1 Installing MySQL on Linux Using the MySQL Yum Repository</a></span></dt><dt><span class="section"><a href="replace-third-party-yum.html">2.5.2 Replacing a Third-Party Distribution of MySQL Using the MySQL Yum
+Repository</a></span></dt><dt><span class="section"><a href="linux-installation-apt-repo.html">2.5.3 Installing MySQL on Linux Using the MySQL APT Repository</a></span></dt><dt><span class="section"><a href="linux-installation-sles-repo.html">2.5.4 Installing MySQL on Linux Using the MySQL SLES Repository</a></span></dt><dt><span class="section"><a href="linux-installation-rpm.html">2.5.5 Installing MySQL on Linux Using RPM Packages from Oracle</a></span></dt><dt><span class="section"><a href="linux-installation-debian.html">2.5.6 Installing MySQL on Linux Using Debian Packages from Oracle</a></span></dt><dt><span class="section"><a href="linux-installation-docker.html">2.5.7 Deploying MySQL on Linux with Docker</a></span></dt><dt><span class="section"><a href="linux-installation-native.html">2.5.8 Installing MySQL on Linux from the Native Software Repositories</a></span></dt><dt><span class="section"><a href="linux-installation-juju.html">2.5.9 Installing MySQL on Linux with Juju</a></span></dt><dt><span class="section"><a href="using-systemd.html">2.5.10 Managing MySQL Server with systemd</a></span></dt></dl></dd><dt><span class="section"><a href="uln-installation.html">2.6 Installing MySQL Using Unbreakable Linux Network (ULN)</a></span></dt><dt><span class="section"><a href="solaris-installation.html">2.7 Installing MySQL on Solaris</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-5'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-5'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-5"><dl><dt><span class="section"><a href="solaris-installation-pkg.html">2.7.1 Installing MySQL on Solaris Using a Solaris PKG</a></span></dt></dl></dd><dt><span class="section"><a href="freebsd-installation.html">2.8 Installing MySQL on FreeBSD</a></span></dt><dt><span class="section"><a href="source-installation.html">2.9 Installing MySQL from Source</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-6'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-6'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-6"><dl><dt><span class="section"><a href="source-installation-layout.html">2.9.1 MySQL Layout for Source Installation</a></span></dt><dt><span class="section"><a href="installing-source-distribution.html">2.9.2 Installing MySQL Using a Standard Source Distribution</a></span></dt><dt><span class="section"><a href="installing-development-tree.html">2.9.3 Installing MySQL Using a Development Source Tree</a></span></dt><dt><span class="section"><a href="source-configuration-options.html">2.9.4 MySQL Source-Configuration Options</a></span></dt><dt><span class="section"><a href="compilation-problems.html">2.9.5 Dealing with Problems Compiling MySQL</a></span></dt><dt><span class="section"><a href="source-configuration-third-party.html">2.9.6 MySQL Configuration and Third-Party Tools</a></span></dt></dl></dd><dt><span class="section"><a href="postinstallation.html">2.10 Postinstallation Setup and Testing</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-7'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-7'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-7"><dl><dt><span class="section"><a href="data-directory-initialization.html">2.10.1 Initializing the Data Directory</a></span></dt><dt><span class="section"><a href="starting-server.html">2.10.2 Starting the Server</a></span></dt><dt><span class="section"><a href="testing-server.html">2.10.3 Testing the Server</a></span></dt><dt><span class="section"><a href="default-privileges.html">2.10.4 Securing the Initial MySQL Accounts</a></span></dt><dt><span class="section"><a href="automatic-start.html">2.10.5 Starting and Stopping MySQL Automatically</a></span></dt></dl></dd><dt><span class="section"><a href="upgrading-downgrading.html">2.11 Upgrading or Downgrading MySQL</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-8'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-8'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-8"><dl><dt><span class="section"><a href="upgrading.html">2.11.1 Upgrading MySQL</a></span></dt><dt><span class="section"><a href="downgrading.html">2.11.2 Downgrading MySQL</a></span></dt><dt><span class="section"><a href="rebuilding-tables.html">2.11.3 Rebuilding or Repairing Tables or Indexes</a></span></dt><dt><span class="section"><a href="copying-databases.html">2.11.4 Copying MySQL Databases to Another Machine</a></span></dt></dl></dd><dt><span class="section"><a href="perl-support.html">2.12 Perl Installation Notes</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" class="tocdetail" onclick="toggle('tocdetail-9'); return false;" onkeypress="if (event.keyCode == 13) { toggle('tocdetail-9'); return false;}">+/-</a>]</small></dt>
+<dd style="display:none;" id="tocdetail-9"><dl><dt><span class="section"><a href="perl-installation.html">2.12.1 Installing Perl on Unix</a></span></dt><dt><span class="section"><a href="activestate-perl.html">2.12.2 Installing ActiveState Perl on Windows</a></span></dt><dt><span class="section"><a href="perl-support-problems.html">2.12.3 Problems Using the Perl DBI/DBD Interface</a></span></dt></dl></dd></dl>
+</div>
+<a class="indexterm" name="idm140469844646368"></a><p>
+    This chapter describes how to obtain and install MySQL. A summary of
+    the procedure follows and later sections provide the details. If you
+    plan to upgrade an existing version of MySQL to a newer version
+    rather than install MySQL for the first time, see
+    <a class="xref" href="upgrading.html" title="2.11.1 Upgrading MySQL">Section 2.11.1, “Upgrading MySQL”</a>, for information about upgrade
+    procedures and about issues that you should consider before
+    upgrading.
+  </p><p>
+    If you are interested in migrating to MySQL from another database
+    system, see <a class="xref" href="faqs-migration.html" title="A.8 MySQL 5.7 FAQ: Migration">Section A.8, “MySQL 5.7 FAQ: Migration”</a>, which contains answers
+    to some common questions concerning migration issues.
+  </p><p>
+    Installation of MySQL generally follows the steps outlined here:
+</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1"><li class="listitem"><p>
+        <span class="bold"><strong>Determine whether MySQL runs and is
+        supported on your platform.</strong></span>
+      </p><p>
+        Please note that not all platforms are equally suitable for
+        running MySQL, and that not all platforms on which MySQL is
+        known to run are officially supported by Oracle Corporation. For
+        information about those platforms that are officially supported,
+        see <a class="ulink" href="http://www.mysql.com/support/supportedplatforms/database.html" target="_top">http://www.mysql.com/support/supportedplatforms/database.html</a> on the MySQL Web
+        site.
+      </p></li><li class="listitem"><p>
+        <span class="bold"><strong>Choose which distribution to
+        install.</strong></span>
+      </p><p>
+        Several versions of MySQL are available, and most are available
+        in several distribution formats. You can choose from
+        pre-packaged distributions containing binary (precompiled)
+        programs or source code. When in doubt, use a binary
+        distribution. Oracle also provides access to the MySQL source
+        code for those who want to see recent developments and test new
+        code. To determine which version and type of distribution you
+        should use, see <a class="xref" href="which-version.html" title="2.1.1 Which MySQL Version and Distribution to Install">Section 2.1.1, “Which MySQL Version and Distribution to Install”</a>.
+      </p></li><li class="listitem"><p>
+        <span class="bold"><strong>Download the distribution that you want to
+        install.</strong></span>
+      </p><p>
+        For instructions, see <a class="xref" href="getting-mysql.html" title="2.1.2 How to Get MySQL">Section 2.1.2, “How to Get MySQL”</a>. To verify
+        the integrity of the distribution, use the instructions in
+        <a class="xref" href="verifying-package-integrity.html" title="2.1.3 Verifying Package Integrity Using MD5 Checksums or GnuPG">Section 2.1.3, “Verifying Package Integrity Using MD5 Checksums or GnuPG”</a>.
+      </p></li><li class="listitem"><p>
+        <span class="bold"><strong>Install the distribution.</strong></span>
+      </p><p>
+        To install MySQL from a binary distribution, use the
+        instructions in <a class="xref" href="binary-installation.html" title="2.2 Installing MySQL on Unix/Linux Using Generic Binaries">Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”</a>.
+      </p><p>
+        To install MySQL from a source distribution or from the current
+        development source tree, use the instructions in
+        <a class="xref" href="source-installation.html" title="2.9 Installing MySQL from Source">Section 2.9, “Installing MySQL from Source”</a>.
+      </p></li><li class="listitem"><p>
+        <span class="bold"><strong>Perform any necessary postinstallation
+        setup.</strong></span>
+      </p><p>
+        After installing MySQL, see <a class="xref" href="postinstallation.html" title="2.10 Postinstallation Setup and Testing">Section 2.10, “Postinstallation Setup and Testing”</a>
+        for information about making sure the MySQL server is working
+        properly. Also refer to the information provided in
+        <a class="xref" href="default-privileges.html" title="2.10.4 Securing the Initial MySQL Accounts">Section 2.10.4, “Securing the Initial MySQL Accounts”</a>. This section describes how
+        to secure the initial MySQL <code class="literal">root</code> user
+        account, <span class="emphasis"><em>which has no password</em></span> until you
+        assign one. The section applies whether you install MySQL using
+        a binary or source distribution.
+      </p></li><li class="listitem"><p>
+        If you want to run the MySQL benchmark scripts, Perl support for
+        MySQL must be available. See <a class="xref" href="perl-support.html" title="2.12 Perl Installation Notes">Section 2.12, “Perl Installation Notes”</a>.
+</p></li></ol>
+</div>
+<p>
+    Instructions for installing MySQL on different platforms and
+    environments is available on a platform by platform basis:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+        <span class="bold"><strong>Unix, Linux, FreeBSD</strong></span>
+      </p><p>
+        For instructions on installing MySQL on most Linux and Unix
+        platforms using a generic binary (for example, a
+        <code class="filename">.tar.gz</code> package), see
+        <a class="xref" href="binary-installation.html" title="2.2 Installing MySQL on Unix/Linux Using Generic Binaries">Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”</a>.
+      </p><p>
+        For information on building MySQL entirely from the source code
+        distributions or the source code repositories, see
+        <a class="xref" href="source-installation.html" title="2.9 Installing MySQL from Source">Section 2.9, “Installing MySQL from Source”</a>
+      </p><p>
+        For specific platform help on installation, configuration, and
+        building from source see the corresponding platform section:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
+            Linux, including notes on distribution specific methods, see
+            <a class="xref" href="linux-installation.html" title="2.5 Installing MySQL on Linux">Section 2.5, “Installing MySQL on Linux”</a>.
+          </p></li><li class="listitem"><p>
+            Solaris, including PKG and IPS formats, see
+            <a class="xref" href="solaris-installation.html" title="2.7 Installing MySQL on Solaris">Section 2.7, “Installing MySQL on Solaris”</a>.
+          </p></li><li class="listitem"><p>
+            IBM AIX, see <a class="xref" href="solaris-installation.html" title="2.7 Installing MySQL on Solaris">Section 2.7, “Installing MySQL on Solaris”</a>.
+          </p></li><li class="listitem"><p>
+            FreeBSD, see <a class="xref" href="freebsd-installation.html" title="2.8 Installing MySQL on FreeBSD">Section 2.8, “Installing MySQL on FreeBSD”</a>.
+</p></li></ul>
+</div>
+</li><li class="listitem"><p>
+        <span class="bold"><strong>Microsoft Windows</strong></span>
+      </p><p>
+        For instructions on installing MySQL on Microsoft Windows, using
+        either the MySQL Installer or Zipped binary, see
+        <a class="xref" href="windows-installation.html" title="2.3 Installing MySQL on Microsoft Windows">Section 2.3, “Installing MySQL on Microsoft Windows”</a>.
+      </p><p>
+        For information about managing MySQL instances, see
+        <a class="xref" href="windows-notifier.html" title="2.3.4 MySQL Notifier">Section 2.3.4, “MySQL Notifier”</a>.
+      </p><p>
+        For details and instructions on building MySQL from source code
+        using Microsoft Visual Studio, see
+        <a class="xref" href="source-installation.html" title="2.9 Installing MySQL from Source">Section 2.9, “Installing MySQL from Source”</a>.
+      </p></li><li class="listitem"><p>
+        <span class="bold"><strong>OS X</strong></span>
+      </p><p>
+        For installation on OS X, including using both the binary
+        package and native PKG formats, see
+        <a class="xref" href="osx-installation.html" title="2.4 Installing MySQL on OS X">Section 2.4, “Installing MySQL on OS X”</a>.
+      </p><p>
+        For information on making use of an OS X Launch Daemon to
+        automatically start and stop MySQL, see
+        <a class="xref" href="osx-installation-launchd.html" title="2.4.3 Installing a MySQL Launch Daemon">Section 2.4.3, “Installing a MySQL Launch Daemon”</a>.
+      </p><p>
+        For information on the MySQL Preference Pane, see
+        <a class="xref" href="osx-installation-prefpane.html" title="2.4.4 Installing and Using the MySQL Preference Pane">Section 2.4.4, “Installing and Using the MySQL Preference Pane”</a>.
+</p></li></ul>
+</div>
+</div><br />
+        </div>
+
+                <div id="docs-in-page-nav-container">
+            <div id="docs-in-page-nav">
+                
+    <a href="supporters.html"
+        title="Previous: Supporters of MySQL"><span
+        class="icon-chevron-left"></span> PREV</a> &nbsp;
+<a href="index.html" title="Start"> HOME</a> &nbsp;
+    <a href="index.html" title="Up"> UP</a> &nbsp;
+    <a href="general-installation-issues.html"
+        title="Next: General Installation Guidance">NEXT <span
+        class="icon-chevron-right"></span></a>
+            </div>
+        </div>
+        
+         <div id="docs-body-extra">
+             
+<a class="docs-sidebar-section" href=""><span class="icon-related"></span>
+    <span class="text">Related Documentation</span></a>
+<div class="docs-sidebar-accordian">
+    <div class="text">
+        <a href="/doc/relnotes/mysql/5.7/en/">MySQL 5.7 Release Notes</a><br />
+        </div>
+</div>
+
+    <a class="docs-sidebar-section" href=""><span class="icon-download-thin"></span>
+        <span class="text">
+            Download
+                            this Manual
+                    </span>
+    </a>
+    <div class="docs-sidebar-accordian">
+        <div class="text">
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.pdf">PDF (US Ltr)</a>
+            - 38.1Mb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.a4.pdf">PDF (A4)</a>
+            - 38.1Mb<br />
+                        <a href="https://downloads.mysql.com/docs/mysql-ref-manual-5.7-en-pdf-1-20171028.noarch.rpm">PDF (RPM)</a>
+            - 37.4Mb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.html-chapter.tar.gz">HTML Download (TGZ)</a>
+            - 10.2Mb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.html-chapter.zip">HTML Download (Zip)</a>
+            - 10.2Mb<br />
+                        <a href="https://downloads.mysql.com/docs/mysql-ref-manual-5.7-en-html-chapter-1-20171028.noarch.rpm">HTML Download (RPM)</a>
+            - 8.9Mb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.man-gpl.tar.gz">Man Pages (TGZ)</a>
+            - 216.8Kb<br />
+                        <a href="https://downloads.mysql.com/docs/refman-5.7-en.man-gpl.zip">Man Pages (Zip)</a>
+            - 329.7Kb<br />
+                        <a href="https://downloads.mysql.com/docs/mysql-5.7.info.gz">Info (Gzip)</a>
+            - 3.5Mb<br />
+                        <a href="https://downloads.mysql.com/docs/mysql-5.7.info.zip">Info (Zip)</a>
+            - 3.5Mb<br />
+                    </div>
+    </div>
+
+<a class="docs-sidebar-section" href=""><span class="icon-book"></span>
+    <span class="text">Excerpts from this Manual</span></a>
+<div class="docs-sidebar-accordian">
+    <div class="text">
+                <a href="/doc/mysql-backup-excerpt/5.7/en/">MySQL Backup and Recovery</a><br />
+                <a href="/doc/mysql-g11n-excerpt/5.7/en/">MySQL Globalization</a><br />
+                <a href="/doc/mysql-infoschema-excerpt/5.7/en/">MySQL Information Schema</a><br />
+                <a href="/doc/mysql-installation-excerpt/5.7/en/">MySQL Installation Guide</a><br />
+                <a href="/doc/mysql-linuxunix-excerpt/5.7/en/">MySQL and Linux/Unix</a><br />
+                <a href="/doc/mysql-osx-excerpt/5.7/en/">MySQL and OS X</a><br />
+                <a href="/doc/mysql-partitioning-excerpt/5.7/en/">MySQL Partitioning</a><br />
+                <a href="/doc/mysql-perfschema-excerpt/5.7/en/">MySQL Performance Schema</a><br />
+                <a href="/doc/mysql-replication-excerpt/5.7/en/">MySQL Replication</a><br />
+                <a href="/doc/mysql-repo-excerpt/5.7/en/">Using the MySQL Yum Repository</a><br />
+                <a href="/doc/mysql-reslimits-excerpt/5.7/en/">MySQL Restrictions and Limitations</a><br />
+                <a href="/doc/mysql-security-excerpt/5.7/en/">Security in MySQL</a><br />
+                <a href="/doc/mysql-solaris-excerpt/5.7/en/">MySQL and Solaris</a><br />
+                <a href="/doc/mysql-sourcebuild-excerpt/5.7/en/">Building MySQL from Source</a><br />
+                <a href="/doc/mysql-startstop-excerpt/5.7/en/">Starting and Stopping MySQL</a><br />
+                <a href="/doc/mysql-tutorial-excerpt/5.7/en/">MySQL Tutorial</a><br />
+                <a href="/doc/mysql-windows-excerpt/5.7/en/">MySQL and Windows</a><br />
+                <a href="/doc/mysql-cluster-excerpt/5.7/en/">MySQL NDB Cluster 7.5</a><br />
+                <a href="/doc/mysql-secure-deployment-guide/5.7/en/">MySQL 5.7 Secure Deployment Guide</a><br />
+            </div>
+</div>
+         </div>
+
+                     
+<div id="docs-comments">
+    <div class="docs-comments-header"><span class="icon-bubbles"></span> User Comments</div>
+
+    <div id="comment-listing">
+    
+    </div>
+
+        <div class="docs-comment-disclaimer">
+        <a href="https://dev.mysql.com/auth/register/?dest=https%3A%2F%2Fdev.mysql.com%2Fdoc%2Frefman%2F5.7%2Fen%2Finstalling.html%3Facf%3D1%23add-comment" class="docs-comment-btn right">Sign Up</a>
+        <a href="https://dev.mysql.com/auth/login/?dest=https%3A%2F%2Fdev.mysql.com%2Fdoc%2Frefman%2F5.7%2Fen%2Finstalling.html%3Facf%3D1%23add-comment" class="docs-comment-btn right">Login</a>
+        You must be logged in to post a comment.
+    </div>
+    </div>
+              </div>
+     </div>
+
+</div>
+
+<script>
+$(function() {
+    var doc = new $.doc({ 'mobile': $.browser.mobile, 'docId': 1, 'highlight': true });
+});
+</script>
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="collapsed">
+        <div id="footer-bottom">
+                                    <div id="footer-collapse">
+                <a href="" id="expand-footer"
+                    title="Expand Footer"><span
+                    class="icon-plus-square"></span></a>
+            </div>
+                        <div class="footer-contact">
+                <div id="footer-contact-icon" style="display: none;">
+                    <span class="icon-call-phone"></span>
+                </div>
+                <div id="footer-contact-numbers" style="display: none;">
+                    <strong>Contact MySQL Sales</strong><br/>
+                    USA/Canada: +1-866-221-0634 &nbsp;
+                    (<a href="https://www.mysql.com/about/contact/phone/">More Countries &raquo;</a>)
+                </div>
+                <div id="footer-contact-copyright" style="display: inline-block;">
+                    <a href="http://www.oracle.com/"><span class="oracle-logo"></span></a>
+                    &nbsp; &copy; 2017, Oracle Corporation and/or its affiliates
+                </div>
+            </div>
+            <div class="social-icons">
+                <a title="Join us on Facebook" href="http://www.facebook.com/mysql"><span class="icon-facebook-square"></span></a>
+                <a title="Follow us on Twitter" href="https://twitter.com/#!/mysql"><span class="icon-twitter-square"></span></a>
+                <a title="Follow us on LinkedIn" href="https://www.linkedin.com/company-beta/165081/"><span class="icon-linkedin-square"></span></a>
+                <a title="Join Google+ to follow MySQL" href="https://plus.google.com/+mysql"><span class="icon-google-plus-square"></span></a>
+                <a title="Visit our YouTube channel" href="http://www.youtube.com/mysqlchannel"><span class="icon-youtube-square"></span></a>
+            </div>
+            <br class="clear" />
+        </div>
+        <div id="footer-links">
+
+            <div id="footer-nav"></div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://www.mysql.com/products/">Products</a></li>
+                    <li><a href="https://www.mysql.com/cloud/">Oracle MySQL Cloud Service</a></li>
+                    <li><a href="https://www.mysql.com/products/enterprise/">MySQL Enterprise Edition</a></li>
+                    <li><a href="https://www.mysql.com/products/standard/">MySQL Standard Edition</a></li>
+                    <li><a href="https://www.mysql.com/products/classic/">MySQL Classic Edition</a></li>
+                    <li><a href="https://www.mysql.com/products/cluster/">MySQL Cluster CGE</a></li>
+                    <li><a href="https://www.mysql.com/oem/">MySQL Embedded (OEM/ISV)</a></li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://www.mysql.com/services/">Services</a></li>
+                    <li><a href="https://www.mysql.com/training/">Training</a></li>
+                    <li><a href="https://www.mysql.com/certification/">Certification</a></li>
+                    <li><a href="https://www.mysql.com/consulting/">Consulting</a></li>
+                    <li><a href="https://www.mysql.com/support/">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://dev.mysql.com/downloads/">Downloads</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/cluster/">MySQL NDB Cluster</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/shell/">MySQL Shell</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/router/">MySQL Router</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://dev.mysql.com/doc/">Documentation</a></li>
+                    <li><a href="https://dev.mysql.com/doc/refman/en/">MySQL Reference Manual</a></li>
+                    <li><a href="https://dev.mysql.com/doc/workbench/en/">MySQL Workbench</a></li>
+                    <li><a href="https://dev.mysql.com/doc/index-cluster.html">MySQL NDB Cluster</a></li>
+                    <li><a href="https://dev.mysql.com/doc/index-connectors.html">MySQL Connectors</a></li>
+                    <li><a href="https://dev.mysql.com/doc/#topic">Topic Guides</a></li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://www.mysql.com/about/">About MySQL</a></li>
+                    <li><a href="https://www.mysql.com/about/contact/">Contact Us</a></li>
+                                                            <li><a href="https://www.mysql.com/buy-mysql/">How to Buy</a></li>
+                    <li><a href="https://www.mysql.com/partners/">Partners</a></li>
+                    <li><a href="https://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+                    <li><a href="https://www.mysql.com/sitemap.html">Site Map</a></li>
+                </ul>
+            </div>
+
+            
+            <div id="footer-logo">
+                <a href="http://www.oracle.com/"><span class="oracle-logo"></span></a>
+                &nbsp; &copy; 2017, Oracle Corporation and/or its affiliates
+                <div class="footer-legal-links">
+                    <a href="https://www.mysql.com/about/legal/">Legal Policies</a> |
+                    <a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a> |
+                    <a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a> |
+                    <a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a> |
+                    <a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a> |
+                    <div id="teconsent" style="display: inline-block"><script async="async" type="text/javascript" src="//consent.truste.com/notice?domain=mysql.com&c=teconsent&text=true&language=en" crossorigin=""></script></div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</div>
+
+        <script src="https://labs.mysql.com/common/js/metrics/s_code_remote.js"></script>
+
+        
+
+</body>
+</html>

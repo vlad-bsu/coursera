@@ -1,0 +1,208 @@
+<meta charset="utf-8"/>
+<co-content>
+ <p>
+  During this course we'll be using the
+  <a href="http://swirlstats.com/">
+   swirl
+  </a>
+  software package for R in order to illustrate some key concepts. The swirl package turns the R console into an interactive learning environment. Using swirl will also give you the opportunity to be completely immersed in an authentic R programming environment. In this programming assignment, you'll have the opportunity to practice some key concepts from this course.
+ </p>
+ <h2 level="2">
+  0. Install R
+ </h2>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    swirl requires R 3.0.2 or later. If you have an older version of R, please update before going any further. If you're not sure what version of R you have, type R.version.string at the R prompt. You can download the latest version of R from
+    <a href="https://www.r-project.org/">
+     https://www.r-project.org/.
+    </a>
+   </p>
+  </li>
+  <li>
+   <p>
+    Optional but
+    <strong>
+     highly recommended
+    </strong>
+    : Install RStudio. You can download the latest version of RStudio at
+    <a href="https://www.rstudio.com/products/rstudio/">
+     https://www.rstudio.com/products/rstudio/
+    </a>
+    .
+   </p>
+  </li>
+ </ul>
+ <h2 level="2">
+ </h2>
+ <h2 level="2">
+  1. Install swirl
+ </h2>
+ <p>
+  Since swirl is an R package, you can easily install it by entering a single command from the R console:
+ </p>
+ <pre language="r">install.packages("swirl")</pre>
+ <p>
+  If you've installed swirl in the past make sure you have version 2.2.21 or later. You can check this with:
+ </p>
+ <pre language="r">packageVersion("swirl")</pre>
+ <h2 level="2">
+ </h2>
+ <h2 level="2">
+  2. Load swirl
+ </h2>
+ <p>
+  Every time you want to use swirl, you need to first load the package. From the R console:
+ </p>
+ <pre language="r">library(swirl)</pre>
+ <h2 level="2">
+ </h2>
+ <h2 level="2">
+  3. Install the R Progroamming course
+ </h2>
+ <p>
+  swirl offers a variety of interactive courses, but for our purposes, you want the one called R Programming. Type the following from the R prompt to install this course:
+ </p>
+ <pre language="r">install_from_swirl("R Programming")</pre>
+ <h2 level="2">
+ </h2>
+ <h2 level="2">
+  4. Start swirl and complete the lessons
+ </h2>
+ <p>
+  Type the following from the R console to start swirl:
+ </p>
+ <pre language="r">swirl()</pre>
+ <p>
+  Then, follow the menus and select the R Programming course when given the option. For the first part of this course you should complete the following lessons:
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Basic Building Blocks
+   </p>
+  </li>
+  <li>
+   <p>
+    Workspace and Files
+   </p>
+  </li>
+  <li>
+   <p>
+    Sequences of Numbers
+   </p>
+  </li>
+  <li>
+   <p>
+    Vectors
+   </p>
+  </li>
+  <li>
+   <p>
+    Missing Values
+   </p>
+  </li>
+  <li>
+   <p>
+    Subsetting Vectors
+   </p>
+  </li>
+  <li>
+   <p>
+    Matrices and Data Frames
+   </p>
+  </li>
+ </ol>
+ <h2 level="2">
+  If you need help...
+ </h2>
+ <p>
+  Visit the
+  <a href="https://github.com/swirldev/swirl/wiki/Coursera-FAQ">
+   Frequently Asked Questions (FAQ
+  </a>
+  ) page to see if you can answer your own question immediately.
+ </p>
+ <p>
+  Search the Discussion Forums this course.
+ </p>
+ <p>
+  If you still can't find an answer to your question, then create a new thread under the swirl Programming Assignment sub-forum and provide the following information:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    A descriptive title
+   </p>
+  </li>
+  <li>
+   <p>
+    Any input/output from the console (copy &amp; paste) or a screenshot
+   </p>
+  </li>
+  <li>
+   <p>
+    The output from sessionInfo()
+   </p>
+  </li>
+ </ul>
+ <p>
+  Good luck and have fun!
+ </p>
+ <p>
+  For more information on swirl, visit
+  <a href="http://swirlstats.com/">
+   swirlstats.com
+  </a>
+ </p>
+ <h3 level="3">
+ </h3>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,364 @@
+<meta charset="utf-8"/>
+<h3>
+ Question 1
+</h3>
+<co-content>
+ <p>
+  Suppose
+  <em>
+   m
+  </em>
+  =4 students have taken some class, and the class had a midterm exam and a final exam. You have collected a dataset of their scores on the two exams, which is as follows:
+ </p>
+ <table columns="3" rows="5">
+  <tr>
+   <td>
+    <p>
+     midterm exam
+    </p>
+   </td>
+   <td>
+    <p>
+     (midterm exam)^2
+    </p>
+   </td>
+   <td>
+    <p>
+     final exam
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     89
+    </p>
+   </td>
+   <td>
+    <p>
+     7921
+    </p>
+   </td>
+   <td>
+    <p>
+     96
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     72
+    </p>
+   </td>
+   <td>
+    <p>
+     5184
+    </p>
+   </td>
+   <td>
+    <p>
+     74
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     94
+    </p>
+   </td>
+   <td>
+    <p>
+     8836
+    </p>
+   </td>
+   <td>
+    <p>
+     87
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     69
+    </p>
+   </td>
+   <td>
+    <p>
+     4761
+    </p>
+   </td>
+   <td>
+    <p>
+     78
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  You'd like to use polynomial regression to predict a student's final exam score from their midterm exam score. Concretely, suppose you want to fit a model of the form $$h_\theta(x) = \theta_0   \theta_1 x_1   \theta_2 x_2$$, where $$x_1$$ is the midterm score and x_2 is (midterm score)^2. Further, you plan to use both feature scaling (dividing by the "max-min", or range, of a feature) and mean normalization.
+ </p>
+ <p hasmath="true">
+  What is the normalized feature $$x_2^{(4)}$$? (Hint: midterm = 69, final = 78 is training example 4.) Please round off your answer to two decimal places and enter in the text box below.
+ </p>
+ <p>
+ </p>
+ <p>
+ </p>
+</co-content>
+<form>
+ <label>
+  Enter answer here:
+  <input name="" type="text"/>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 2
+</h3>
+<co-content>
+ <p>
+  You run gradient descent for 15 iterations
+ </p>
+ <p hasmath="true">
+  with $$\alpha = 0.3$$ and compute
+ </p>
+ <p hasmath="true">
+  $$J(\theta)$$ after each iteration. You find that the
+ </p>
+ <p hasmath="true">
+  value of $$J(\theta)$$
+  <strong>
+   decreases
+  </strong>
+  quickly then levels
+ </p>
+ <p>
+  off.  Based on this, which of the following conclusions seems
+ </p>
+ <p>
+  most plausible?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$\alpha = 0.3$$ is an effective choice of learning rate.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Rather than use the current value of $$\alpha$$, it'd be more promising to try a larger value of $$\alpha$$ (say $$\alpha = 1.0$$).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="1" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Rather than use the current value of $$\alpha$$, it'd be more promising to try a smaller value of $$\alpha$$ (say $$\alpha = 0.1$$).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 3
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose you have $$m = 28$$ training examples with $$n = 4$$ features (excluding the additional all-ones feature for the intercept term, which you should add). The normal equation is $$\theta = (X^TX)^{-1}X^Ty$$. For the given values of $$m$$ and $$n$$, what are the dimensions of $$\theta$$, $$X$$, and $$y$$ in this equation?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$X$$ is $$28\times5$$, $$y$$ is $$28\times5$$, $$\theta$$ is $$5\times5$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$X$$ is $$28\times4$$, $$y$$ is $$28\times1$$, $$\theta$$ is $$4\times4$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$X$$ is $$28\times4$$, $$y$$ is $$28\times1$$, $$\theta$$ is$$4\times1$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="2" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    $$X$$ is $$28\times5$$, $$y$$ is $$28\times1$$, $$\theta$$ is $$5\times1$$
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 4
+</h3>
+<co-content>
+ <p hasmath="true">
+  Suppose you have a dataset with $$m = 50$$ examples and $$n = 200000$$ features for each example. You want to use multivariate linear regression to fit the parameters $$\theta$$ to our data. Should you prefer gradient descent or the normal equation?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Gradient descent, since $$(X^TX)^{-1}$$ will be very slow to compute in the normal equation.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span>
+    The normal equation, since it provides an efficient way to directly find the solution.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    The normal equation, since gradient descent might be unable to find the optimal $$\theta$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="3" type="radio"/>
+  <co-content>
+   <span hasmath="true">
+    Gradient descent, since it will always converge to the optimal $$\theta$$.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<h3>
+ Question 5
+</h3>
+<co-content>
+ <p>
+  Which of the following are reasons for using feature scaling?
+ </p>
+</co-content>
+<form>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    It speeds up solving for $$\theta$$ using the normal equation.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    It speeds up gradient descent by making it require fewer iterations to get to a good solution.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span>
+    It is necessary to prevent gradient descent from getting stuck in local optima.
+   </span>
+  </co-content>
+  <br/>
+ </label>
+ <label>
+  <input name="4" type="checkbox"/>
+  <co-content>
+   <span hasmath="true">
+    It prevents the matrix $$X^TX$$ (used in the normal equation) from being non-invertable (singular/degenerate).
+   </span>
+  </co-content>
+  <br/>
+ </label>
+</form>
+<hr/>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

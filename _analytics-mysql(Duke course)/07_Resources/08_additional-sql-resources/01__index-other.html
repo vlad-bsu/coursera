@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="svg no-js">
+<head>
+    <meta charset="utf-8" />
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Language" content="en">
+
+    <title>MySQL :: Other MySQL Documentation</title>
+    <link rel="stylesheet" media="all" href="https://labs.mysql.com/common/css/main-20170712.min.css" />
+            <link rel="stylesheet" media="all" href="https://labs.mysql.com/common/css/docs-20170712.min.css" />
+    
+    
+    <link rel="stylesheet" media="print" href="https://labs.mysql.com/common/css/print-20170712.min.css" />
+
+    
+    
+    
+    
+    
+    <link rel="shortcut icon" href="https://labs.mysql.com/common/themes/sakila/favicon.ico" />
+    <script>(function(H){ H.className=H.className.replace(/\bno-js\b/,'js') })(document.documentElement)</script>
+    <script src="https://labs.mysql.com/common/js/site-20170626.min.js"></script>
+
+    
+    
+    
+    <!--[if lt IE 9]>
+        <script src="https://labs.mysql.com/common/js/polyfills/html5shiv-printshiv-3.7.2.min.js"></script>
+        <script src="https://labs.mysql.com/common/js/polyfills/respond-1.4.2.min.js"></script>
+    <![endif]-->
+        <!--[if IE 9]>
+        <style>#docs-sidebar-toc { box-sizing: content-box; }</style>
+    <![endif]-->
+    </head>
+
+<body class="no-sidebar full-page dev">
+<div class="page-wrapper">
+    <header>
+
+                        <a href="https://dev.mysql.com/" title="MySQL" id="l1-home-link"></a>
+        
+        <div id="l1-nav-container">
+            <div id="l1-line1">
+                <div id="l1-auth-links">
+                    <a href="https://www.mysql.com/about/contact/"><b>Contact MySQL</b></a>
+                    <span id="l1-contact-separator">&nbsp;|&nbsp;</span>
+                    <span id="l1-contact-separator-br"><br /></span>
+                                             <a href="https://dev.mysql.com/auth/login/?dest=https%3A%2F%2Fdev.mysql.com%2Fdoc%2Findex-other.html">Login</a> &nbsp;|&nbsp;
+                         <a href="https://dev.mysql.com/auth/register/">Register</a>
+                                    </div>
+                <div id="l1-lhs">
+                    <div id="l1-slogan">
+                        The world's most popular open source database
+                    </div>
+                    <div id="l1-search-box">
+                        <form id="l1-search-form" method="get" action="https://www.oracle.com/search/results">
+                        <input type="hidden" name="cat" value="mysql" />
+                        <input type="hidden" name="Ntk" value="SI-ALL5" />
+                        <input id="l1-search-input" type="search" class="icon-search" placeholder="Search" name="Ntt" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="l1-line2">
+                <div class="social-icons">
+                    <a title="Join us on Facebook" href="http://www.facebook.com/mysql"><span class="icon-facebook"></span></a>
+                    <a title="Follow us on Twitter" href="https://twitter.com/#!/mysql"><span class="icon-twitter"></span></a>
+                    <a title="Follow us on LinkedIn" href="https://www.linkedin.com/company-beta/165081/"><span class="icon-linkedin"></span></a>
+                    <a title="Join Google+ to follow MySQL" href="https://plus.google.com/+mysql"><span class="icon-google-plus"></span></a>
+                    <a title="Visit our YouTube channel" href="http://www.youtube.com/mysqlchannel"><span class="icon-youtube"></span></a>
+                </div>
+                <ul id="l1-nav">
+                    <li>
+                        <a href="https://www.mysql.com/"><!-- <span class="icon-sakila"></span>  -->MySQL.com</a>
+                    </li><li>
+                        <a href="https://www.mysql.com/downloads/"><!-- <span class="icon-download-thin"></span>  -->Downloads</a>
+                    </li><li class="active">
+                        <a href="/doc/"><!-- <span class="icon-books"></span>  -->Documentation</a>
+                    </li><li>
+                        <a href="/"><!-- <span class="icon-code"></span>  -->Developer Zone</a>
+                    </li>                </ul>
+            </div>
+        </div>
+        <div id="sub-header">
+            <div id="l2-nav-container">
+                <div id="l2-nav-toggle">
+                    <span class="icon-three-bars"></span>
+                </div>
+                                                                                        <a class="button nav-button-3" href="/"><span class="icon-code"></span> Developer Zone</a>
+                                                                                                                                    <a class="button nav-button-2" href="https://www.mysql.com/downloads/"><span class="icon-download-thin"></span> Downloads</a>
+                                                                                                <a class="button nav-button-1" href="https://www.mysql.com/"><span class="icon-sakila"></span> MySQL.com</a>
+                                                                        <div id="l2-search-toggle">
+                    <span class="icon-search"></span>
+                </div>
+                <div id="l2-site-icon">
+                                                                                                                                                                                                    <span class="icon-books"></span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                <div id="l1-section-title">
+                    <span id="l1-section-label">
+                        <a href="/doc/">Documentation</a>
+                    </span>
+                </div>
+                <nav>
+                    
+
+<ul id="l2-nav">
+            	<li class=""><a  href="/doc/refman/en/">MySQL Server</a>
+    			</li>
+	        	<li class=""><a  href="/doc/index-enterprise.html">MySQL Enterprise</a>
+    			</li>
+	        	<li class=""><a  href="/doc/workbench/en/">Workbench</a>
+    			</li>
+	        	<li class=""><a  href="/doc/en/mysql-innodb-cluster-userguide.html">InnoDB Cluster</a>
+    			</li>
+	        	<li class=""><a  href="/doc/index-cluster.html">MySQL NDB Cluster</a>
+    			</li>
+	        	<li class=""><a  href="/doc/index-connectors.html">Connectors</a>
+    			</li>
+	        	<li class="active last"><a class="active subitems" href="/doc/index-other.html">More</a>
+    			</li>
+	                        <li class="other-section"><a href="https://www.mysql.com/">MySQL.com</a></li>
+                            <li class="other-section"><a href="https://www.mysql.com/downloads/">Downloads</a></li>
+                                        <li class="other-section"><a href="/">Developer Zone</a></li>
+            </ul>
+                </nav>
+            </div>
+            <div id="l3-search-container"></div>
+            <div id="top-orange"><span id="section-nav">Section Menu: &nbsp; </span></div>
+        </div>
+    </header>
+    <div id="page">
+                        <div role="main" id="main">
+
+            
+                
+            
+<div>
+    <div id="docs-sidebar" class="docs-listing">
+        <div class="docs-sidebar-header">
+            <div class="left"><span class="icon-search"></span></div>
+            <div class="docs-sidebar-header-text"> Search</div>
+        </div>
+        
+<div id="docs-sidebar-search-container">
+    <div id="docs-sidebar-search-box">
+        <form method="get" action="/doc/search/">
+            <input type="hidden" name="d" id="d" value="" />
+            <input type="hidden" name="p" id="p" value="1" />
+            <input type="text" name="q" id="q"
+                value="Search Current Docs"
+                style="color: #bbb;"
+                onfocus="if(this.value == 'Search Current Docs') {this.value='';this.style.color='#555';}"
+                onblur="if(this.value == '') {this.value='Search Current Docs';this.style.color='#bbb';}" />
+
+            <button class="docs-sidebar-search-btn" title="Search" type="submit">
+                <span class="icon-search"></span>
+            </button>
+        </form>
+    </div>
+</div>
+        <br />
+
+                <div id="menu">
+            <nav>
+                <ul>
+                    <li class="level1">
+                        <a "
+                            href="index-archive.html"><span class="icon-dot"></span>Archives</a></li>
+                    <li class="level1">
+                        <a "
+                            href="index-about.html"><span class="icon-dot"></span>About</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="docs-sidebar-header">
+            <div class="left"><span class="icon-download-thin"></span></div>
+            <div class="docs-sidebar-header-text">
+                Download Help
+            </div>
+        </div>
+
+        <div class="docs-downloadable-help">
+            <b>Using PDF files</b><br />
+            We recommend reading our PDF files with Adobe Reader 7.0 or better, kpdf or Okular (Linux),
+            or Preview (OS X).
+        </div>
+
+    </div>
+    <div id="docs-main" class="has-toc docs-listing" style="padding-top: 1px;">
+
+        <div class="docs-page-title">Other MySQL Documentation</div>
+
+<a name="more-more"></a>
+<p>This page provides additional documentation. There's even more available on these extra pages:</p>
+<ul>
+ <li>
+  <a href="/doc/index-archive.html"><strong>Archives</strong>: the complete documentation archives</a>
+ </li>
+ <li>
+  <a href="/doc/index-about.html"><strong>About</strong>: information about MySQL documentation and the MySQL documentation team</a>
+ </li>
+</ul>
+
+<h2>MySQL Server Doxygen Documentation</h2>
+<table class="docs-document-list">
+<tr class="title">
+<th class="ljtitle">Title</th>
+<th class="title">HTML Online</th>
+</tr>
+<tr class="even" id="rowid-0">
+<td class="ljtitle">MySQL Server (latest version)</td>
+<td class="link"><a title="View MySQL Server (latest version) latest online" href="/doc/dev/mysql-server/latest/">View</a></td>
+</tr>
+</table>
+<h2>Expert Guides</h2>
+<table class="docs-document-list">
+<tr class="title">
+<th class="ljtitle">Language</th>
+<th class="ljtitle">Title</th>
+<th class="title">HTML Online</th>
+<th class="title">PDF</th>
+</tr>
+<tr class="even" id="rowid-1">
+<td class="ljtitle">English</td>
+<td class="ljtitle">MySQL Internals</td>
+<td class="link"><a title="View MySQL Internals (English) online" href="/doc/internals/en/">View</a></td>
+<td class="link"></td>
+</tr>
+<tr class="odd" id="rowid-2">
+<td class="ljtitle">English</td>
+<td class="ljtitle">MySQL Development Cycle</td>
+<td class="link"><a title="View MySQL Development Cycle (English) online" href="/doc/mysql-development-cycle/en/">View</a></td>
+<td class="link"><a title="Download MySQL Development Cycle (English) PDF (US Ltr); 53 Kb" href="http://downloads.mysql.com/docs/mysql-development-cycle-en.pdf">US Ltr</a>&nbsp;|&nbsp;<a title="Download MySQL Development Cycle (English) PDF (A4); 53 Kb" href="http://downloads.mysql.com/docs/mysql-development-cycle-en.a4.pdf">A4</a></td>
+</tr>
+</table>
+<h2>Example Databases</h2>
+<table class="docs-document-list">
+<tr class="title">
+<th class="ljtitle">Title</th>
+<th class="title">Download DB</th>
+<th class="title">HTML Setup Guide</th>
+<th class="title">PDF Setup Guide</th>
+</tr>
+<tr class="even" id="rowid-3">
+<td class="ljtitle">employee data (large dataset, includes data and test/verification suite)</td>
+<td class="link"><a title="Download employee data (large dataset, includes data and test/verification suite)" href="https://launchpad.net/test-db/">Launchpad</a></td>
+<td class="link"><a title="View employee data (large dataset, includes data and test/verification suite) online" href="/doc/employee/en/">View</a></td>
+<td class="link"><a title="Download employee data (large dataset, includes data and test/verification suite) PDF Setup Guide (US Ltr); 98 Kb" href="http://downloads.mysql.com/docs/employee-en.pdf">US Ltr</a>&nbsp;|&nbsp;<a title="Download employee data (large dataset, includes data and test/verification suite) PDF Setup Guide (A4); 98 Kb" href="http://downloads.mysql.com/docs/employee-en.a4.pdf">A4</a></td>
+</tr>
+<tr class="odd" id="rowid-4">
+<td class="ljtitle">world database</td>
+<td class="link"><a title="Download world database" href="http://downloads.mysql.com/docs/world.sql.gz">Gzip</a>&nbsp;|&nbsp;<a title="Download world database" href="http://downloads.mysql.com/docs/world.sql.zip">Zip</a></td>
+<td class="link"><a title="View world database online" href="/doc/world-setup/en/">View</a></td>
+<td class="link"><a title="Download world database PDF Setup Guide (US Ltr); 20 Kb" href="http://downloads.mysql.com/docs/world-setup-en.pdf">US Ltr</a></td>
+</tr>
+<tr class="even" id="rowid-5">
+<td class="ljtitle">world_x database</td>
+<td class="link"><a title="Download world_x database" href="http://downloads.mysql.com/docs/world_x-db.tar.gz">TGZ</a>&nbsp;|&nbsp;<a title="Download world_x database" href="http://downloads.mysql.com/docs/world_x-db.zip">Zip</a></td>
+<td class="link"></td>
+<td class="link"></td>
+</tr>
+<tr class="odd" id="rowid-6">
+<td class="ljtitle">sakila database</td>
+<td class="link"><a title="Download sakila database" href="http://downloads.mysql.com/docs/sakila-db.tar.gz">TGZ</a>&nbsp;|&nbsp;<a title="Download sakila database" href="http://downloads.mysql.com/docs/sakila-db.zip">Zip</a></td>
+<td class="link"><a title="View sakila database online" href="/doc/sakila/en/">View</a></td>
+<td class="link"><a title="Download sakila database PDF Setup Guide (US Ltr); 177 Kb" href="http://downloads.mysql.com/docs/sakila-en.pdf">US Ltr</a>&nbsp;|&nbsp;<a title="Download sakila database PDF Setup Guide (A4); 179 Kb" href="http://downloads.mysql.com/docs/sakila-en.a4.pdf">A4</a></td>
+</tr>
+<tr class="even" id="rowid-7">
+<td class="ljtitle">menagerie database</td>
+<td class="link"><a title="Download menagerie database" href="http://downloads.mysql.com/docs/menagerie-db.tar.gz">TGZ</a>&nbsp;|&nbsp;<a title="Download menagerie database" href="http://downloads.mysql.com/docs/menagerie-db.zip">Zip</a></td>
+<td class="link"></td>
+<td class="link"></td>
+</tr>
+</table>
+<h2>MySQL Help Tables</h2>
+<table class="docs-document-list">
+<tr class="title">
+<th class="ljtitle">Title</th>
+<th class="ljtitle">Version</th>
+<th class="title">Download</th>
+</tr>
+<tr class="even" id="rowid-8">
+<td class="ljtitle">MySQL Help Tables</td>
+<td class="ljtitle">8.0</td>
+<td class="link"><a title="Download MySQL Help Tables 8.0" href="http://downloads.mysql.com/docs/fill_help_tables-8.0.sql.gz">Gzip</a>&nbsp;|&nbsp;<a title="Download MySQL Help Tables 8.0" href="http://downloads.mysql.com/docs/fill_help_tables-8.0.sql.zip">Zip</a></td>
+</tr>
+<tr class="odd" id="rowid-9">
+<td class="ljtitle">MySQL Help Tables</td>
+<td class="ljtitle">5.7</td>
+<td class="link"><a title="Download MySQL Help Tables 5.7" href="http://downloads.mysql.com/docs/fill_help_tables-5.7.sql.gz">Gzip</a>&nbsp;|&nbsp;<a title="Download MySQL Help Tables 5.7" href="http://downloads.mysql.com/docs/fill_help_tables-5.7.sql.zip">Zip</a></td>
+</tr>
+<tr class="even" id="rowid-10">
+<td class="ljtitle">MySQL Help Tables</td>
+<td class="ljtitle">5.6</td>
+<td class="link"><a title="Download MySQL Help Tables 5.6" href="http://downloads.mysql.com/docs/fill_help_tables-5.6.sql.gz">Gzip</a>&nbsp;|&nbsp;<a title="Download MySQL Help Tables 5.6" href="http://downloads.mysql.com/docs/fill_help_tables-5.6.sql.zip">Zip</a></td>
+</tr>
+<tr class="odd" id="rowid-11">
+<td class="ljtitle">MySQL Help Tables</td>
+<td class="ljtitle">5.5</td>
+<td class="link"><a title="Download MySQL Help Tables 5.5" href="http://downloads.mysql.com/docs/fill_help_tables-5.5.sql.gz">Gzip</a>&nbsp;|&nbsp;<a title="Download MySQL Help Tables 5.5" href="http://downloads.mysql.com/docs/fill_help_tables-5.5.sql.zip">Zip</a></td>
+</tr>
+</table>
+<p><strong>To use:</strong> Download, uncompress, then load into MySQL with this command:</p> <pre>mysql mysql &lt; <i>file_name</i></pre> <p>If the server is a replication master and you want to avoid replicating the content to replication slaves, use this command:</p> <pre>mysql --init-command="SET sql_log_bin=0" mysql &lt; <i>file_name</i></pre> <p>As of MySQL 5.7.5, the SET statement is included in the file, so the --init-command option is not needed.</p><h2>MySQL Utilities</h2>
+<table class="docs-document-list">
+<tr class="title">
+<th class="ljtitle">Language</th>
+<th class="ljtitle">Title</th>
+<th class="ljtitle">Version</th>
+<th class="title">HTML Online</th>
+<th class="title">PDF</th>
+<th class="title">HTML Download</th>
+</tr>
+<tr class="even" id="rowid-12">
+<td class="ljtitle">English</td>
+<td class="ljtitle">MySQL Utilities</td>
+<td class="ljtitle">1.6</td>
+<td class="link"><a title="View MySQL Utilities 1.6 (English) online" href="/doc/mysql-utilities/1.6/en/">View</a></td>
+<td class="link"><a title="Download MySQL Utilities 1.6 (English) PDF (US Ltr); 1.2 Mb" href="http://downloads.mysql.com/docs/mysql-utilities-1.6-en.pdf">US Ltr</a>&nbsp;|&nbsp;<a title="Download MySQL Utilities 1.6 (English) PDF (A4); 1.2 Mb" href="http://downloads.mysql.com/docs/mysql-utilities-1.6-en.a4.pdf">A4</a></td>
+<td class="link"><a title="Download MySQL Utilities 1.6 (English) HTML Download (TGZ); 210 Kb" href="http://downloads.mysql.com/docs/mysql-utilities-1.6-en.html-chapter.tar.gz">TGZ</a>&nbsp;|&nbsp;<a title="Download MySQL Utilities 1.6 (English) HTML Download (Zip); 221 Kb" href="http://downloads.mysql.com/docs/mysql-utilities-1.6-en.html-chapter.zip">Zip</a></td>
+</tr>
+<tr class="odd" id="rowid-13">
+<td class="ljtitle">English</td>
+<td class="ljtitle">MySQL Utilities</td>
+<td class="ljtitle">1.5</td>
+<td class="link"><a title="View MySQL Utilities 1.5 (English) online" href="/doc/mysql-utilities/1.5/en/">View</a></td>
+<td class="link"><a title="Download MySQL Utilities 1.5 (English) PDF (US Ltr); 1.0 Mb" href="http://downloads.mysql.com/docs/mysql-utilities-1.5-en.pdf">US Ltr</a>&nbsp;|&nbsp;<a title="Download MySQL Utilities 1.5 (English) PDF (A4); 1.0 Mb" href="http://downloads.mysql.com/docs/mysql-utilities-1.5-en.a4.pdf">A4</a></td>
+<td class="link"><a title="Download MySQL Utilities 1.5 (English) HTML Download (TGZ); 192 Kb" href="http://downloads.mysql.com/docs/mysql-utilities-1.5-en.html-chapter.tar.gz">TGZ</a>&nbsp;|&nbsp;<a title="Download MySQL Utilities 1.5 (English) HTML Download (Zip); 203 Kb" href="http://downloads.mysql.com/docs/mysql-utilities-1.5-en.html-chapter.zip">Zip</a></td>
+</tr>
+</table>
+<h2>MySQL Utilities Release Notes</h2>
+<table class="docs-document-list">
+<tr class="title">
+<th class="ljtitle">Language</th>
+<th class="ljtitle">Title</th>
+<th class="title">HTML Online</th>
+<th class="title">PDF</th>
+<th class="title">HTML Download</th>
+</tr>
+<tr class="even" id="rowid-14">
+<td class="ljtitle">English</td>
+<td class="ljtitle">MySQL Utilities Release Notes</td>
+<td class="link"><a title="View MySQL Utilities Release Notes (English) online" href="/doc/relnotes/mysql-utilities/en/">View</a></td>
+<td class="link"><a title="Download MySQL Utilities Release Notes (English) PDF (US Ltr); 224 Kb" href="http://downloads.mysql.com/docs/mysql-utilities-relnotes-en.pdf">US Ltr</a>&nbsp;|&nbsp;<a title="Download MySQL Utilities Release Notes (English) PDF (A4); 225 Kb" href="http://downloads.mysql.com/docs/mysql-utilities-relnotes-en.a4.pdf">A4</a></td>
+<td class="link"><a title="Download MySQL Utilities Release Notes (English) HTML Download (TGZ); 59 Kb" href="http://downloads.mysql.com/docs/mysql-utilities-relnotes-en.html.tar.gz">TGZ</a>&nbsp;|&nbsp;<a title="Download MySQL Utilities Release Notes (English) HTML Download (Zip); 59 Kb" href="http://downloads.mysql.com/docs/mysql-utilities-relnotes-en.html.zip">Zip</a></td>
+</tr>
+</table>
+<h2>Additional Documentation</h2>
+<table class="docs-document-list">
+<tr class="title">
+<th class="ljtitle">Title</th>
+<th class="title">HTML Online</th>
+</tr>
+<tr class="even" id="rowid-15">
+<td class="ljtitle">MySQL++ Manual</td>
+<td class="link"><a title="View MySQL++ Manual online" href="http://tangentsoft.net/mysql++/doc/">View</a></td>
+</tr>
+</table>
+
+
+<a name="additional-resources"></a>
+<h2>Additional Resources</h2>
+<ul>
+ <li><a href="/tech-resources/articles/index.html">Technical articles about MySQL</a></li>
+ <li><a href="http://lists.mysql.com/">MySQL Mailing List Archives</a></li>
+</ul>
+<hr/>
+
+<p><b>Additional documentation for other products is available using
+the sub-navigation options (<a href="index-gui.html">Workbench</a>,
+<a href="index-topic.html">Topic Guides</a>, etc.) in the navigation
+bar. For other documentation, including example databases and help
+tables, see <a href="index-other.html">Other Docs</a>.</b></p>
+
+<hr/>
+
+<a name="pdf-tip"></a> 
+
+<h3>Using PDF files</h3> 
+
+<p>We recommend reading our PDF files with Adobe Reader 7.0 or better, kpdf or
+Okular (Linux), or Preview (macOS).</p>
+
+
+
+<br />
+
+    </div>
+</div>
+    
+
+            
+        </div>
+    </div>
+
+    <footer>
+        <div id="footer-bottom">
+                                    <div class="footer-contact">
+                <div id="footer-contact-icon">
+                    <span class="icon-call-phone"></span>
+                </div>
+                <div id="footer-contact-numbers">
+                    <strong>Contact MySQL Sales</strong><br/>
+                    USA/Canada: +1-866-221-0634 &nbsp;
+                    (<a href="https://www.mysql.com/about/contact/phone/">More Countries &raquo;</a>)
+                </div>
+                <div id="footer-contact-copyright">
+                    <a href="http://www.oracle.com/"><span class="oracle-logo"></span></a>
+                    &nbsp; &copy; 2017, Oracle Corporation and/or its affiliates
+                </div>
+            </div>
+            <div class="social-icons">
+                <a title="Join us on Facebook" href="http://www.facebook.com/mysql"><span class="icon-facebook-square"></span></a>
+                <a title="Follow us on Twitter" href="https://twitter.com/#!/mysql"><span class="icon-twitter-square"></span></a>
+                <a title="Follow us on LinkedIn" href="https://www.linkedin.com/company-beta/165081/"><span class="icon-linkedin-square"></span></a>
+                <a title="Join Google+ to follow MySQL" href="https://plus.google.com/+mysql"><span class="icon-google-plus-square"></span></a>
+                <a title="Visit our YouTube channel" href="http://www.youtube.com/mysqlchannel"><span class="icon-youtube-square"></span></a>
+            </div>
+            <br class="clear" />
+        </div>
+        <div id="footer-links">
+
+            <div id="footer-nav"></div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://www.mysql.com/products/">Products</a></li>
+                    <li><a href="https://www.mysql.com/cloud/">Oracle MySQL Cloud Service</a></li>
+                    <li><a href="https://www.mysql.com/products/enterprise/">MySQL Enterprise Edition</a></li>
+                    <li><a href="https://www.mysql.com/products/standard/">MySQL Standard Edition</a></li>
+                    <li><a href="https://www.mysql.com/products/classic/">MySQL Classic Edition</a></li>
+                    <li><a href="https://www.mysql.com/products/cluster/">MySQL Cluster CGE</a></li>
+                    <li><a href="https://www.mysql.com/oem/">MySQL Embedded (OEM/ISV)</a></li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://www.mysql.com/services/">Services</a></li>
+                    <li><a href="https://www.mysql.com/training/">Training</a></li>
+                    <li><a href="https://www.mysql.com/certification/">Certification</a></li>
+                    <li><a href="https://www.mysql.com/consulting/">Consulting</a></li>
+                    <li><a href="https://www.mysql.com/support/">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://dev.mysql.com/downloads/">Downloads</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/cluster/">MySQL NDB Cluster</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/shell/">MySQL Shell</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/router/">MySQL Router</a></li>
+                    <li><a href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://dev.mysql.com/doc/">Documentation</a></li>
+                    <li><a href="https://dev.mysql.com/doc/refman/en/">MySQL Reference Manual</a></li>
+                    <li><a href="https://dev.mysql.com/doc/workbench/en/">MySQL Workbench</a></li>
+                    <li><a href="https://dev.mysql.com/doc/index-cluster.html">MySQL NDB Cluster</a></li>
+                    <li><a href="https://dev.mysql.com/doc/index-connectors.html">MySQL Connectors</a></li>
+                    <li><a href="https://dev.mysql.com/doc/#topic">Topic Guides</a></li>
+                </ul>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li class="top"><a href="https://www.mysql.com/about/">About MySQL</a></li>
+                    <li><a href="https://www.mysql.com/about/contact/">Contact Us</a></li>
+                                                            <li><a href="https://www.mysql.com/buy-mysql/">How to Buy</a></li>
+                    <li><a href="https://www.mysql.com/partners/">Partners</a></li>
+                    <li><a href="https://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+                    <li><a href="https://www.mysql.com/sitemap.html">Site Map</a></li>
+                </ul>
+            </div>
+
+            
+            <div id="footer-logo">
+                <a href="http://www.oracle.com/"><span class="oracle-logo"></span></a>
+                &nbsp; &copy; 2017, Oracle Corporation and/or its affiliates
+                <div class="footer-legal-links">
+                    <a href="https://www.mysql.com/about/legal/">Legal Policies</a> |
+                    <a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a> |
+                    <a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a> |
+                    <a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a> |
+                    <a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a> |
+                    <div id="teconsent" style="display: inline-block"><script async="async" type="text/javascript" src="//consent.truste.com/notice?domain=mysql.com&c=teconsent&text=true&language=en" crossorigin=""></script></div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</div>
+
+        <script src="https://labs.mysql.com/common/js/metrics/s_code_remote.js"></script>
+
+        
+
+</body>
+</html>
